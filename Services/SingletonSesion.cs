@@ -10,16 +10,16 @@ namespace Services
     public class SingletonSesion
     {
         private static Usuario _instance = null;
-        private static object _protect = new object();
+        private static object _Lock = new object();
 
         private SingletonSesion()
         {
         }
 
-        public static Usuario CreateInstance(Usuario user)
+        public static Usuario Login(Usuario user)
         {
-            // Utilizo el lock para proteger el hilo de mi instancia.
-            lock (_protect)
+            
+            lock (_Lock)
             {
                 if (_instance == null)
                 {
@@ -35,9 +35,14 @@ namespace Services
             return _instance;
         }
 
-        public static Usuario RemoveInstance()
+        public static Usuario Logout()
         {
             return _instance = null;
+        }
+
+        public static bool IsLogged()
+        {
+            return _instance != null;
         }
     }
 }

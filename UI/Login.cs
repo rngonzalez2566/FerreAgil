@@ -16,5 +16,25 @@ namespace UI
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BLL.Usuario usu = new BLL.Usuario();
+
+            try
+            {
+                BE.Usuario usuario = usu.Login(this.txtUsuario.Text, this.txtPassword.Text);
+                Principal frm = new Principal();
+                this.Hide();
+                frm.Show();
+                //frm.ValidarForm();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                txtPassword.Clear();
+            }
+        }
     }
 }

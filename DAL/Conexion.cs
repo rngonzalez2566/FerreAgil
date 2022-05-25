@@ -14,7 +14,7 @@ namespace DAL
         private readonly string server;
         private readonly string baseDatos;
         public string conexion { get; set; }
-        private static SqlConnection instancia = null;
+        
         public Conexion ()
         {
             SqlConnection instancia = new SqlConnection();
@@ -31,28 +31,7 @@ namespace DAL
             conexion = sqlConnectionString.ConnectionString;
         }
 
-        public SqlConnection conectar()
-        {
-            instancia = new SqlConnection();
-            instancia.ConnectionString = conexion;
-            instancia.Open();
-
-            if (instancia.State == System.Data.ConnectionState.Closed)
-            {
-               instancia.Open();
-            }
-
-            return instancia;
-        }
-
-        public void desconectar()
-        {
-            if (instancia.State == System.Data.ConnectionState.Open)
-            {
-
-                instancia.Close();
-            }
-        }
+        
 
     }
 }
