@@ -38,9 +38,8 @@ namespace DAL
 
         public void executeNonQuery()
         {
-            //En primer lugar se debe abrir la conexion
+           
             Conectar();
-
             
             SqlTransaction TR = con.BeginTransaction();
             SqlCommand command = new SqlCommand(xCommandText, con, TR);
@@ -48,7 +47,7 @@ namespace DAL
             command.CommandType = CommandType.Text;
             command.Parameters.Clear();
 
-            //se van a agregar los parametros
+           
             foreach (SqlParameter p in xParameters.Parameters)
             {
                 command.Parameters.AddWithValue(p.ParameterName, p.SqlValue);
@@ -56,27 +55,26 @@ namespace DAL
 
             try
             {
-                //ejecuto la query
+                
                 command.ExecuteNonQuery();
                 TR.Commit();
             }
-            //error de SQL
+            
             catch (SqlException exc)
             {
-                //en caso de error se realizara un rollback y generara una excepcion
+                
                 TR.Rollback();
                 throw new Exception("ocurrio un Error en BD:" + exc.Message);
             }
             //otros errores
             catch (Exception exc2)
             {
-                //en caso de error se realizara un rollback y generara una excepcion
+                
                 TR.Rollback();
                 throw new Exception("ocurrio un Error :" + exc2.Message);
             }
             finally
             {
-                //se cierra la conexion
                 Desconectar();
             }
         }
@@ -84,7 +82,7 @@ namespace DAL
 
         public DataTable ExecuteReader()
         {
-            //En primer lugar se debe abrir la conexion
+            
             Conectar();
             SqlDataReader dr;
             DataTable dt = new DataTable();
@@ -94,7 +92,7 @@ namespace DAL
             comando.CommandType = CommandType.Text;
             comando.Parameters.Clear();
 
-            //se van a agregar los parametros
+           
             foreach (SqlParameter p in xParameters.Parameters)
             {
                 comando.Parameters.AddWithValue(p.ParameterName, p.SqlValue);
@@ -102,29 +100,29 @@ namespace DAL
 
             try
             {
-                //ejecuto la query
+                
                 dr = comando.ExecuteReader();
                 dt.Load(dr);
                 TR.Commit();
                 return dt;
             }
-            //error de SQL
+            
             catch (SqlException exc)
             {
-                //en caso de error se realizara un rollback y generara una excepcion
+                
                 TR.Rollback();
                 throw new Exception("ocurrio un Error en BD:" + exc.Message);
             }
-            //otros errores
+           
             catch (Exception exc2)
             {
-                //en caso de error se realizara un rollback y generara una excepcion
+                
                 TR.Rollback();
                 throw new Exception("ocurrio un Error :" + exc2.Message);
             }
             finally
             {
-                //se cierra la conexion
+                
                 Desconectar();
                 
             }

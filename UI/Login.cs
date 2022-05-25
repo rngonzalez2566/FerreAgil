@@ -27,7 +27,7 @@ namespace UI
                 Principal frm = new Principal();
                 this.Hide();
                 frm.Show();
-                //frm.ValidarForm();
+                frm.ValidarForm();
             }
             catch (Exception ex)
             {
@@ -35,6 +35,22 @@ namespace UI
                 MessageBox.Show(ex.Message);
                 txtPassword.Clear();
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            BLL.Conexion conex = new BLL.Conexion();
+            try
+            {
+                conex.conectar();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("PROBLEMAS CON LA BASE DE DATOS, CONTACTESE CON EL ADMINISTRADOR");
+                Application.Exit();
+            }
+  
         }
     }
 }

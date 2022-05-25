@@ -30,7 +30,7 @@ namespace Services
             return _instance;
         }
 
-        public static Usuario GetInstance()
+        public static Usuario GetUsuario()
         {
             return _instance;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,35 @@ namespace UI
         public Principal()
         {
             InitializeComponent();
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void ValidarForm()
+        {
+
+            Encriptar encriptar = new Encriptar();
+            if (SingletonSesion.IsLogged())
+                this.toolStripSesion.Text = encriptar.descencriptar(SingletonSesion.GetUsuario().usuario);
+            else
+                this.toolStripSesion.Text = "[Sesión no iniciada]";
+
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro?", "Confirme", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                BLL.Usuario usu = new BLL.Usuario();
+                usu.Logout();
+                ValidarForm();
+                this.Close();
+                Login l = new Login();
+                l.Show();
+            }
         }
     }
 }

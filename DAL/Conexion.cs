@@ -31,7 +31,22 @@ namespace DAL
             conexion = sqlConnectionString.ConnectionString;
         }
 
-        
+        public void conectar()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = conexion;
+            try
+            {
+                con.Open();
+                con.Close();
+            }
+            catch (SqlException exc)
+            {
+
+                throw new Exception("ocurrio un Error en BD:" + exc.Message);
+            }
+            
+        }
 
     }
 }

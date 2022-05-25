@@ -72,5 +72,10 @@ namespace BLL
             usuario.BloquearUsuario(Usu);
             return Usu.contador;
         }
+
+        public void Logout()
+        {
+            SingletonSesion.Logout();
+        }
     }
 }
