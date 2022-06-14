@@ -54,21 +54,11 @@ namespace BLL
 
         public int BloquearUsuario(BE.Usuario Usu)
         {
-            //BLL.Bitacora bit = new BLL.Bitacora();
+            
             Encriptar Encripta = new Encriptar();
-            //BLL.DigitoVerificador Dv = new BLL.DigitoVerificador();
             DAL.Usuario usuario = new DAL.Usuario();
 
             Usu.contador = Usu.contador + 1;
-            //if (Usu.contador >= 3)
-            //{
-            //    string xTexto = bit.registrarBitacora(Usu, "Se bloqueo por intentos fallidos el usuario: " + Encripta.descencriptar(Usu.usuario), 1, DateTime.Now).ToString();
-            //}
-            //else
-            //{
-            //    string xTexto = bit.registrarBitacora(Usu, "Intento Fallido de ingreso del usuario: " + Encripta.descencriptar(Usu.usuario), 1, DateTime.Now).ToString();
-            //}
-            //Usu.DVH = Dv.CalcularDV("usuario", Usu);
             usuario.BloquearUsuario(Usu);
             return Usu.contador;
         }

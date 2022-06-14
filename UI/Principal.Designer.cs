@@ -59,7 +59,7 @@ namespace UI
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F);
-            this.toolStripStatusLabel.ForeColor = System.Drawing.Color.Khaki;
+            this.toolStripStatusLabel.ForeColor = System.Drawing.Color.DarkRed;
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(65, 21);
             this.toolStripStatusLabel.Text = "Usuario";
@@ -67,7 +67,7 @@ namespace UI
             // toolStripSesion
             // 
             this.toolStripSesion.Font = new System.Drawing.Font("Malgun Gothic", 12F);
-            this.toolStripSesion.ForeColor = System.Drawing.Color.Khaki;
+            this.toolStripSesion.ForeColor = System.Drawing.Color.DarkRed;
             this.toolStripSesion.Name = "toolStripSesion";
             this.toolStripSesion.Size = new System.Drawing.Size(166, 21);
             this.toolStripSesion.Text = "[ Sesión no iniciada ]";
@@ -99,7 +99,7 @@ namespace UI
             this.cambioDePasswordToolStripMenuItem,
             this.desbloquearUsuarioToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // altaUsuariosToolStripMenuItem
