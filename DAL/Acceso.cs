@@ -129,5 +129,48 @@ namespace DAL
 
         }
 
+        public virtual int ExecuteNonEscalar()
+        {
+            Conectar();
+            SqlTransaction transaction = con.BeginTransaction();
+            SqlCommand command = new SqlCommand(xCommandText, con, transaction);
+
+            command.CommandType = CommandType.Text;
+            command.Parameters.Clear();
+
+            foreach (SqlParameter p in xParameters.Parameters)
+            {
+                command.Parameters.AddWithValue(p.ParameterName, p.SqlValue);
+            }
+
+            SqlParameter sp_return = new SqlParameter();
+            sp_return.Direction = ParameterDirection.ReturnValue;
+            command.Parameters.Add(sp_return);
+
+            int outputId = 0;
+
+            try
+            {
+                outputId = (int)command.ExecuteScalar();
+                transaction.Commit();
+            }
+            catch (SqlException exc)
+            {
+                transaction.Rollback();
+                throw new Exception("Ocurrió un error en BD: " + exc.Message);
+            }
+            catch (Exception exc2)
+            {
+                transaction.Rollback();
+                throw new Exception("Ocurrió un error: " + exc2.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+
+            return outputId;
+        }
+
     }
 }

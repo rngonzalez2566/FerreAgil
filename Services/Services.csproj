@@ -43,6 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Encriptar.cs" />
+    <Compile Include="Idioma\Etiqueta.cs" />
+    <Compile Include="Idioma\Idioma.cs" />
+    <Compile Include="Idioma\sesionIdioma.cs" />
+    <Compile Include="Idioma\Traduccion.cs" />
+    <Compile Include="Idioma\Traductor.cs" />
     <Compile Include="SingletonSesion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,6 +55,14 @@
     <ProjectReference Include="..\BE\BE.csproj">
       <Project>{899F9016-C67D-41B1-B1ED-6A4F7280169F}</Project>
       <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{6e439c95-e944-413d-95e1-43df42432bc4}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{47E84C48-A070-4A8D-861B-7A9B06B3264B}</Project>
+      <Name>Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

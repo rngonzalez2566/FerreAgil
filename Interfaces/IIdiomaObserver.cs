@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public class Class1
+    public interface IIdiomaObserver
     {
+        void UpdateLanguage(IIdioma idioma);
     }
 }
