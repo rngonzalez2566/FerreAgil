@@ -20,7 +20,7 @@ namespace DAL
 
         private const string get_UnidadMedida = "SELECT * FROM Unidad_Medida WHERE ID_UNIDADMEDIDA = @Id_unidadMedida AND ESTADO <> 'BAJA' ";
 
-        private const string get_UnidadMedidas = "SELECT * FROM Unidad_Medida WHERE ESTADO <> 'BAJA' ";
+        private const string get_UnidadMedidas = "SELECT * FROM Unidad_Medida WHERE ESTADO is null ";
         #endregion
 
 
@@ -52,6 +52,44 @@ namespace DAL
                 }
 
                 return unidadMedida;
+
+
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public List<BE.UnidadMedida> GetUnidadMedidas()
+        {
+            
+     
+
+            try
+            {
+                DataTable dt = new DataTable();
+                List<BE.UnidadMedida> listaUM = new List<BE.UnidadMedida>();
+                xCommandText = get_UnidadMedidas;
+                xParameters.Parameters.Clear();
+                dt = ExecuteReader();
+
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in dt.Rows)
+                    {
+                        BE.UnidadMedida um = new BE.UnidadMedida();
+                        um.id_UnidadMedida = int.Parse(fila[0].ToString());
+                        um.simbolo = fila[1].ToString();
+                        um.nombre = fila[2].ToString();
+
+                        listaUM.Add(um);
+                    }                 
+
+                }
+
+                return listaUM;
 
 
             }

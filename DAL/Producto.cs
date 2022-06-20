@@ -151,6 +151,7 @@ namespace DAL
 
                 if (dt.Rows.Count > 0)
                 {
+                
                     UnidadMedida um = new UnidadMedida();
                     BE.Producto Producto = new BE.Producto();
 

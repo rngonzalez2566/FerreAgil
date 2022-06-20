@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>UI</RootNamespace>
     <AssemblyName>UI</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -59,11 +59,11 @@
     <Compile Include="Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Producto\AltaProducto.cs">
+    <Compile Include="Producto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Producto\AltaProducto.Designer.cs">
-      <DependentUpon>AltaProducto.cs</DependentUpon>
+    <Compile Include="Producto.Designer.cs">
+      <DependentUpon>Producto.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,8 +73,8 @@
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Producto\AltaProducto.resx">
-      <DependentUpon>AltaProducto.cs</DependentUpon>
+    <EmbeddedResource Include="Producto.resx">
+      <DependentUpon>Producto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
