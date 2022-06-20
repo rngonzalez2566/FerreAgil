@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnMod = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgProductos = new System.Windows.Forms.DataGridView();
             this.btnAlta = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgProductos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,13 +88,25 @@
             this.btnBaja.Text = "Baja";
             this.btnBaja.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dtgProductos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(435, 28);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(548, 320);
-            this.dataGridView1.TabIndex = 23;
+            this.dtgProductos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.dtgProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgProductos.GridColor = System.Drawing.Color.Black;
+            this.dtgProductos.Location = new System.Drawing.Point(435, 28);
+            this.dtgProductos.Name = "dtgProductos";
+            this.dtgProductos.Size = new System.Drawing.Size(548, 320);
+            this.dtgProductos.TabIndex = 23;
+            this.dtgProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgProductos_CellContentClick);
             // 
             // btnAlta
             // 
@@ -167,6 +180,8 @@
             this.txtOptimo.Name = "txtOptimo";
             this.txtOptimo.Size = new System.Drawing.Size(159, 20);
             this.txtOptimo.TabIndex = 12;
+            this.txtOptimo.Text = "0";
+            this.txtOptimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOptimo_KeyPress);
             // 
             // label2
             // 
@@ -187,6 +202,8 @@
             this.txtMinimo.Name = "txtMinimo";
             this.txtMinimo.Size = new System.Drawing.Size(159, 20);
             this.txtMinimo.TabIndex = 11;
+            this.txtMinimo.Text = "0";
+            this.txtMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimo_KeyPress);
             // 
             // label3
             // 
@@ -239,13 +256,13 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnMod);
             this.Controls.Add(this.btnBaja);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgProductos);
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.groupBox1);
             this.Name = "Producto";
             this.Text = "Producto";
             this.Load += new System.EventHandler(this.Producto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgProductos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -257,7 +274,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnMod;
         private System.Windows.Forms.Button btnBaja;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgProductos;
         private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;

@@ -28,5 +28,19 @@ namespace BLL
 
         }
         #endregion
+        #region Gets
+        public List<BE.Producto> GetProductos()
+        {
+            try
+            {
+                DAL.Producto producto = new DAL.Producto();
+                return producto.GetProductos();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al obtener Unidades de Medida");
+            }
+        }
+        #endregion
     }
 }

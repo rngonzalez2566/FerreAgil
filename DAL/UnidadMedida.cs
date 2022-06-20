@@ -18,7 +18,7 @@ namespace DAL
         private const string modificacion_UnidadMedida = "UPDATE Unidad_Medida SET SIMBOLO = @simbolo, SET NOMBRE = @nombre" +
                                                      " OUTPUT inserted.Id_unidadMedida  WHERE ID_UNIDADMEDIDA = @Id_unidadMedida ";
 
-        private const string get_UnidadMedida = "SELECT * FROM Unidad_Medida WHERE ID_UNIDADMEDIDA = @Id_unidadMedida AND ESTADO <> 'BAJA' ";
+        private const string get_UnidadMedida = "SELECT * FROM Unidad_Medida WHERE ID_UNIDADMEDIDA = @Id_unidadMedida AND ESTADO is null ";
 
         private const string get_UnidadMedidas = "SELECT * FROM Unidad_Medida WHERE ESTADO is null ";
         #endregion
@@ -49,6 +49,10 @@ namespace DAL
                     unidadMedida.estado = dt.Rows[0]["estado"].ToString();
 
 
+                }
+                else
+                {
+                    unidadMedida = null;
                 }
 
                 return unidadMedida;

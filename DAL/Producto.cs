@@ -11,9 +11,9 @@ namespace DAL
     {
         #region Consultas
         private const string alta_Producto = "INSERT INTO Producto (codigo, descripcion, Id_unidadMedida, StockMinimo," +
-                                             " StockOptimo)" +
-                                             " OUTPUT inserted.Id_producto VALUES (@codigo, @descripcion, @id_unidadMedida,"+ 
-                                             " @stockMinimo, @stockOptimo)";
+                                             " StockOptimo, LeadTimeCompra, ConsumoMensual, ConsumoTrimestral, ConsumoSemestral)" +
+                                             " OUTPUT inserted.Id_producto VALUES (@codigo, @descripcion, @id_unidadMedida,"+
+                                             " @stockMinimo, @stockOptimo, @LeadTimeCompra, @ConsumoMensual, @ConsumoTrimestral, @ConsumoSemestral)";
 
         private const string baja_Producto = "UPDATE PRODUCTO SET ESTADO = 'BAJA' OUTPUT inserted.ID_PRODUCTO WHERE ID_PRODUCTO = @id_Producto ";
 
@@ -21,9 +21,9 @@ namespace DAL
                                                      " ID_UNIDADMEDIDA = @id_unidadMedida, STOCKMINIMO = @stockMinimo," +
                                                      " STOCKOPTIMO = @stockOptimo OUTPUT inserted.ID_PRODUCTO  WHERE ID_PRODUCTO = @id_Producto ";
 
-        private const string get_Producto = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO = @id_Producto";
+        private const string get_Producto = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO = @id_Producto  AND ESTADO IS NULL";
 
-        private const string get_Productos = "SELECT * FROM PRODUCTO WHERE ESTADO <> 'BAJA' ";
+        private const string get_Productos = "SELECT * FROM PRODUCTO WHERE ESTADO is null order by id_producto desc";
         #endregion
 
         #region ABM
@@ -41,6 +41,10 @@ namespace DAL
                 xParameters.Parameters.AddWithValue("@id_unidadMedida", producto.unidadMedida.id_UnidadMedida);
                 xParameters.Parameters.AddWithValue("@stockMinimo", producto.stockMinimo);
                 xParameters.Parameters.AddWithValue("@stockOptimo", producto.stockOptimo);
+                xParameters.Parameters.AddWithValue("@LeadTimeCompra", producto.leadTimeCompra);
+                xParameters.Parameters.AddWithValue("@ConsumoMensual", producto.consumoMensual);
+                xParameters.Parameters.AddWithValue("@ConsumoTrimestral", producto.consumoTrimestral);
+                xParameters.Parameters.AddWithValue("@ConsumoSemestral", producto.consumoSemestral);
 
                 return ExecuteNonEscalar();
             }
@@ -112,20 +116,21 @@ namespace DAL
 
                 if (dt.Rows.Count > 0)
                 {
-                    UnidadMedida um = new UnidadMedida();
 
-                    Producto.id_Producto = int.Parse(dt.Rows[0]["id_producto"].ToString());
-                    Producto.codigo = dt.Rows[0]["codigo"].ToString();
-                    Producto.descripcion = dt.Rows[0]["descripcion"].ToString();
-                    Producto.leadTimeCompra = int.Parse(dt.Rows[0]["leadTimeCompra"].ToString());
-                    Producto.consumoMensual = float.Parse(dt.Rows[0]["consumoMensual"].ToString());
-                    Producto.consumoTrimestral = float.Parse(dt.Rows[0]["consumoTrimestral"].ToString());
-                    Producto.consumoSemestral = float.Parse(dt.Rows[0]["consumoSemestral"].ToString());
-                    Producto.stockMinimo = float.Parse(dt.Rows[0]["stockMinimo"].ToString());
-                    Producto.stockOptimo = float.Parse(dt.Rows[0]["stockOptimo"].ToString());
-                    Producto.estado = dt.Rows[0]["estado"].ToString();
-                    Producto.unidadMedida = um.GetUnidadMedida(int.Parse(dt.Rows[0]["id_unidadMedida"].ToString()));
+                        UnidadMedida um = new UnidadMedida();
 
+                        Producto.id_Producto = int.Parse(dt.Rows[0]["id_producto"].ToString());
+                        Producto.codigo = dt.Rows[0]["codigo"].ToString();
+                        Producto.descripcion = dt.Rows[0]["descripcion"].ToString();
+                        Producto.leadTimeCompra = int.Parse(dt.Rows[0]["leadTimeCompra"].ToString());
+                        Producto.consumoMensual = float.Parse(dt.Rows[0]["consumoMensual"].ToString());
+                        Producto.consumoTrimestral = float.Parse(dt.Rows[0]["consumoTrimestral"].ToString());
+                        Producto.consumoSemestral = float.Parse(dt.Rows[0]["consumoSemestral"].ToString());
+                        Producto.stockMinimo = float.Parse(dt.Rows[0]["stockMinimo"].ToString());
+                        Producto.stockOptimo = float.Parse(dt.Rows[0]["stockOptimo"].ToString());
+                        Producto.estado = dt.Rows[0]["estado"].ToString();
+                        Producto.unidadMedida = um.GetUnidadMedida(int.Parse(dt.Rows[0]["id_unidadMedida"].ToString()));
+                    
                 }
 
                 return Producto;
@@ -151,24 +156,27 @@ namespace DAL
 
                 if (dt.Rows.Count > 0)
                 {
-                
-                    UnidadMedida um = new UnidadMedida();
-                    BE.Producto Producto = new BE.Producto();
+                    foreach (DataRow fila in dt.Rows)
+                    {
 
-                    Producto.id_Producto = int.Parse(dt.Rows[0]["id_producto"].ToString());
-                    Producto.codigo = dt.Rows[0]["codigo"].ToString();
-                    Producto.descripcion = dt.Rows[0]["descripcion"].ToString();
-                    Producto.leadTimeCompra = int.Parse(dt.Rows[0]["leadTimeCompra"].ToString());
-                    Producto.consumoMensual = float.Parse(dt.Rows[0]["consumoMensual"].ToString());
-                    Producto.consumoTrimestral = float.Parse(dt.Rows[0]["consumoTrimestral"].ToString());
-                    Producto.consumoSemestral = float.Parse(dt.Rows[0]["consumoSemestral"].ToString());
-                    Producto.stockMinimo = float.Parse(dt.Rows[0]["stockMinimo"].ToString());
-                    Producto.stockOptimo = float.Parse(dt.Rows[0]["stockOptimo"].ToString());
-                    Producto.estado = dt.Rows[0]["estado"].ToString();
-                    Producto.unidadMedida = um.GetUnidadMedida(int.Parse(dt.Rows[0]["id_unidadMedida"].ToString()));
+                        UnidadMedida um = new UnidadMedida();
+                        BE.Producto Producto = new BE.Producto();
 
-                    listaProductos.Add(Producto);
+                        Producto.id_Producto = int.Parse(fila[0].ToString());
+                        Producto.codigo = fila[1].ToString();
+                        Producto.descripcion = fila[2].ToString();
+                        Producto.unidadMedida = um.GetUnidadMedida(int.Parse(fila[3].ToString()));
+                        Producto.leadTimeCompra = int.Parse(fila[4].ToString());
+                        Producto.consumoMensual = float.Parse(fila[5].ToString());
+                        Producto.consumoTrimestral = float.Parse(fila[6].ToString());
+                        Producto.consumoSemestral = float.Parse(fila[7].ToString());
+                        Producto.stockMinimo = float.Parse(fila[8].ToString());
+                        Producto.stockOptimo = float.Parse(fila[9].ToString());
+                        Producto.estado = fila[10].ToString();
+                        
 
+                        listaProductos.Add(Producto);
+                    }
                 }
 
 
