@@ -18,6 +18,8 @@ namespace UI
         }
         BLL.UnidadMedida um = new BLL.UnidadMedida();
         BLL.Producto pr = new BLL.Producto();
+        BE.UnidadMedida unidadMedida = new BE.UnidadMedida();
+        int idProducto = 0;
         private void Producto_Load(object sender, EventArgs e)
         {
             cargaUnidadMedida();
@@ -36,7 +38,7 @@ namespace UI
         {
             try
             {
-                BE.UnidadMedida unidadMedida = new BE.UnidadMedida();
+               
                 BE.Producto producto = new BE.Producto();
                 int idUM = cmbUM.SelectedValue != null ? int.Parse(cmbUM.SelectedValue.ToString()):0;
                 unidadMedida = um.GetUnidadMedida(idUM);
@@ -91,7 +93,7 @@ namespace UI
             dtgProductos.DataSource = null;
             dtgProductos.Columns.Clear();
 
-            dtgProductos.ColumnCount = 8;
+            dtgProductos.ColumnCount = 9;
             dtgProductos.Columns[0].Name = "Codigo";
             dtgProductos.Columns[1].Name = "Descripcion";
             dtgProductos.Columns[2].Name = "Unidad Medida";
@@ -100,12 +102,14 @@ namespace UI
             dtgProductos.Columns[5].Name = "Consumo Mensual";
             dtgProductos.Columns[6].Name = "Consumo Trimestral";
             dtgProductos.Columns[7].Name = "Consumo Semestral";
+            dtgProductos.Columns[8].Name = "id";
+            dtgProductos.Columns[8].Visible = false;
 
 
             List <BE.Producto> productos = pr.GetProductos();
             foreach (BE.Producto lista in productos)
             {
-                dtgProductos.Rows.Add(lista.codigo,lista.descripcion,lista.unidadMedida.nombre,lista.stockMinimo,lista.stockOptimo,lista.consumoMensual,lista.consumoTrimestral,lista.consumoSemestral);
+                dtgProductos.Rows.Add(lista.codigo,lista.descripcion,lista.unidadMedida.nombre,lista.stockMinimo,lista.stockOptimo,lista.consumoMensual,lista.consumoTrimestral,lista.consumoSemestral, lista.id_Producto);
             }
         }
 
@@ -115,6 +119,51 @@ namespace UI
             txtDescripcion.Text = dtgProductos.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtMinimo.Text = dtgProductos.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtOptimo.Text = dtgProductos.Rows[e.RowIndex].Cells[4].Value.ToString();
+            idProducto = int.Parse(dtgProductos.Rows[e.RowIndex].Cells[8].Value.ToString());
+        }
+
+        private void btnBaja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                BE.Producto producto = new BE.Producto();
+                producto.id_Producto = idProducto;
+                pr.bajaProducto(producto);
+                MessageBox.Show("Producto dado de baja con exito");
+                cargarDatos();
+                limpiar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnMod_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BE.Producto producto = new BE.Producto();
+                producto.id_Producto = idProducto;
+                producto.codigo = txtCodigo.Text;
+                producto.descripcion = txtDescripcion.Text;
+                int idUM = cmbUM.SelectedValue != null ? int.Parse(cmbUM.SelectedValue.ToString()) : 0;
+                unidadMedida = um.GetUnidadMedida(idUM);
+                producto.unidadMedida = unidadMedida;
+                producto.stockMinimo = txtMinimo.Text == "" ? 0 : float.Parse(txtMinimo.Text);
+                producto.stockOptimo = txtOptimo.Text == "" ? 0 : float.Parse(txtOptimo.Text);
+                pr.modificacionProducto(producto);
+                MessageBox.Show("Se modifico el producto con exito");
+                cargarDatos();
+                limpiar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
     }
 }

@@ -16,6 +16,24 @@ namespace BLL
             int idProducto = dalProducto.AltaProducto(producto);
             return idProducto;
         }
+
+        public int bajaProducto(BE.Producto producto)
+        {
+            DAL.Producto dalProducto = new DAL.Producto();
+            if (producto.id_Producto == 0) throw new Exception("Debe seleccionar un producto a dar de baja");
+            int idProducto = dalProducto.BajaProducto(producto);
+            return idProducto;
+        }
+
+        public int modificacionProducto(BE.Producto producto)
+        {
+            DAL.Producto dalProducto = new DAL.Producto();
+            ValidaPRoducto(producto);
+            if (producto.id_Producto == 0) throw new Exception("Debe seleccionar un producto a dar de baja");
+            int idProducto = dalProducto.ModificacionProducto(producto);
+            return idProducto;
+        }
+
         #endregion
         #region Validaciones
         private void ValidaPRoducto(BE.Producto producto)

@@ -17,7 +17,7 @@ namespace DAL
 
         private const string baja_Producto = "UPDATE PRODUCTO SET ESTADO = 'BAJA' OUTPUT inserted.ID_PRODUCTO WHERE ID_PRODUCTO = @id_Producto ";
 
-        private const string modificacion_Producto = "UPDATE PRODUCTO SET CODIGO = @codigo, SET DESCRIPCION = @descripcion," +
+        private const string modificacion_Producto = "UPDATE PRODUCTO SET CODIGO = @codigo, DESCRIPCION = @descripcion," +
                                                      " ID_UNIDADMEDIDA = @id_unidadMedida, STOCKMINIMO = @stockMinimo," +
                                                      " STOCKOPTIMO = @stockOptimo OUTPUT inserted.ID_PRODUCTO  WHERE ID_PRODUCTO = @id_Producto ";
 
