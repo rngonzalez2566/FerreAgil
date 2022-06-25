@@ -1,4 +1,5 @@
-﻿using Services;
+﻿using Interfaces;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,20 +10,53 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace UI
 {
-    public partial class Principal : Form
+    public partial class Principal : Form, IIdiomaObserver
     {
+        BLL.Idioma idiomaBLL = new BLL.Idioma();
         public Principal()
         {
             InitializeComponent();
-        }
+            
 
+        }
+        
         private void Principal_Load(object sender, EventArgs e)
         {
-
+            SingletonSesion.SuscribirObservador(this);
+            UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
+            obtenerIdiomas();
+           
         }
 
+        public void UpdateLanguage(IIdioma idioma)
+        {
+            Services.Idioma.Traductor.Traducir(idiomaBLL, idioma, this.Controls);
+            Services.Idioma.Traductor.TraducirMenu(idiomaBLL, idioma, menuStrip1);
+           
+        }
+
+        private void obtenerIdiomas()
+        {
+            IList<IIdioma> idiomas = idiomaBLL.ObtenerIdiomas();
+            foreach (IIdioma idioma in idiomas)
+            {
+
+                ToolStripMenuItem idiomaMenu = new ToolStripMenuItem();
+                idiomaMenu.Text = idioma.Nombre;
+                idiomaMenu.Tag = idioma;
+                this.menuIdioma.DropDownItems.Add(idiomaMenu);
+
+                idiomaMenu.Click += _Click;
+            }
+        }
+
+        private void _Click(object sender, EventArgs e)
+        {
+            SingletonSesion.CambiarIdioma(((IIdioma)((ToolStripMenuItem)sender).Tag));
+        }
         public void ValidarForm()
         {
 
@@ -45,6 +79,17 @@ namespace UI
                 Login l = new Login();
                 l.Show();
             }
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Producto frm = new Producto();
+            frm.Show();
         }
     }
 }

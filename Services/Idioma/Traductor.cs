@@ -4,105 +4,55 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Interfaces;
-using DAL;
+
 
 namespace Services.Idioma
 {
-    public class Traductor : Acceso
+    public class Traductor 
     {
-        //public static IIdioma ObtenerIdiomaDefault()
-        //{
-        //    return ObtenerIdiomas().Where(i => i.Default).FirstOrDefault();
-        //}
+        public static void Traducir(ITraductor itraductor, IIdioma idioma, Control.ControlCollection controls)
+        {
+            IDictionary<string, ITraduccion> traducciones = itraductor.ObtenerTraducciones(idioma);
 
-        //public  IList<IIdioma> ObtenerIdiomas() // Traigo la lista de todos los idiomas que están cargados en el sistema.
-        //{
-            //IList<IIdioma> _idiomas = new List<IIdioma>();
+            foreach (Control ctrl in controls)
+            {
+                if (ctrl.Tag != null && traducciones.ContainsKey(ctrl.Tag.ToString()))
+                    ctrl.Text = traducciones[ctrl.Tag.ToString()].Texto;
 
-            ////DAL.Acceso Acceso = new DAL.Acceso();
-            //DataTable dt = new DataTable();
+                if (ctrl.GetType() == typeof(TextBox) || ctrl.GetType() == typeof(ComboBox))
+                {
+                    ctrl.Text = "";
+                }
+            }
+        }
 
-            //string xConsulta = "SELECT * FROM Idioma";
+        public static void TraducirMenu(ITraductor idiomaBLL, IIdioma idioma, MenuStrip menu)
+        {
+            IDictionary<string, ITraduccion> traducciones = idiomaBLL.ObtenerTraducciones(idioma);
 
-            //try
-            //{
-            //    xCommandText = xConsulta;
-            //    xParameters.Parameters.Clear();
-            //    dt = ExecuteReader();
+            foreach (ToolStripMenuItem item in menu.Items)
+            {
+                if (item.Tag != null && traducciones.ContainsKey(item.Tag.ToString()))
+                    item.Text = traducciones[item.Tag.ToString()].Texto;
 
 
-            //    if (dt.Rows.Count > 0)
-            //    {
-            //        Usuario.id_usuario = int.Parse(dt.Rows[0]["id_usuario"].ToString());
-            //        Usuario.usuario = dt.Rows[0]["usuario"].ToString();
-            //        Usuario.contador = int.Parse(dt.Rows[0]["contador"].ToString());
-            //        Usuario.estado = dt.Rows[0]["estado"].ToString();
-            //        Usuario.email = dt.Rows[0]["email"].ToString();
-            //        Usuario.contrasena = dt.Rows[0]["contrasena"].ToString();
-            //        //Usuario.DVH = int.Parse(dt.Rows[0]["DVH"].ToString());
-            //    }
+                foreach (ToolStripMenuItem subItem in item.DropDownItems)
+                {
+                    if (subItem.Tag != null && traducciones.ContainsKey(subItem.Tag.ToString()))
+                        subItem.Text = traducciones[subItem.Tag.ToString()].Texto;
+                    else if (subItem.AccessibleDescription != null && subItem.AccessibleDescription.ToString() == "idioma_agregado" && !traducciones.ContainsKey(subItem.Tag.ToString()))
+                        subItem.Text = $"{subItem.Text}";
 
-            //    return Usuario;
-            //}
-            //catch
-            //{
-            //    throw new Exception("Se produjo un error con la base de datos");
-            //}
-            //dt = Acceso.GenerarConsulta(xConsulta);
+                    foreach (ToolStripItem subSubItem in subItem.DropDownItems)
+                    {
+                        if (subSubItem.Tag != null && traducciones.ContainsKey(subSubItem.Tag.ToString()))
+                            subSubItem.Text = traducciones[subSubItem.Tag.ToString()].Texto;
+                    }
+                }
+            }
+        }
 
-        //    foreach (DataRow fila in dt.Rows)
-        //    {
-        //        _idiomas.Add(
-        //           new Idioma()
-        //           {
-        //               id = int.Parse(fila[0].ToString()),
-        //               Nombre = fila[1].ToString(),
-        //               Default = bool.Parse(fila[2].ToString())
-        //           });
-        //    }
-        //    return _idiomas;
-        //}
-
-    //    public static IDictionary<string, ITraduccion> ObtenerTraducciones(IIdioma idioma)
-    //    {
-    //        //si no hay idioma definido, traigo el idioma por default (que es el español)
-    //        if (idioma == null)
-    //        {
-    //            idioma = ObtenerIdiomaDefault();
-    //        }
-    //        Acceso Acceso = new Acceso();
-    //        DataTable dt = new DataTable();
-
-    //        IDictionary<string, ITraduccion> _traducciones = new Dictionary<string, ITraduccion>(); // Traigo las traducciones del idioma seleccionado.
-    //        try
-    //        {
-    //            //Obtengo las traducciones del idioma que tengo seleccionado
-    //            string Consulta = @"SELECT t.idIdioma, t.Traduccion as traduccion_traduccion, e.idEtiqueta, NombreEtiqueta as nombre_etiqueta FROM Traduccion t" +
-    //                                " INNER JOIN Etiqueta e on t.idEtiqueta = e.idEtiqueta WHERE t.idIdioma = " + idioma.id;
-    //            dt = Acceso.GenerarConsulta(Consulta);
-
-    //            foreach (DataRow fila in dt.Rows)
-    //            {
-    //                var etiqueta = fila[3].ToString();
-    //                _traducciones.Add(etiqueta,
-    //                 new Traduccion()
-    //                 {
-    //                     Texto = fila[1].ToString(),
-    //                     Etiqueta = new Etiqueta()
-    //                     {
-    //                         id = int.Parse(fila[2].ToString()),
-    //                         Nombre = etiqueta
-    //                     }
-    //                 });
-    //            }
-    //            return _traducciones;
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw ex;
-    //        }
-    //    }
-    //}
-}
+    }
 }

@@ -9,6 +9,7 @@ namespace BLL
 {
     public class Usuario
     {
+        DAL.Idioma idioma = new DAL.Idioma();
 
         public BE.Usuario Login(string xUsuario, string password)
         {
@@ -44,7 +45,7 @@ namespace BLL
                 else
                 {
 
-                    SingletonSesion.Login(user);
+                    SingletonSesion.Login(user, idioma.ObtenerIdiomaDefault());
                     return user;
                 }
             }

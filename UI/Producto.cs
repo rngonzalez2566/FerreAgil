@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Interfaces;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,8 +12,9 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class Producto : Form
+    public partial class Producto : Form, IIdiomaObserver
     {
+        BLL.Idioma idiomaBLL = new BLL.Idioma();
         public Producto()
         {
             InitializeComponent();
@@ -24,6 +27,14 @@ namespace UI
         {
             cargaUnidadMedida();
             cargarDatos();
+            SingletonSesion.SuscribirObservador(this);
+            UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
+        }
+
+        public void UpdateLanguage(IIdioma idioma)
+        {
+            Services.Idioma.Traductor.Traducir(idiomaBLL, idioma, this.Controls);
+
         }
         public void cargaUnidadMedida()
         {
@@ -163,6 +174,11 @@ namespace UI
                 MessageBox.Show(ex.Message);
             }
 
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
 
         }
     }
