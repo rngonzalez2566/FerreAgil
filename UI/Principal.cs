@@ -91,5 +91,38 @@ namespace UI
             Producto frm = new Producto();
             frm.Show();
         }
+
+        private void altaUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AltaUsuario frm = new AltaUsuario();
+            frm.Show();
+        }
+
+        private void administracionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void altaPermisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AltaFamiliaPatente frm = new AltaFamiliaPatente();
+            frm.Show();
+        }
+
+        private void asignacionPermisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void desasignarPermisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void asignacionFamiliaPatenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AsignacionFamiliaPatente frm = new AsignacionFamiliaPatente();
+            frm.Show();
+        }
     }
 }

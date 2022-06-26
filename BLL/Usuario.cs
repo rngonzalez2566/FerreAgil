@@ -1,20 +1,20 @@
 ﻿using Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace BLL
 {
     public class Usuario
     {
         DAL.Idioma idioma = new DAL.Idioma();
+        Encriptar Encripta = new Encriptar();
+        DAL.Usuario usuario = new DAL.Usuario();
 
+        #region ABM
         public BE.Usuario Login(string xUsuario, string password)
         {
-            Encriptar Encripta = new Encriptar();
-            DAL.Usuario usu = new DAL.Usuario();
+          
 
             if (SingletonSesion.IsLogged())
                 throw new Exception("Ya hay una sesión iniciada");
@@ -23,7 +23,7 @@ namespace BLL
 
             if (password == "") throw new Exception("Password en blanco");
 
-            BE.Usuario user = usu.Login(Encripta.encriptar(true, xUsuario));
+            BE.Usuario user = usuario.Login(Encripta.encriptar(true, xUsuario));
             if (user == null) throw new Exception("Usuario Invalido");
 
             if (user.contador >= 3)
@@ -57,16 +57,98 @@ namespace BLL
         {
             
             Encriptar Encripta = new Encriptar();
-            DAL.Usuario usuario = new DAL.Usuario();
+          
 
-            Usu.contador = Usu.contador + 1;
-            usuario.BloquearUsuario(Usu);
-            return Usu.contador;
+            try
+            {
+                Usu.contador = Usu.contador + 1;
+                usuario.BloquearUsuario(Usu);
+                return Usu.contador;
+            }
+            catch
+            {
+                throw new Exception("Ha ocurrido un error al intentar bloquear el usuario");
+            }
+          
         }
 
         public void Logout()
         {
             SingletonSesion.Logout();
         }
+
+        public int AltaUsuario(BE.Usuario Usu)
+        {
+
+
+            try
+            {
+                ValidarUsuario(Usu);
+                string xPassword = GeneraClave();
+                Usu.usuario = Encripta.encriptar(true, Usu.usuario);
+                Usu.contrasena = Encripta.encriptar(false, xPassword);
+                if (usuario.GetUsuario(Usu.usuario) != null) throw new Exception("El Usuario ya se encuentra Registrado");
+                if (usuario.GetUsuarioPorEmail(Usu.email) != null) throw new Exception("El Mail ya se encuentra registrado");                
+                int idUsuario = usuario.AltaUsuario(Usu);
+                EnviaMailClave(Encripta.descencriptar(Usu.usuario), xPassword);
+                return idUsuario;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+        #endregion
+
+        #region Validaciones
+        private void ValidarUsuario(BE.Usuario Usu)
+        {
+            if ((ValidaEmail(Usu.email) == false) || string.IsNullOrWhiteSpace(Usu.email)) throw new Exception("Mail vacio o con formato incorrecto");
+            if (string.IsNullOrEmpty(Usu.usuario)) throw new Exception("El usuario es requerido");
+
+        }
+        #endregion
+
+        #region Utilidades
+        private string GeneraClave()
+        {
+            Random rdn = new Random();
+            string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            int longitud = caracteres.Length;
+            char letra;
+            int longitudContrasenia = 8;
+            string Password = "";
+            for (int i = 0; i < longitudContrasenia; i++)
+            {
+                letra = caracteres[rdn.Next(longitud)];
+                Password += letra.ToString();
+            }
+            return Password;
+        }
+        private void EnviaMailClave(string xUsuario, string xPassword)
+        {
+
+            string texto = "Contraseña: " + xPassword;
+
+            StreamWriter fichero; //Clase que representa un fichero
+            fichero = File.CreateText("D:\\" + xUsuario + ".txt"); //Creamos un fichero
+            fichero.WriteLine(texto); // Lo mismo que cuando escribimos por consola
+            fichero.Close();
+
+
+        }
+
+        private bool ValidaEmail(string email)
+        {
+            string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, String.Empty).Length == 0) return true;
+                else return false;
+            }
+            else return false;
+        }
+        #endregion
     }
 }

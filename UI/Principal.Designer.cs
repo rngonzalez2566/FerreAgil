@@ -39,11 +39,18 @@ namespace UI
             this.bajaUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambioDePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desbloquearUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuIdioma = new System.Windows.Forms.ToolStripMenuItem();
+            this.permisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asignacionFamiliaPatenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asignacionPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.desasignarPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuIdioma = new System.Windows.Forms.ToolStripMenuItem();
+            this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +89,8 @@ namespace UI
             this.administracionToolStripMenuItem,
             this.aBMToolStripMenuItem,
             this.menuIdioma,
+            this.compraToolStripMenuItem,
+            this.ventaToolStripMenuItem,
             this.cerrarSesionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -92,11 +101,13 @@ namespace UI
             // administracionToolStripMenuItem
             // 
             this.administracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usuariosToolStripMenuItem});
+            this.usuariosToolStripMenuItem,
+            this.permisosToolStripMenuItem});
             this.administracionToolStripMenuItem.Name = "administracionToolStripMenuItem";
             this.administracionToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.administracionToolStripMenuItem.Tag = "Administracion";
             this.administracionToolStripMenuItem.Text = "Administracion";
+            this.administracionToolStripMenuItem.Click += new System.EventHandler(this.administracionToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
@@ -116,6 +127,7 @@ namespace UI
             this.altaUsuariosToolStripMenuItem.Name = "altaUsuariosToolStripMenuItem";
             this.altaUsuariosToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.altaUsuariosToolStripMenuItem.Text = "Alta Usuarios";
+            this.altaUsuariosToolStripMenuItem.Click += new System.EventHandler(this.altaUsuariosToolStripMenuItem_Click);
             // 
             // bajaUsuariosToolStripMenuItem
             // 
@@ -135,20 +147,44 @@ namespace UI
             this.desbloquearUsuarioToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.desbloquearUsuarioToolStripMenuItem.Text = "Desbloquear Usuario";
             // 
-            // cerrarSesionToolStripMenuItem
+            // permisosToolStripMenuItem
             // 
-            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            this.cerrarSesionToolStripMenuItem.Tag = "Cerrar Sesion";
-            this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
-            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
+            this.permisosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.altaPermisosToolStripMenuItem,
+            this.asignacionFamiliaPatenteToolStripMenuItem,
+            this.asignacionPermisosToolStripMenuItem,
+            this.desasignarPermisosToolStripMenuItem});
+            this.permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
+            this.permisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.permisosToolStripMenuItem.Text = "Permisos";
             // 
-            // menuIdioma
+            // altaPermisosToolStripMenuItem
             // 
-            this.menuIdioma.Name = "menuIdioma";
-            this.menuIdioma.Size = new System.Drawing.Size(56, 20);
-            this.menuIdioma.Tag = "menu_idioma";
-            this.menuIdioma.Text = "Idioma";
+            this.altaPermisosToolStripMenuItem.Name = "altaPermisosToolStripMenuItem";
+            this.altaPermisosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.altaPermisosToolStripMenuItem.Text = "Alta Permisos";
+            this.altaPermisosToolStripMenuItem.Click += new System.EventHandler(this.altaPermisosToolStripMenuItem_Click);
+            // 
+            // asignacionFamiliaPatenteToolStripMenuItem
+            // 
+            this.asignacionFamiliaPatenteToolStripMenuItem.Name = "asignacionFamiliaPatenteToolStripMenuItem";
+            this.asignacionFamiliaPatenteToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.asignacionFamiliaPatenteToolStripMenuItem.Text = "Asignacion Familia Patente";
+            this.asignacionFamiliaPatenteToolStripMenuItem.Click += new System.EventHandler(this.asignacionFamiliaPatenteToolStripMenuItem_Click);
+            // 
+            // asignacionPermisosToolStripMenuItem
+            // 
+            this.asignacionPermisosToolStripMenuItem.Name = "asignacionPermisosToolStripMenuItem";
+            this.asignacionPermisosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.asignacionPermisosToolStripMenuItem.Text = "Asignacion Permisos Usuarios";
+            this.asignacionPermisosToolStripMenuItem.Click += new System.EventHandler(this.asignacionPermisosToolStripMenuItem_Click);
+            // 
+            // desasignarPermisosToolStripMenuItem
+            // 
+            this.desasignarPermisosToolStripMenuItem.Name = "desasignarPermisosToolStripMenuItem";
+            this.desasignarPermisosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.desasignarPermisosToolStripMenuItem.Text = "Desasignar Permisos";
+            this.desasignarPermisosToolStripMenuItem.Click += new System.EventHandler(this.desasignarPermisosToolStripMenuItem_Click);
             // 
             // aBMToolStripMenuItem
             // 
@@ -162,7 +198,7 @@ namespace UI
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.productosToolStripMenuItem.Tag = "Producto";
             this.productosToolStripMenuItem.Text = "Producto";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
@@ -170,9 +206,36 @@ namespace UI
             // proveedorToolStripMenuItem
             // 
             this.proveedorToolStripMenuItem.Name = "proveedorToolStripMenuItem";
-            this.proveedorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proveedorToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.proveedorToolStripMenuItem.Tag = "Proveedor";
             this.proveedorToolStripMenuItem.Text = "Proveedor";
+            // 
+            // menuIdioma
+            // 
+            this.menuIdioma.Name = "menuIdioma";
+            this.menuIdioma.Size = new System.Drawing.Size(56, 20);
+            this.menuIdioma.Tag = "menu_idioma";
+            this.menuIdioma.Text = "Idioma";
+            // 
+            // compraToolStripMenuItem
+            // 
+            this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
+            this.compraToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.compraToolStripMenuItem.Text = "Compra";
+            // 
+            // ventaToolStripMenuItem
+            // 
+            this.ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
+            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.ventaToolStripMenuItem.Text = "Venta";
+            // 
+            // cerrarSesionToolStripMenuItem
+            // 
+            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.cerrarSesionToolStripMenuItem.Tag = "Cerrar Sesion";
+            this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
+            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // Principal
             // 
@@ -211,5 +274,12 @@ namespace UI
         private System.Windows.Forms.ToolStripMenuItem aBMToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proveedorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem permisosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaPermisosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asignacionPermisosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem desasignarPermisosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ventaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asignacionFamiliaPatenteToolStripMenuItem;
     }
 }
