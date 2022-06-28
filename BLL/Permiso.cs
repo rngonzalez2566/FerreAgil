@@ -63,6 +63,11 @@ namespace BLL
         {
             permiso.LlenarComponenteFamilia(familia);
         }
+
+        public bool VerificarPermiso(BE.Usuario user, string Permiso)
+        {
+            return permiso.VerificarPermiso(user, Permiso);
+        }
         #endregion
 
         #region Validaciones

@@ -26,6 +26,23 @@ namespace DAL
                                                     "WHERE idUsuario = @idusuario";
         private const string delete_Permiso_Usuario = "DELETE FROM Usuario_Permiso WHERE idUsuario = @idusuario";
         private const string Crear_Permiso_Usuario = "INSERT INTO Usuario_Permiso(idUsuario, idPermiso) VALUES(@idusuario, @idpermiso)";
+        private const string get_VerificarPermisos = "SELECT up.idUsuario, p.idPermiso, p.Nombre, p.Permiso, p1.Permiso as CodigoPermiso " +
+                                                        "FROM Permiso p INNER JOIN Usuario_Permiso up on up.idPermiso = p.idPermiso " +
+                                                        "INNER JOIN Familia_Patente fp on fp.idPermisoPadre = p.idPermiso " +
+                                                        "INNER JOIN Permiso p1 on p1.idPermiso = fp.idpermisohijo " +
+                                                        "WHERE idUsuario = idusuario and p1.Permiso = @permiso " +
+                                                        "UNION ALL " +
+                                                        "SELECT up.idUsuario, p.idPermiso, p.Nombre, p.Permiso, p1.Permiso as CodigoPermiso " +
+                                                        "FROM Permiso p INNER JOIN Usuario_Permiso up on up.idPermiso = p.idPermiso " +
+                                                        "INNER JOIN Familia_Patente fp on fp.idPermisoHijo = p.idPermiso " +
+                                                        "INNER JOIN Permiso p1 on p1.idPermiso = fp.idpermisohijo " +
+                                                        "WHERE idUsuario = idusuario and p1.Permiso = @permiso " +
+                                                        "UNION ALL " +
+                                                        "SELECT up.idUsuario, p.idPermiso,  '', '', p.Permiso as CodigoPermiso " +
+                                                        "FROM Permiso p INNER JOIN Usuario_Permiso up on up.idPermiso = p.idPermiso " +
+                                                        "WHERE UP.idUsuario = idusuario and p.Permiso = @permiso";
+
+
 
 
 
@@ -327,6 +344,39 @@ namespace DAL
             {
                 familia.AgregarHijo(item);
             }
+        }
+
+        public bool VerificarPermiso(BE.Usuario user, string Permiso)
+        {
+            bool valido = false;
+            try
+            {
+                DataTable dt = new DataTable();
+
+                xCommandText = get_VerificarPermisos;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idusuario", user.id_usuario);
+                xParameters.Parameters.AddWithValue("@permiso", Permiso);
+                dt = ExecuteReader();
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in dt.Rows)
+                    {
+                        string codigopermiso = fila["CodigoPermiso"].ToString();
+                        if (codigopermiso == Permiso) return valido = true;
+                    }
+
+                }
+
+                return valido;
+            }
+            catch
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+
+
         }
 
         #endregion

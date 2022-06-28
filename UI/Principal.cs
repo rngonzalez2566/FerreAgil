@@ -16,6 +16,7 @@ namespace UI
     public partial class Principal : Form, IIdiomaObserver
     {
         BLL.Idioma idiomaBLL = new BLL.Idioma();
+        BLL.Permiso permiso = new BLL.Permiso();
         public Principal()
         {
             InitializeComponent();
@@ -28,7 +29,31 @@ namespace UI
             SingletonSesion.SuscribirObservador(this);
             UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
             obtenerIdiomas();
-           
+            VerificarPermisosMenu();
+
+        }
+
+        private void VerificarPermisosMenu()
+        {
+          
+
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Usuario") == false) altaUsuarioToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Baja_Usuario") == false) bajaUsuarioToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Desbloquear_Usuario") == false) desbloquearUsuarioToolStripMenuItem1.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Cambio_Password") == false) cambioDePasswordToolStripMenuItem1.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Crear_Familia_Patentes") == false) altaPermisosStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Asignar_Familia_Patentes") == false) asignacionFamiliaPatenteToolStripMenuItem1.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Asignar_Permisos_Usuarios") == false) asignacionPermisosUsuariosToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Desasignar_Permisos") == false) desasignarPermisosToolStripMenuItem1.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Abm_Producto") == false) productosToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Abm_Proveedor") == false) proveedorToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Compras") == false) compraToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Ventas") == false) ventaToolStripMenuItem.Enabled = false;
+            
+
+
+
+
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -92,16 +117,6 @@ namespace UI
             frm.Show();
         }
 
-        private void altaUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AltaUsuario frm = new AltaUsuario();
-            frm.Show();
-        }
-
-        private void administracionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void altaPermisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -124,6 +139,55 @@ namespace UI
         {
             AsignacionFamiliaPatente frm = new AsignacionFamiliaPatente();
             frm.Show();
+        }
+
+        private void aBMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void altaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AltaFamiliaPatente frm = new AltaFamiliaPatente();
+            frm.Show();
+        }
+
+        private void altaUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AltaUsuario frm = new AltaUsuario();
+            frm.Show();
+        }
+
+        private void bajaUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cambioDePasswordToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void desbloquearUsuarioToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void asignacionFamiliaPatenteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AsignacionFamiliaPatente frm = new AsignacionFamiliaPatente();
+            frm.Show();
+        }
+
+        private void asignacionPermisosUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AsignacionPermisoUsuario frm = new AsignacionPermisoUsuario();
+            frm.Show();
+        }
+
+        private void desasignarPermisosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

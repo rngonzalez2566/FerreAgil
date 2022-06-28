@@ -11,9 +11,14 @@ namespace BE.Composite
         Administracion,
         Alta_Usuario,
         Baja_Usuario,
-        Desbloquear_Password,
+        Desbloquear_Usuario,
+        Cambio_Password,
         Crear_Familia_Patentes,
-        Asignar_Permisos,
+        Asignar_Familia_Patentes,
+        Asignar_Permisos_Usuarios,
+        Desasignar_Permisos,
+        Abm_Producto,
+        Abm_Proveedor,
         Gestion_Compras,
         Gestion_Ventas
     }
