@@ -65,6 +65,12 @@
     <Compile Include="AsignacionFamiliaPatente.Designer.cs">
       <DependentUpon>AsignacionFamiliaPatente.cs</DependentUpon>
     </Compile>
+    <Compile Include="AsignacionPermisoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AsignacionPermisoUsuario.Designer.cs">
+      <DependentUpon>AsignacionPermisoUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AsignacionFamiliaPatente.resx">
       <DependentUpon>AsignacionFamiliaPatente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AsignacionPermisoUsuario.resx">
+      <DependentUpon>AsignacionPermisoUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

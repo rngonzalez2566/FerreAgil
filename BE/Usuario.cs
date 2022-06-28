@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using BE.Composite;
+using Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace BE
 {
     public class Usuario
     {
+        public Usuario()
+        {
+            _permisos = new List<Componente>();
+        }
+        List<Componente> _permisos;
         public int id_usuario { get; set; }
         public string usuario { get; set; }
         public string contrasena { get; set; }
@@ -16,5 +22,13 @@ namespace BE
         public string email { get; set; }
         public string estado { get; set; }
         public IIdioma Idioma { get; set; }
+
+        public List<Componente> Permisos
+        {
+            get
+            {
+                return _permisos;
+            }
+        }
     }
 }

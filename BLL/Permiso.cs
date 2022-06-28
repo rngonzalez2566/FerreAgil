@@ -21,6 +21,11 @@ namespace BLL
         {
             permiso.CrearFamiliaPatente(familia);
         }
+
+        public void GuardarPermisoUsuario(BE.Usuario user)
+        {
+            permiso.GuardarPermiso(user);
+        }
         #endregion
 
         #region Gets
@@ -47,6 +52,16 @@ namespace BLL
         public bool existeComponente(Componente comp, int id)
         {
             return permiso.existeComponente(comp, id);
+        }
+
+        public void GetUsuarioPermiso(BE.Usuario user)
+        {
+            permiso.GetUsuarioPermiso(user);
+        }
+
+        public void LlenarComponenteFamilia(Familia familia)
+        {
+            permiso.LlenarComponenteFamilia(familia);
         }
         #endregion
 

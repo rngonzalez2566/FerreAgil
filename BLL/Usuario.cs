@@ -1,5 +1,6 @@
 ﻿using Services;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -148,6 +149,21 @@ namespace BLL
                 else return false;
             }
             else return false;
+        }
+        #endregion
+
+        #region Gets
+        public List<BE.Usuario> GetUsuarios()
+        {
+            try
+            {
+                DAL.Usuario usuario = new DAL.Usuario();
+                return usuario.GetUsuarios();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al obtener Unidades de Medida");
+            }
         }
         #endregion
     }

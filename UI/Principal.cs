@@ -111,7 +111,8 @@ namespace UI
 
         private void asignacionPermisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AsignacionPermisoUsuario frm = new AsignacionPermisoUsuario();
+            frm.Show();
         }
 
         private void desasignarPermisosToolStripMenuItem_Click(object sender, EventArgs e)

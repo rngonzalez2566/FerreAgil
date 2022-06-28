@@ -18,6 +18,7 @@ namespace DAL
                                          " OUTPUT inserted.Id_usuario VALUES (@usuario, @email, @contrasena, 0) ";
         private const string get_User_User = "SELECT TOP 1 * FROM Usuario WHERE usuario = @user";
         private const string get_User_Email = "SELECT TOP 1 * FROM Usuario WHERE email = @email";
+        private const string get_Users = "SELECT  id_usuario, usuario FROM Usuario";
         #endregion
 
         #region ABM
@@ -164,6 +165,44 @@ namespace DAL
             {
                 throw new Exception("Se produjo un error con la base de datos");
             }
+
+        }
+
+        public List<BE.Usuario> GetUsuarios()
+        {
+            try
+            {
+                Services.Encriptar encriptar = new Services.Encriptar();
+                DataTable dt = new DataTable();
+                List<BE.Usuario> lista = new List<BE.Usuario>();
+
+                xCommandText = get_Users;
+                xParameters.Parameters.Clear();
+                dt = ExecuteReader();
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in dt.Rows)
+                    {
+
+                        BE.Usuario usuario = new BE.Usuario();
+
+                        usuario.id_usuario = int.Parse(fila[0].ToString());
+                        usuario.usuario = encriptar.descencriptar(fila[1].ToString());
+
+
+                        lista.Add(usuario);
+                    }
+                }
+
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+
 
         }
         #endregion

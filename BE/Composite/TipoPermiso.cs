@@ -9,6 +9,12 @@ namespace BE.Composite
     public enum TipoPermiso 
     {
         Administracion,
-        Abm
+        Alta_Usuario,
+        Baja_Usuario,
+        Desbloquear_Password,
+        Crear_Familia_Patentes,
+        Asignar_Permisos,
+        Gestion_Compras,
+        Gestion_Ventas
     }
 }

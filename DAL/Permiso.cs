@@ -22,6 +22,14 @@ namespace DAL
         private const string delete_Familia_Patente = "DELETE FROM Familia_Patente WHERE idPermisoPadre = @idpermisopadre";
         private const string crear_Familia_Patente = "INSERT INTO Familia_Patente(idPermisoPadre, idPermisoHijo) " +
                                                       "VALUES(@idpermisopadre, @idpermisohijo)";
+        private const string get_Usuario_Permiso = "SELECT p.* FROM Usuario_Permiso up INNER JOIN Permiso p on p.idPermiso = up.idPermiso " +
+                                                    "WHERE idUsuario = @idusuario";
+        private const string delete_Permiso_Usuario = "DELETE FROM Usuario_Permiso WHERE idUsuario = @idusuario";
+        private const string Crear_Permiso_Usuario = "INSERT INTO Usuario_Permiso(idUsuario, idPermiso) VALUES(@idusuario, @idpermiso)";
+
+
+
+
 
 
 
@@ -69,6 +77,33 @@ namespace DAL
             catch (Exception Ex)
             {
                 throw Ex;
+            }
+        }
+
+        public void GuardarPermiso(BE.Usuario user) // Método para guardar los permisos que se asignaron.
+        {
+            try
+            {
+                xCommandText = delete_Permiso_Usuario;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idusuario", user.id_usuario);
+
+                executeNonQuery();
+
+                foreach (var item in user.Permisos)
+                {
+
+                    xCommandText = Crear_Permiso_Usuario;
+                    xParameters.Parameters.Clear();
+                    xParameters.Parameters.AddWithValue("@idusuario", user.id_usuario);
+                    xParameters.Parameters.AddWithValue("@idpermiso", item.id);
+
+                    executeNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         #endregion
@@ -228,6 +263,70 @@ namespace DAL
                 }
             }
             return existeComp;
+        }
+
+        public void GetUsuarioPermiso(BE.Usuario user)
+        {
+
+            try
+            {
+                DataTable dt = new DataTable();
+
+                xCommandText = get_Usuario_Permiso;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idusuario", user.id_usuario);
+                dt = ExecuteReader();
+
+
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rows in dt.Rows)
+                    {
+                        int id = int.Parse(rows["idPermiso"].ToString());
+                        string nombre = rows["Nombre"].ToString();
+                        string permiso = String.Empty;
+                        if (rows["Permiso"].ToString() != String.Empty) permiso = rows["Permiso"].ToString();
+
+                        Componente componente;
+                        if (!String.IsNullOrEmpty(permiso))
+                        {
+                            componente = new Patente();
+                            componente.id = id;
+                            componente.nombre = nombre;
+                            componente.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permiso);
+                            user.Permisos.Add(componente);
+                        }
+                        else
+                        {
+                            componente = new Familia();
+                            componente.id = id;
+                            componente.nombre = nombre;
+
+                            var familia = GetAll(id);
+                            foreach (var f in familia)
+                            {
+                                componente.AgregarHijo(f);
+                            }
+                            user.Permisos.Add(componente);
+                        }
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public void LlenarComponenteFamilia(Familia familia) // Método para llenar la Familia.
+        {
+            familia.VaciarHijos();
+            foreach (var item in GetAll(familia.id))
+            {
+                familia.AgregarHijo(item);
+            }
         }
 
         #endregion
