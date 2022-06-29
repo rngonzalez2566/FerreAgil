@@ -107,13 +107,14 @@ namespace UI
             this.desasignarPermisosToolStripMenuItem1});
             this.administracionToolStripMenuItem.Name = "administracionToolStripMenuItem";
             this.administracionToolStripMenuItem.Size = new System.Drawing.Size(151, 20);
-            this.administracionToolStripMenuItem.Tag = "Administracion";
+            this.administracionToolStripMenuItem.Tag = "Administracion_Permisos";
             this.administracionToolStripMenuItem.Text = "Administracion Permisos";
             // 
             // altaPermisosStripMenuItem
             // 
             this.altaPermisosStripMenuItem.Name = "altaPermisosStripMenuItem";
             this.altaPermisosStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.altaPermisosStripMenuItem.Tag = "Alta_Permisos";
             this.altaPermisosStripMenuItem.Text = "Alta Permisos";
             this.altaPermisosStripMenuItem.Click += new System.EventHandler(this.altaToolStripMenuItem_Click);
             // 
@@ -121,6 +122,7 @@ namespace UI
             // 
             this.asignacionFamiliaPatenteToolStripMenuItem1.Name = "asignacionFamiliaPatenteToolStripMenuItem1";
             this.asignacionFamiliaPatenteToolStripMenuItem1.Size = new System.Drawing.Size(232, 22);
+            this.asignacionFamiliaPatenteToolStripMenuItem1.Tag = "Asignacion_F_P";
             this.asignacionFamiliaPatenteToolStripMenuItem1.Text = "Asignacion Familia Patente";
             this.asignacionFamiliaPatenteToolStripMenuItem1.Click += new System.EventHandler(this.asignacionFamiliaPatenteToolStripMenuItem1_Click);
             // 
@@ -128,6 +130,7 @@ namespace UI
             // 
             this.asignacionPermisosUsuariosToolStripMenuItem.Name = "asignacionPermisosUsuariosToolStripMenuItem";
             this.asignacionPermisosUsuariosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.asignacionPermisosUsuariosToolStripMenuItem.Tag = "Asignacion_P_U";
             this.asignacionPermisosUsuariosToolStripMenuItem.Text = "Asignacion Permisos Usuarios";
             this.asignacionPermisosUsuariosToolStripMenuItem.Click += new System.EventHandler(this.asignacionPermisosUsuariosToolStripMenuItem_Click);
             // 
@@ -135,6 +138,7 @@ namespace UI
             // 
             this.desasignarPermisosToolStripMenuItem1.Name = "desasignarPermisosToolStripMenuItem1";
             this.desasignarPermisosToolStripMenuItem1.Size = new System.Drawing.Size(232, 22);
+            this.desasignarPermisosToolStripMenuItem1.Tag = "Desasignar_Permisos";
             this.desasignarPermisosToolStripMenuItem1.Text = "Desasignar Permisos";
             this.desasignarPermisosToolStripMenuItem1.Click += new System.EventHandler(this.desasignarPermisosToolStripMenuItem1_Click);
             // 
@@ -147,12 +151,14 @@ namespace UI
             this.desbloquearUsuarioToolStripMenuItem1});
             this.administracionUsuariosToolStripMenuItem.Name = "administracionUsuariosToolStripMenuItem";
             this.administracionUsuariosToolStripMenuItem.Size = new System.Drawing.Size(148, 20);
+            this.administracionUsuariosToolStripMenuItem.Tag = "Administracion_Usuarios";
             this.administracionUsuariosToolStripMenuItem.Text = "Administracion Usuarios";
             // 
             // altaUsuarioToolStripMenuItem
             // 
             this.altaUsuarioToolStripMenuItem.Name = "altaUsuarioToolStripMenuItem";
             this.altaUsuarioToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.altaUsuarioToolStripMenuItem.Tag = "Alta_Usuario";
             this.altaUsuarioToolStripMenuItem.Text = "Alta Usuario";
             this.altaUsuarioToolStripMenuItem.Click += new System.EventHandler(this.altaUsuarioToolStripMenuItem_Click);
             // 
@@ -160,6 +166,7 @@ namespace UI
             // 
             this.bajaUsuarioToolStripMenuItem.Name = "bajaUsuarioToolStripMenuItem";
             this.bajaUsuarioToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.bajaUsuarioToolStripMenuItem.Tag = "Baja_Usuario";
             this.bajaUsuarioToolStripMenuItem.Text = "Baja Usuario";
             this.bajaUsuarioToolStripMenuItem.Click += new System.EventHandler(this.bajaUsuarioToolStripMenuItem_Click);
             // 
@@ -167,6 +174,7 @@ namespace UI
             // 
             this.cambioDePasswordToolStripMenuItem1.Name = "cambioDePasswordToolStripMenuItem1";
             this.cambioDePasswordToolStripMenuItem1.Size = new System.Drawing.Size(185, 22);
+            this.cambioDePasswordToolStripMenuItem1.Tag = "Cambio_Password";
             this.cambioDePasswordToolStripMenuItem1.Text = "Cambio de Password";
             this.cambioDePasswordToolStripMenuItem1.Click += new System.EventHandler(this.cambioDePasswordToolStripMenuItem1_Click);
             // 
@@ -174,6 +182,7 @@ namespace UI
             // 
             this.desbloquearUsuarioToolStripMenuItem1.Name = "desbloquearUsuarioToolStripMenuItem1";
             this.desbloquearUsuarioToolStripMenuItem1.Size = new System.Drawing.Size(185, 22);
+            this.desbloquearUsuarioToolStripMenuItem1.Tag = "Desbloquear_Usuario";
             this.desbloquearUsuarioToolStripMenuItem1.Text = "Desbloquear Usuario";
             this.desbloquearUsuarioToolStripMenuItem1.Click += new System.EventHandler(this.desbloquearUsuarioToolStripMenuItem1_Click);
             // 
@@ -184,13 +193,14 @@ namespace UI
             this.proveedorToolStripMenuItem});
             this.aBMToolStripMenuItem.Name = "aBMToolStripMenuItem";
             this.aBMToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.aBMToolStripMenuItem.Tag = "ABM_Negocio";
             this.aBMToolStripMenuItem.Text = "ABM Negocio";
             this.aBMToolStripMenuItem.Click += new System.EventHandler(this.aBMToolStripMenuItem_Click);
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.productosToolStripMenuItem.Tag = "Producto";
             this.productosToolStripMenuItem.Text = "Producto";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
@@ -198,7 +208,7 @@ namespace UI
             // proveedorToolStripMenuItem
             // 
             this.proveedorToolStripMenuItem.Name = "proveedorToolStripMenuItem";
-            this.proveedorToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.proveedorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.proveedorToolStripMenuItem.Tag = "Proveedor";
             this.proveedorToolStripMenuItem.Text = "Proveedor";
             // 
@@ -206,19 +216,21 @@ namespace UI
             // 
             this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
             this.compraToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.compraToolStripMenuItem.Tag = "Compra";
             this.compraToolStripMenuItem.Text = "Compra";
             // 
             // ventaToolStripMenuItem
             // 
             this.ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
             this.ventaToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.ventaToolStripMenuItem.Tag = "Venta";
             this.ventaToolStripMenuItem.Text = "Venta";
             // 
             // menuIdioma
             // 
             this.menuIdioma.Name = "menuIdioma";
             this.menuIdioma.Size = new System.Drawing.Size(56, 20);
-            this.menuIdioma.Tag = "menu_idioma";
+            this.menuIdioma.Tag = "Idioma";
             this.menuIdioma.Text = "Idioma";
             // 
             // cerrarSesionToolStripMenuItem

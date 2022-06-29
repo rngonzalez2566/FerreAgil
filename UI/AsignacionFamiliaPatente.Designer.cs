@@ -83,7 +83,7 @@ namespace UI
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 25);
             this.label1.TabIndex = 39;
-            this.label1.Tag = "nombrePatente";
+            this.label1.Tag = "Familias";
             this.label1.Text = "Familias";
             // 
             // btnMostrar
@@ -120,8 +120,9 @@ namespace UI
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 25);
             this.label2.TabIndex = 42;
-            this.label2.Tag = "nombrePatente";
+            this.label2.Tag = "Patentes";
             this.label2.Text = "Patentes";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnAgregar
             // 
@@ -148,7 +149,7 @@ namespace UI
             this.btnAltaFamilia.Name = "btnAltaFamilia";
             this.btnAltaFamilia.Size = new System.Drawing.Size(91, 47);
             this.btnAltaFamilia.TabIndex = 44;
-            this.btnAltaFamilia.Tag = "Guardar Permiso";
+            this.btnAltaFamilia.Tag = "Guardar_Permiso";
             this.btnAltaFamilia.Text = "Guardar Permiso";
             this.btnAltaFamilia.UseVisualStyleBackColor = false;
             this.btnAltaFamilia.Click += new System.EventHandler(this.btnAltaFamilia_Click);
@@ -163,7 +164,7 @@ namespace UI
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(91, 47);
             this.button2.TabIndex = 45;
-            this.button2.Tag = "Eliminar Patente";
+            this.button2.Tag = "Eliminar_Patente";
             this.button2.Text = "Eliminar Patente";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);

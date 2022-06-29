@@ -18,6 +18,7 @@ namespace Services.Idioma
 
             foreach (Control ctrl in controls)
             {
+                 
                 if (ctrl.Tag != null && traducciones.ContainsKey(ctrl.Tag.ToString()))
                     ctrl.Text = traducciones[ctrl.Tag.ToString()].Texto;
 

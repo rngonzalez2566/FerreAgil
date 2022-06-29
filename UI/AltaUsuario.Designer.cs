@@ -118,7 +118,7 @@ namespace UI
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(205, 36);
             this.label3.TabIndex = 31;
-            this.label3.Tag = "Alta Usuario";
+            this.label3.Tag = "Alta_Usuario";
             this.label3.Text = "Alta Usuario";
             // 
             // AltaUsuario

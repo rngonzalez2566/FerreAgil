@@ -52,7 +52,7 @@ namespace UI
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(428, 36);
             this.label3.TabIndex = 39;
-            this.label3.Tag = "Asignacion Permiso Usuario";
+            this.label3.Tag = "Asignacion_P_U";
             this.label3.Text = "Asignacion Permiso Usuario";
             // 
             // btnAgregarPatente
@@ -61,7 +61,7 @@ namespace UI
             this.btnAgregarPatente.FlatAppearance.BorderSize = 0;
             this.btnAgregarPatente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarPatente.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAgregarPatente.Location = new System.Drawing.Point(310, 246);
+            this.btnAgregarPatente.Location = new System.Drawing.Point(322, 246);
             this.btnAgregarPatente.Name = "btnAgregarPatente";
             this.btnAgregarPatente.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnAgregarPatente.Size = new System.Drawing.Size(56, 21);
@@ -81,7 +81,7 @@ namespace UI
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label2.Size = new System.Drawing.Size(89, 25);
             this.label2.TabIndex = 48;
-            this.label2.Tag = "nombrePatente";
+            this.label2.Tag = "Patentes";
             this.label2.Text = "Patentes";
             // 
             // cmbPatentes
@@ -89,7 +89,7 @@ namespace UI
             this.cmbPatentes.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cmbPatentes.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmbPatentes.FormattingEnabled = true;
-            this.cmbPatentes.Location = new System.Drawing.Point(135, 246);
+            this.cmbPatentes.Location = new System.Drawing.Point(148, 246);
             this.cmbPatentes.Name = "cmbPatentes";
             this.cmbPatentes.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbPatentes.Size = new System.Drawing.Size(159, 21);
@@ -101,7 +101,7 @@ namespace UI
             this.btnAgregarFamilia.FlatAppearance.BorderSize = 0;
             this.btnAgregarFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarFamilia.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAgregarFamilia.Location = new System.Drawing.Point(310, 189);
+            this.btnAgregarFamilia.Location = new System.Drawing.Point(322, 188);
             this.btnAgregarFamilia.Name = "btnAgregarFamilia";
             this.btnAgregarFamilia.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnAgregarFamilia.Size = new System.Drawing.Size(56, 21);
@@ -121,7 +121,7 @@ namespace UI
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(84, 25);
             this.label1.TabIndex = 45;
-            this.label1.Tag = "nombrePatente";
+            this.label1.Tag = "Familias";
             this.label1.Text = "Familias";
             // 
             // cmbFamilias
@@ -129,7 +129,7 @@ namespace UI
             this.cmbFamilias.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cmbFamilias.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmbFamilias.FormattingEnabled = true;
-            this.cmbFamilias.Location = new System.Drawing.Point(135, 189);
+            this.cmbFamilias.Location = new System.Drawing.Point(148, 189);
             this.cmbFamilias.Name = "cmbFamilias";
             this.cmbFamilias.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbFamilias.Size = new System.Drawing.Size(159, 21);
@@ -140,7 +140,7 @@ namespace UI
             this.cmbUsuario.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cmbUsuario.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmbUsuario.FormattingEnabled = true;
-            this.cmbUsuario.Location = new System.Drawing.Point(135, 125);
+            this.cmbUsuario.Location = new System.Drawing.Point(148, 125);
             this.cmbUsuario.Name = "cmbUsuario";
             this.cmbUsuario.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbUsuario.Size = new System.Drawing.Size(159, 21);
@@ -165,7 +165,7 @@ namespace UI
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button1.Location = new System.Drawing.Point(310, 126);
+            this.button1.Location = new System.Drawing.Point(322, 126);
             this.button1.Name = "button1";
             this.button1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.button1.Size = new System.Drawing.Size(56, 21);
@@ -196,7 +196,7 @@ namespace UI
             this.btnAltaFamilia.Name = "btnAltaFamilia";
             this.btnAltaFamilia.Size = new System.Drawing.Size(91, 47);
             this.btnAltaFamilia.TabIndex = 54;
-            this.btnAltaFamilia.Tag = "Guardar Permiso";
+            this.btnAltaFamilia.Tag = "Guardar_Permiso";
             this.btnAltaFamilia.Text = "Guardar Permiso";
             this.btnAltaFamilia.UseVisualStyleBackColor = false;
             this.btnAltaFamilia.Click += new System.EventHandler(this.btnAltaFamilia_Click);

@@ -53,7 +53,7 @@ namespace UI
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(324, 36);
             this.label3.TabIndex = 34;
-            this.label3.Tag = "Alta Familia Patente";
+            this.label3.Tag = "Alta_Familia_Patente";
             this.label3.Text = "Alta Familia Patente";
             // 
             // txtPatente
@@ -75,7 +75,7 @@ namespace UI
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(153, 25);
             this.label1.TabIndex = 32;
-            this.label1.Tag = "nombrePatente";
+            this.label1.Tag = "Nombre_Patente";
             this.label1.Text = "Nombre Patente";
             // 
             // groupBox1
@@ -170,7 +170,7 @@ namespace UI
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(148, 25);
             this.label5.TabIndex = 32;
-            this.label5.Tag = "nombreFamilia";
+            this.label5.Tag = "Nombre_Familia";
             this.label5.Text = "Nombre Familia";
             // 
             // txtFamilia
