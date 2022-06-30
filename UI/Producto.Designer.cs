@@ -28,25 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnMod = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
             this.dtgProductos = new System.Windows.Forms.DataGridView();
             this.btnAlta = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbUM = new System.Windows.Forms.ComboBox();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.txtOptimo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtMinimo = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtMinimo = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtOptimo = new System.Windows.Forms.TextBox();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.cmbUM = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgProductos)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -98,19 +96,19 @@
             // 
             this.dtgProductos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.dtgProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgProductos.GridColor = System.Drawing.Color.Black;
             this.dtgProductos.Location = new System.Drawing.Point(435, 28);
             this.dtgProductos.Name = "dtgProductos";
-            this.dtgProductos.Size = new System.Drawing.Size(548, 320);
+            this.dtgProductos.Size = new System.Drawing.Size(483, 320);
             this.dtgProductos.TabIndex = 23;
             this.dtgProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgProductos_CellContentClick);
             // 
@@ -129,136 +127,115 @@
             this.btnAlta.UseVisualStyleBackColor = false;
             this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
-            // groupBox1
+            // label5
             // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cmbUM);
-            this.groupBox1.Controls.Add(this.txtCodigo);
-            this.groupBox1.Controls.Add(this.txtOptimo);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtMinimo);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtDescripcion);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.ForeColor = System.Drawing.Color.DarkCyan;
-            this.groupBox1.Location = new System.Drawing.Point(12, 22);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(396, 273);
-            this.groupBox1.TabIndex = 21;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Tag = "Datos";
-            this.groupBox1.Text = "Datos";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkCyan;
-            this.label1.Location = new System.Drawing.Point(29, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 25);
-            this.label1.TabIndex = 3;
-            this.label1.Tag = "Codigo";
-            this.label1.Text = "Codigo";
-            // 
-            // cmbUM
-            // 
-            this.cmbUM.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.cmbUM.ForeColor = System.Drawing.Color.Gainsboro;
-            this.cmbUM.FormattingEnabled = true;
-            this.cmbUM.Location = new System.Drawing.Point(200, 131);
-            this.cmbUM.Name = "cmbUM";
-            this.cmbUM.Size = new System.Drawing.Size(159, 21);
-            this.cmbUM.TabIndex = 13;
-            // 
-            // txtCodigo
-            // 
-            this.txtCodigo.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtCodigo.ForeColor = System.Drawing.Color.Gainsboro;
-            this.txtCodigo.Location = new System.Drawing.Point(200, 40);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(159, 20);
-            this.txtCodigo.TabIndex = 4;
-            // 
-            // txtOptimo
-            // 
-            this.txtOptimo.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtOptimo.ForeColor = System.Drawing.Color.Gainsboro;
-            this.txtOptimo.Location = new System.Drawing.Point(200, 222);
-            this.txtOptimo.Name = "txtOptimo";
-            this.txtOptimo.Size = new System.Drawing.Size(159, 20);
-            this.txtOptimo.TabIndex = 12;
-            this.txtOptimo.Text = "0";
-            this.txtOptimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOptimo_KeyPress);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DarkCyan;
-            this.label2.Location = new System.Drawing.Point(29, 81);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 25);
-            this.label2.TabIndex = 5;
-            this.label2.Tag = "Descripcion";
-            this.label2.Text = "Descripcion";
-            // 
-            // txtMinimo
-            // 
-            this.txtMinimo.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtMinimo.ForeColor = System.Drawing.Color.Gainsboro;
-            this.txtMinimo.Location = new System.Drawing.Point(200, 182);
-            this.txtMinimo.Name = "txtMinimo";
-            this.txtMinimo.Size = new System.Drawing.Size(159, 20);
-            this.txtMinimo.TabIndex = 11;
-            this.txtMinimo.Text = "0";
-            this.txtMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimo_KeyPress);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DarkCyan;
-            this.label3.Location = new System.Drawing.Point(29, 131);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(171, 25);
-            this.label3.TabIndex = 6;
-            this.label3.Tag = "Unidad_Medida";
-            this.label3.Text = "Unidad de Medida";
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtDescripcion.ForeColor = System.Drawing.Color.Gainsboro;
-            this.txtDescripcion.Location = new System.Drawing.Point(200, 86);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(159, 20);
-            this.txtDescripcion.TabIndex = 9;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label5.Location = new System.Drawing.Point(29, 200);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 25);
+            this.label5.TabIndex = 8;
+            this.label5.Tag = "Stock_Minimo";
+            this.label5.Text = "Stock Minimo";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkCyan;
-            this.label4.Location = new System.Drawing.Point(29, 217);
+            this.label4.Location = new System.Drawing.Point(29, 248);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(130, 25);
             this.label4.TabIndex = 7;
             this.label4.Tag = "Stock_Optimo";
             this.label4.Text = "Stock Optimo";
             // 
-            // label5
+            // txtDescripcion
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.DarkCyan;
-            this.label5.Location = new System.Drawing.Point(29, 177);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 25);
-            this.label5.TabIndex = 8;
-            this.label5.Tag = "Stock_Minimo";
-            this.label5.Text = "Stock Minimo";
+            this.txtDescripcion.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtDescripcion.ForeColor = System.Drawing.Color.Gainsboro;
+            this.txtDescripcion.Location = new System.Drawing.Point(249, 106);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(159, 20);
+            this.txtDescripcion.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label3.Location = new System.Drawing.Point(29, 152);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(171, 25);
+            this.label3.TabIndex = 6;
+            this.label3.Tag = "Unidad_Medida";
+            this.label3.Text = "Unidad de Medida";
+            // 
+            // txtMinimo
+            // 
+            this.txtMinimo.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtMinimo.ForeColor = System.Drawing.Color.Gainsboro;
+            this.txtMinimo.Location = new System.Drawing.Point(249, 206);
+            this.txtMinimo.Name = "txtMinimo";
+            this.txtMinimo.Size = new System.Drawing.Size(159, 20);
+            this.txtMinimo.TabIndex = 11;
+            this.txtMinimo.Text = "0";
+            this.txtMinimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimo_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label2.Location = new System.Drawing.Point(29, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(114, 25);
+            this.label2.TabIndex = 5;
+            this.label2.Tag = "Descripcion";
+            this.label2.Text = "Descripcion";
+            // 
+            // txtOptimo
+            // 
+            this.txtOptimo.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtOptimo.ForeColor = System.Drawing.Color.Gainsboro;
+            this.txtOptimo.Location = new System.Drawing.Point(249, 253);
+            this.txtOptimo.Name = "txtOptimo";
+            this.txtOptimo.Size = new System.Drawing.Size(159, 20);
+            this.txtOptimo.TabIndex = 12;
+            this.txtOptimo.Text = "0";
+            this.txtOptimo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOptimo_KeyPress);
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtCodigo.ForeColor = System.Drawing.Color.Gainsboro;
+            this.txtCodigo.Location = new System.Drawing.Point(249, 56);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(159, 20);
+            this.txtCodigo.TabIndex = 4;
+            // 
+            // cmbUM
+            // 
+            this.cmbUM.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.cmbUM.ForeColor = System.Drawing.Color.Gainsboro;
+            this.cmbUM.FormattingEnabled = true;
+            this.cmbUM.Location = new System.Drawing.Point(249, 152);
+            this.cmbUM.Name = "cmbUM";
+            this.cmbUM.Size = new System.Drawing.Size(159, 21);
+            this.cmbUM.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label1.Location = new System.Drawing.Point(29, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 25);
+            this.label1.TabIndex = 3;
+            this.label1.Tag = "Codigo";
+            this.label1.Text = "Codigo";
             // 
             // Producto
             // 
@@ -266,19 +243,27 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(995, 401);
+            this.Controls.Add(this.txtOptimo);
+            this.Controls.Add(this.cmbUM);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtMinimo);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnMod);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.dtgProductos);
             this.Controls.Add(this.btnAlta);
-            this.Controls.Add(this.groupBox1);
             this.Name = "Producto";
             this.Text = "Producto";
             this.Load += new System.EventHandler(this.Producto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgProductos)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -289,16 +274,15 @@
         private System.Windows.Forms.Button btnBaja;
         private System.Windows.Forms.DataGridView dtgProductos;
         private System.Windows.Forms.Button btnAlta;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbUM;
-        private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.TextBox txtOptimo;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtMinimo;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtMinimo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtOptimo;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.ComboBox cmbUM;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -18,7 +18,7 @@ namespace UI
         BLL.Idioma idiomaBLL = new BLL.Idioma();
         BLL.Permiso permiso = new BLL.Permiso();
         BLL.Usuario usuario = new BLL.Usuario();
-        Familia familia_Actual;
+        
         BE.Usuario _usu;
         BE.Usuario _user;
         public AsignacionPermisoUsuario()

@@ -30,17 +30,17 @@ namespace DAL
                                                         "FROM Permiso p INNER JOIN Usuario_Permiso up on up.idPermiso = p.idPermiso " +
                                                         "INNER JOIN Familia_Patente fp on fp.idPermisoPadre = p.idPermiso " +
                                                         "INNER JOIN Permiso p1 on p1.idPermiso = fp.idpermisohijo " +
-                                                        "WHERE idUsuario = idusuario and p1.Permiso = @permiso " +
+                                                        "WHERE idUsuario = @idusuario and p1.Permiso = @permiso " +
                                                         "UNION ALL " +
                                                         "SELECT up.idUsuario, p.idPermiso, p.Nombre, p.Permiso, p1.Permiso as CodigoPermiso " +
                                                         "FROM Permiso p INNER JOIN Usuario_Permiso up on up.idPermiso = p.idPermiso " +
                                                         "INNER JOIN Familia_Patente fp on fp.idPermisoHijo = p.idPermiso " +
                                                         "INNER JOIN Permiso p1 on p1.idPermiso = fp.idpermisohijo " +
-                                                        "WHERE idUsuario = idusuario and p1.Permiso = @permiso " +
+                                                        "WHERE idUsuario = @idusuario and p1.Permiso = @permiso " +
                                                         "UNION ALL " +
                                                         "SELECT up.idUsuario, p.idPermiso,  '', '', p.Permiso as CodigoPermiso " +
                                                         "FROM Permiso p INNER JOIN Usuario_Permiso up on up.idPermiso = p.idPermiso " +
-                                                        "WHERE UP.idUsuario = idusuario and p.Permiso = @permiso";
+                                                        "WHERE UP.idUsuario = @idusuario and p.Permiso = @permiso";
 
 
 

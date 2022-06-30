@@ -133,7 +133,7 @@ namespace BLL
             string texto = "Contraseña: " + xPassword;
 
             StreamWriter fichero; //Clase que representa un fichero
-            fichero = File.CreateText("D:\\" + xUsuario + ".txt"); //Creamos un fichero
+            fichero = File.CreateText("C:\\usuario_Campo\\" + xUsuario + ".txt"); //Creamos un fichero
             fichero.WriteLine(texto); // Lo mismo que cuando escribimos por consola
             fichero.Close();
 
