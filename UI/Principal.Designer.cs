@@ -49,6 +49,9 @@ namespace UI
             this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuIdioma = new System.Windows.Forms.ToolStripMenuItem();
+            this.administracionIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altaEtiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -91,6 +94,7 @@ namespace UI
             this.compraToolStripMenuItem,
             this.ventaToolStripMenuItem,
             this.menuIdioma,
+            this.administracionIdiomaToolStripMenuItem,
             this.cerrarSesionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -200,7 +204,7 @@ namespace UI
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.productosToolStripMenuItem.Tag = "Producto";
             this.productosToolStripMenuItem.Text = "Producto";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
@@ -208,7 +212,7 @@ namespace UI
             // proveedorToolStripMenuItem
             // 
             this.proveedorToolStripMenuItem.Name = "proveedorToolStripMenuItem";
-            this.proveedorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proveedorToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.proveedorToolStripMenuItem.Tag = "Proveedor";
             this.proveedorToolStripMenuItem.Text = "Proveedor";
             // 
@@ -233,6 +237,32 @@ namespace UI
             this.menuIdioma.Tag = "Idioma";
             this.menuIdioma.Text = "Idioma";
             // 
+            // administracionIdiomaToolStripMenuItem
+            // 
+            this.administracionIdiomaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.altaIdiomaToolStripMenuItem,
+            this.altaEtiquetasToolStripMenuItem});
+            this.administracionIdiomaToolStripMenuItem.Name = "administracionIdiomaToolStripMenuItem";
+            this.administracionIdiomaToolStripMenuItem.Size = new System.Drawing.Size(140, 20);
+            this.administracionIdiomaToolStripMenuItem.Tag = "Administracion_Idioma";
+            this.administracionIdiomaToolStripMenuItem.Text = "Administracion Idioma";
+            // 
+            // altaIdiomaToolStripMenuItem
+            // 
+            this.altaIdiomaToolStripMenuItem.Name = "altaIdiomaToolStripMenuItem";
+            this.altaIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.altaIdiomaToolStripMenuItem.Tag = "Alta_Idioma";
+            this.altaIdiomaToolStripMenuItem.Text = "Alta Idioma";
+            this.altaIdiomaToolStripMenuItem.Click += new System.EventHandler(this.altaIdiomaToolStripMenuItem_Click);
+            // 
+            // altaEtiquetasToolStripMenuItem
+            // 
+            this.altaEtiquetasToolStripMenuItem.Name = "altaEtiquetasToolStripMenuItem";
+            this.altaEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.altaEtiquetasToolStripMenuItem.Tag = "Alta_Etiqueta";
+            this.altaEtiquetasToolStripMenuItem.Text = "Alta Etiquetas";
+            this.altaEtiquetasToolStripMenuItem.Click += new System.EventHandler(this.altaEtiquetasToolStripMenuItem_Click);
+            // 
             // cerrarSesionToolStripMenuItem
             // 
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
@@ -249,9 +279,11 @@ namespace UI
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
+            this.IsMdiContainer = true;
             this.Name = "Principal";
             this.Text = "Principal";
             this.Load += new System.EventHandler(this.Principal_Load);
+            this.MdiChildActivate += new System.EventHandler(this.Principal_MdiChildActivate);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -284,5 +316,8 @@ namespace UI
         private System.Windows.Forms.ToolStripMenuItem asignacionFamiliaPatenteToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem asignacionPermisosUsuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem desasignarPermisosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem administracionIdiomaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaIdiomaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaEtiquetasToolStripMenuItem;
     }
 }

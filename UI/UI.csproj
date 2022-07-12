@@ -47,11 +47,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaEtiqueta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaEtiqueta.Designer.cs">
+      <DependentUpon>AltaEtiqueta.cs</DependentUpon>
+    </Compile>
     <Compile Include="AltaFamiliaPatente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AltaFamiliaPatente.Designer.cs">
       <DependentUpon>AltaFamiliaPatente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AltaIdioma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaIdioma.Designer.cs">
+      <DependentUpon>AltaIdioma.cs</DependentUpon>
     </Compile>
     <Compile Include="AltaUsuario.cs">
       <SubType>Form</SubType>
@@ -70,6 +82,12 @@
     </Compile>
     <Compile Include="AsignacionPermisoUsuario.Designer.cs">
       <DependentUpon>AsignacionPermisoUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompraMateriales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompraMateriales.Designer.cs">
+      <DependentUpon>CompraMateriales.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -91,8 +109,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AltaEtiqueta.resx">
+      <DependentUpon>AltaEtiqueta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AltaFamiliaPatente.resx">
       <DependentUpon>AltaFamiliaPatente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaIdioma.resx">
+      <DependentUpon>AltaIdioma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AltaUsuario.resx">
       <DependentUpon>AltaUsuario.cs</DependentUpon>
@@ -102,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AsignacionPermisoUsuario.resx">
       <DependentUpon>AsignacionPermisoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompraMateriales.resx">
+      <DependentUpon>CompraMateriales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

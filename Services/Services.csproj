@@ -47,7 +47,6 @@
     <Compile Include="GestorPermisos.cs" />
     <Compile Include="Idioma\Etiqueta.cs" />
     <Compile Include="Idioma\Idioma.cs" />
-    <Compile Include="Idioma\sesionIdioma.cs" />
     <Compile Include="Idioma\Traduccion.cs" />
     <Compile Include="Idioma\Traductor.cs" />
     <Compile Include="SingletonSesion.cs" />

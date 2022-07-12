@@ -20,6 +20,8 @@ namespace BE.Composite
         Abm_Producto,
         Abm_Proveedor,
         Gestion_Compras,
-        Gestion_Ventas
+        Gestion_Ventas,
+        Alta_Idioma,
+        Alta_Etiquetas
     }
 }

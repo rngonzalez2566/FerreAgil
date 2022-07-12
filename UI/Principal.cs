@@ -17,6 +17,7 @@ namespace UI
     {
         BLL.Idioma idiomaBLL = new BLL.Idioma();
         BLL.Permiso permiso = new BLL.Permiso();
+        private bool mdiChildActivo = false;
         public Principal()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace UI
         
         private void Principal_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             SingletonSesion.SuscribirObservador(this);
             UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
             obtenerIdiomas();
@@ -49,8 +51,8 @@ namespace UI
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Abm_Proveedor") == false) proveedorToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Compras") == false) compraToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Ventas") == false) ventaToolStripMenuItem.Enabled = false;
-            
-
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Idioma") == false) altaIdiomaToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Etiquetas") == false) altaEtiquetasToolStripMenuItem.Enabled = false;
 
 
 
@@ -113,20 +115,29 @@ namespace UI
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             Producto frm = new Producto();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
 
 
         private void altaPermisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             AltaFamiliaPatente frm = new AltaFamiliaPatente();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
 
         private void asignacionPermisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             AsignacionPermisoUsuario frm = new AsignacionPermisoUsuario();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
 
@@ -137,7 +148,10 @@ namespace UI
 
         private void asignacionFamiliaPatenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             AsignacionFamiliaPatente frm = new AsignacionFamiliaPatente();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
 
@@ -148,13 +162,19 @@ namespace UI
 
         private void altaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             AltaFamiliaPatente frm = new AltaFamiliaPatente();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
 
         private void altaUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             AltaUsuario frm = new AltaUsuario();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
 
@@ -175,19 +195,59 @@ namespace UI
 
         private void asignacionFamiliaPatenteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+
             AsignacionFamiliaPatente frm = new AsignacionFamiliaPatente();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
 
         private void asignacionPermisosUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             AsignacionPermisoUsuario frm = new AsignacionPermisoUsuario();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
 
         private void desasignarPermisosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void altaIdiomaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+  
+            AltaIdioma frm = new AltaIdioma();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void Principal_MdiChildActivate(object sender, EventArgs e)
+        {
+            Form formEvento = (Form)sender;
+            if (formEvento.ActiveMdiChild == null)
+            {
+                mdiChildActivo = false;
+                UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
+                menuIdioma.DropDownItems.Clear();
+                obtenerIdiomas();
+            }
+            else
+            {
+                mdiChildActivo = true;
+            }
+        }
+
+        private void altaEtiquetasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            AltaEtiqueta frm = new AltaEtiqueta();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
         }
     }
 }
