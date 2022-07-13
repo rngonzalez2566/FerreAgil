@@ -44,6 +44,8 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.cmbUM = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPU = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnCancel.Location = new System.Drawing.Point(317, 301);
+            this.btnCancel.Location = new System.Drawing.Point(317, 362);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 47);
             this.btnCancel.TabIndex = 26;
@@ -68,7 +70,7 @@
             this.btnMod.FlatAppearance.BorderSize = 0;
             this.btnMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMod.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnMod.Location = new System.Drawing.Point(212, 301);
+            this.btnMod.Location = new System.Drawing.Point(212, 362);
             this.btnMod.Name = "btnMod";
             this.btnMod.Size = new System.Drawing.Size(91, 47);
             this.btnMod.TabIndex = 25;
@@ -83,7 +85,7 @@
             this.btnBaja.FlatAppearance.BorderSize = 0;
             this.btnBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBaja.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnBaja.Location = new System.Drawing.Point(109, 301);
+            this.btnBaja.Location = new System.Drawing.Point(109, 362);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(91, 47);
             this.btnBaja.TabIndex = 24;
@@ -118,7 +120,7 @@
             this.btnAlta.FlatAppearance.BorderSize = 0;
             this.btnAlta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlta.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAlta.Location = new System.Drawing.Point(12, 301);
+            this.btnAlta.Location = new System.Drawing.Point(12, 362);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(91, 47);
             this.btnAlta.TabIndex = 22;
@@ -237,12 +239,37 @@
             this.label1.Tag = "Codigo";
             this.label1.Text = "Codigo";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label6.Location = new System.Drawing.Point(29, 301);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(138, 25);
+            this.label6.TabIndex = 27;
+            this.label6.Tag = "Precio_Unitario";
+            this.label6.Text = "Precio Unitario";
+            // 
+            // txtPU
+            // 
+            this.txtPU.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtPU.ForeColor = System.Drawing.Color.Gainsboro;
+            this.txtPU.Location = new System.Drawing.Point(249, 301);
+            this.txtPU.Name = "txtPU";
+            this.txtPU.Size = new System.Drawing.Size(159, 20);
+            this.txtPU.TabIndex = 28;
+            this.txtPU.Text = "0";
+            this.txtPU.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPU_KeyPress);
+            // 
             // Producto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(995, 401);
+            this.ClientSize = new System.Drawing.Size(995, 421);
+            this.Controls.Add(this.txtPU);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtOptimo);
             this.Controls.Add(this.cmbUM);
             this.Controls.Add(this.label4);
@@ -284,5 +311,7 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.ComboBox cmbUM;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtPU;
     }
 }

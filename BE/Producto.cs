@@ -13,6 +13,7 @@ namespace BE
         public string descripcion { get; set; }
         public UnidadMedida unidadMedida  { get; set; }
         public int leadTimeCompra { get; set; }
+        public float PrecioUnitario { get; set; }
         public float consumoMensual { get; set; }
         public float consumoTrimestral { get; set; }
         public float consumoSemestral { get; set; }

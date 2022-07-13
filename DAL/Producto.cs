@@ -19,7 +19,7 @@ namespace DAL
 
         private const string modificacion_Producto = "UPDATE PRODUCTO SET CODIGO = @codigo, DESCRIPCION = @descripcion," +
                                                      " ID_UNIDADMEDIDA = @id_unidadMedida, STOCKMINIMO = @stockMinimo," +
-                                                     " STOCKOPTIMO = @stockOptimo OUTPUT inserted.ID_PRODUCTO  WHERE ID_PRODUCTO = @id_Producto ";
+                                                     " STOCKOPTIMO = @stockOptimo, PRECIOUNITARIO = @pu OUTPUT inserted.ID_PRODUCTO  WHERE ID_PRODUCTO = @id_Producto ";
 
         private const string get_Producto = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO = @id_Producto  AND ESTADO IS NULL";
 
@@ -86,6 +86,7 @@ namespace DAL
                 xParameters.Parameters.AddWithValue("@id_unidadMedida", producto.unidadMedida.id_UnidadMedida);
                 xParameters.Parameters.AddWithValue("@stockMinimo", producto.stockMinimo);
                 xParameters.Parameters.AddWithValue("@stockOptimo", producto.stockOptimo);
+                xParameters.Parameters.AddWithValue("@pu", producto.PrecioUnitario);
 
 
                 return ExecuteNonEscalar();
@@ -130,7 +131,7 @@ namespace DAL
                         Producto.stockOptimo = float.Parse(dt.Rows[0]["stockOptimo"].ToString());
                         Producto.estado = dt.Rows[0]["estado"].ToString();
                         Producto.unidadMedida = um.GetUnidadMedida(int.Parse(dt.Rows[0]["id_unidadMedida"].ToString()));
-                    
+                        Producto.PrecioUnitario = float.Parse(dt.Rows[0]["PrecioUnitario"].ToString());
                 }
 
                 return Producto;
@@ -173,7 +174,8 @@ namespace DAL
                         Producto.stockMinimo = float.Parse(fila[8].ToString());
                         Producto.stockOptimo = float.Parse(fila[9].ToString());
                         Producto.estado = fila[10].ToString();
-                        
+                        Producto.PrecioUnitario = float.Parse(fila[11].ToString());
+
 
                         listaProductos.Add(Producto);
                     }

@@ -23,7 +23,8 @@ namespace DAL
 
         private const string get_Proveedor = "SELECT * FROM Proveedor WHERE id_Proveedor = @id_Proveedor AND ESTADO <> 'BAJA'";
 
-        private const string get_Proveedores = "SELECT * FROM Proveedor WHERE ESTADO <> 'BAJA' ";
+        private const string get_Proveedores = "SELECT id_Proveedor,razonSocial,cuit "+
+                                               ",direccion,isnull(telefono,0),estado FROM Proveedor WHERE ESTADO is null ";
         #endregion
 
         #region ABM
@@ -146,17 +147,19 @@ namespace DAL
 
                 if (dt.Rows.Count > 0)
                 {
-                    BE.Proveedor Proveedor = new BE.Proveedor();
+                    foreach (DataRow fila in dt.Rows)
+                    {
+                        BE.Proveedor Proveedor = new BE.Proveedor();
 
-                    Proveedor.id_Proveedor = int.Parse(dt.Rows[0]["id_proveedor"].ToString());
-                    Proveedor.razonSocial = dt.Rows[0]["razonSocial"].ToString();
-                    Proveedor.cuit = int.Parse(dt.Rows[0]["cuit"].ToString());
-                    Proveedor.direccion = dt.Rows[0]["direccion"].ToString();
-                    Proveedor.telefono = int.Parse(dt.Rows[0]["telefono"].ToString());
-                    Proveedor.estado = dt.Rows[0]["estado"].ToString();
+                        Proveedor.id_Proveedor = int.Parse(fila[0].ToString());
+                        Proveedor.razonSocial = fila[1].ToString();
+                        Proveedor.cuit = int.Parse(fila[2].ToString());
+                        Proveedor.direccion = fila[3].ToString();
+                        Proveedor.telefono = int.Parse(fila[4].ToString());
+                        Proveedor.estado = fila[5].ToString();
 
-                    listaProveedores.Add(Proveedor);
-
+                        listaProveedores.Add(Proveedor);
+                    }
                 }
 
 

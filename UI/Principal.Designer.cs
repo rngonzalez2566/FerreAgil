@@ -53,6 +53,7 @@ namespace UI
             this.altaIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaEtiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compraDeMaterialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -218,6 +219,8 @@ namespace UI
             // 
             // compraToolStripMenuItem
             // 
+            this.compraToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.compraDeMaterialesToolStripMenuItem});
             this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
             this.compraToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.compraToolStripMenuItem.Tag = "Compra";
@@ -250,7 +253,7 @@ namespace UI
             // altaIdiomaToolStripMenuItem
             // 
             this.altaIdiomaToolStripMenuItem.Name = "altaIdiomaToolStripMenuItem";
-            this.altaIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.altaIdiomaToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.altaIdiomaToolStripMenuItem.Tag = "Alta_Idioma";
             this.altaIdiomaToolStripMenuItem.Text = "Alta Idioma";
             this.altaIdiomaToolStripMenuItem.Click += new System.EventHandler(this.altaIdiomaToolStripMenuItem_Click);
@@ -258,7 +261,7 @@ namespace UI
             // altaEtiquetasToolStripMenuItem
             // 
             this.altaEtiquetasToolStripMenuItem.Name = "altaEtiquetasToolStripMenuItem";
-            this.altaEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.altaEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.altaEtiquetasToolStripMenuItem.Tag = "Alta_Etiqueta";
             this.altaEtiquetasToolStripMenuItem.Text = "Alta Etiquetas";
             this.altaEtiquetasToolStripMenuItem.Click += new System.EventHandler(this.altaEtiquetasToolStripMenuItem_Click);
@@ -270,6 +273,14 @@ namespace UI
             this.cerrarSesionToolStripMenuItem.Tag = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
+            // 
+            // compraDeMaterialesToolStripMenuItem
+            // 
+            this.compraDeMaterialesToolStripMenuItem.Name = "compraDeMaterialesToolStripMenuItem";
+            this.compraDeMaterialesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.compraDeMaterialesToolStripMenuItem.Tag = "Compra_Materiales";
+            this.compraDeMaterialesToolStripMenuItem.Text = "Compra de Materiales";
+            this.compraDeMaterialesToolStripMenuItem.Click += new System.EventHandler(this.compraDeMaterialesToolStripMenuItem_Click);
             // 
             // Principal
             // 
@@ -319,5 +330,6 @@ namespace UI
         private System.Windows.Forms.ToolStripMenuItem administracionIdiomaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaIdiomaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaEtiquetasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compraDeMaterialesToolStripMenuItem;
     }
 }

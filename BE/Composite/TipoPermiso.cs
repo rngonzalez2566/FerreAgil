@@ -22,6 +22,7 @@ namespace BE.Composite
         Gestion_Compras,
         Gestion_Ventas,
         Alta_Idioma,
-        Alta_Etiquetas
+        Alta_Etiquetas,
+        Compra_Materiales
     }
 }

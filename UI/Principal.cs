@@ -53,7 +53,7 @@ namespace UI
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Ventas") == false) ventaToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Idioma") == false) altaIdiomaToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Etiquetas") == false) altaEtiquetasToolStripMenuItem.Enabled = false;
-
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Compra_Materiales") == false) compraDeMaterialesToolStripMenuItem.Enabled = false;
 
 
         }
@@ -245,6 +245,14 @@ namespace UI
         {
 
             AltaEtiqueta frm = new AltaEtiqueta();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void compraDeMaterialesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompraMateriales frm = new CompraMateriales();
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();

@@ -56,7 +56,7 @@ namespace BLL
             }
             catch (Exception)
             {
-                throw new Exception("Error al obtener Unidades de Medida");
+                throw new Exception("Error al obtener Productos");
             }
         }
         #endregion

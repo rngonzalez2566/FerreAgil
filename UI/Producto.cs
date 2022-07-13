@@ -38,11 +38,16 @@ namespace UI
         }
         public void cargaUnidadMedida()
         {
+            try
+            { 
             cmbUM.DataSource = um.GetUnidadMedidas();
             cmbUM.ValueMember = "id_UnidadMedida";
             cmbUM.DisplayMember = "Nombre";
             cmbUM.SelectedIndex = -1;
-
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
@@ -57,6 +62,7 @@ namespace UI
                 producto.descripcion = txtDescripcion.Text;
                 producto.stockMinimo = txtMinimo.Text == "" ? 0 : float.Parse(txtMinimo.Text);
                 producto.stockOptimo = txtOptimo.Text == "" ? 0 : float.Parse(txtOptimo.Text);
+                producto.PrecioUnitario = txtPU.Text == "" ? 0 : float.Parse(txtPU.Text);
                 producto.unidadMedida = unidadMedida;
                 producto.leadTimeCompra = 0;
                 producto.consumoMensual = 0;
@@ -104,7 +110,7 @@ namespace UI
             dtgProductos.DataSource = null;
             dtgProductos.Columns.Clear();
 
-            dtgProductos.ColumnCount = 9;
+            dtgProductos.ColumnCount = 10;
             dtgProductos.Columns[0].Name = "Codigo";
             dtgProductos.Columns[1].Name = "Descripcion";
             dtgProductos.Columns[2].Name = "Unidad Medida";
@@ -115,12 +121,13 @@ namespace UI
             dtgProductos.Columns[7].Name = "Consumo Semestral";
             dtgProductos.Columns[8].Name = "id";
             dtgProductos.Columns[8].Visible = false;
+            dtgProductos.Columns[9].Name = "PU";
 
 
             List <BE.Producto> productos = pr.GetProductos();
             foreach (BE.Producto lista in productos)
             {
-                dtgProductos.Rows.Add(lista.codigo,lista.descripcion,lista.unidadMedida.nombre,lista.stockMinimo,lista.stockOptimo,lista.consumoMensual,lista.consumoTrimestral,lista.consumoSemestral, lista.id_Producto);
+                dtgProductos.Rows.Add(lista.codigo,lista.descripcion,lista.unidadMedida.nombre,lista.stockMinimo,lista.stockOptimo,lista.consumoMensual,lista.consumoTrimestral,lista.consumoSemestral, lista.id_Producto,lista.PrecioUnitario);
             }
         }
 
@@ -131,6 +138,7 @@ namespace UI
             txtMinimo.Text = dtgProductos.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtOptimo.Text = dtgProductos.Rows[e.RowIndex].Cells[4].Value.ToString();
             idProducto = int.Parse(dtgProductos.Rows[e.RowIndex].Cells[8].Value.ToString());
+            txtPU.Text = dtgProductos.Rows[e.RowIndex].Cells[9].Value.ToString();
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
@@ -164,6 +172,7 @@ namespace UI
                 producto.unidadMedida = unidadMedida;
                 producto.stockMinimo = txtMinimo.Text == "" ? 0 : float.Parse(txtMinimo.Text);
                 producto.stockOptimo = txtOptimo.Text == "" ? 0 : float.Parse(txtOptimo.Text);
+                producto.PrecioUnitario = txtPU.Text == "" ? 0 : float.Parse(txtPU.Text);
                 pr.modificacionProducto(producto);
                 MessageBox.Show("Se modifico el producto con exito");
                 cargarDatos();
@@ -180,6 +189,14 @@ namespace UI
         private void btnCancel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtPU_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
