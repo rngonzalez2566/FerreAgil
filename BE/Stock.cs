@@ -10,6 +10,7 @@ namespace BE
     {
         public int id { get; set; }
         public Producto Producto { get; set; }
-        public double Cantidad { get; set; }
+        public float Cantidad { get; set; }
+        public int Condicion { get; set; }
     }
 }

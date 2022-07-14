@@ -12,17 +12,22 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class ComprasPendienteEnvioProv : Form, IIdiomaObserver
+    public partial class CompraPendienteEnvioAlmacen : Form, IIdiomaObserver
     {
-        public ComprasPendienteEnvioProv()
+        public CompraPendienteEnvioAlmacen()
         {
             InitializeComponent();
         }
         BLL.Idioma idiomaBLL = new BLL.Idioma();
-        BLL.Compra compra  = new BLL.Compra();
-        string pendiente = "Pendiente Envio Proveedor";
-        string estado = "Enviado Proveedor";
-        private void ComprasPendienteEnvioProv_Load(object sender, EventArgs e)
+        BLL.Compra compra = new BLL.Compra();
+        string pendiente = "Pedido Recepcionado";
+        string estado = "Pedido Enviado Almacen";
+        private void dtgPendientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtNro.Text = dtgPendientes.Rows[e.RowIndex].Cells[1].Value.ToString();
+        }
+
+        private void CompraPendienteEnvioAlmacen_Load(object sender, EventArgs e)
         {
             SingletonSesion.SuscribirObservador(this);
             UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
@@ -34,7 +39,7 @@ namespace UI
 
         }
 
-        public void CargarPendientes(List<BE.Compra>listaCompra)
+        public void CargarPendientes(List<BE.Compra> listaCompra)
         {
             dtgPendientes.DataSource = null;
             dtgPendientes.Rows.Clear();
@@ -53,7 +58,7 @@ namespace UI
 
             foreach (BE.Compra lista in listaCompra)
             {
-                dtgPendientes.Rows.Add(lista.id,lista.Nro,lista.Fecha,lista.Detalle,lista.Total,lista.Proveedor.razonSocial);
+                dtgPendientes.Rows.Add(lista.id, lista.Nro, lista.Fecha, lista.Detalle, lista.Total, lista.Proveedor.razonSocial);
             }
 
         }
@@ -72,13 +77,6 @@ namespace UI
             {
                 MessageBox.Show(ex.Message);
             }
-          
-        }
-
-        private void dtgPendientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-            txtNro.Text = dtgPendientes.Rows[e.RowIndex].Cells[1].Value.ToString();
         }
     }
 }

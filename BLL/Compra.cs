@@ -24,11 +24,23 @@ namespace BLL
            
         }
 
-        public List<BE.Compra> GetPendienteEnvioProveedor()
+        public List<BE.Compra> GetPendientes(string pendiente)
         {
             try
             {
-                return compraDAL.GetPendienteEnvioProveedor();
+                return compraDAL.GetPendientes(pendiente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public BE.Compra GetCompra(int nro)
+        {
+            try
+            {
+                return compraDAL.GetCompra(nro);
             }
             catch (Exception ex)
             {
@@ -86,11 +98,11 @@ namespace BLL
             }
         }
 
-        public int EnvioProveedor(int nro)
+        public int CambioEstado(int nro, string estado)
         {
             try
             {
-                return compraDAL.EnvioProveedor(nro);
+                return compraDAL.CambioEstado(nro, estado);
             }
             catch (Exception ex)
             {

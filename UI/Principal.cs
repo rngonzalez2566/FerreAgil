@@ -17,7 +17,7 @@ namespace UI
     {
         BLL.Idioma idiomaBLL = new BLL.Idioma();
         BLL.Permiso permiso = new BLL.Permiso();
-        private bool mdiChildActivo = false;
+       
         public Principal()
         {
             InitializeComponent();
@@ -55,8 +55,11 @@ namespace UI
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Etiquetas") == false) altaEtiquetasToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Compra_Materiales") == false) compraDeMaterialesToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Pendiente_Envio_Prov") == false) pendientesEnvioProveedorToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Recepcion_Materiales") == false) pendientesEnvioProveedorToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Pendiente_Envio_Almacen") == false) pendientesEnvioAlmacenToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Recepcion_Almacen") == false) recepcionAlmacenToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Analisis_Stock") == false) analisisStockProductosToolStripMenuItem.Enabled = false;
             
-
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -231,15 +234,12 @@ namespace UI
             Form formEvento = (Form)sender;
             if (formEvento.ActiveMdiChild == null)
             {
-                mdiChildActivo = false;
+               
                 UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
                 menuIdioma.DropDownItems.Clear();
                 obtenerIdiomas();
             }
-            else
-            {
-                mdiChildActivo = true;
-            }
+           
         }
 
         private void altaEtiquetasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -262,6 +262,38 @@ namespace UI
         private void pendientesEnvioProveedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ComprasPendienteEnvioProv frm = new ComprasPendienteEnvioProv();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void recepcionarMaterialesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RecepcionMateriales frm = new RecepcionMateriales();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void pendientesEnvioAlmacenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompraPendienteEnvioAlmacen frm = new CompraPendienteEnvioAlmacen();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void recepcionAlmacenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RecepcionAlmacen frm = new RecepcionAlmacen();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void analisisStockProductosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AnalisisCompra frm = new AnalisisCompra();
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();

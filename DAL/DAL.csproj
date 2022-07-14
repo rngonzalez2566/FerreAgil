@@ -46,6 +46,7 @@
     <Compile Include="Acceso.cs" />
     <Compile Include="Compra.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="Detalle_Compra.cs" />
     <Compile Include="Idioma.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Producto.cs" />

@@ -24,6 +24,10 @@ namespace BE.Composite
         Alta_Idioma,
         Alta_Etiquetas,
         Compra_Materiales,
-        Pendiente_Envio_Prov
+        Pendiente_Envio_Prov,
+        Recepcion_Materiales,
+        Pendiente_Envio_Almacen,
+        Recepcion_Almacen,
+        Analisis_Stock
     }
 }

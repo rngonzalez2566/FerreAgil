@@ -20,9 +20,10 @@ namespace DAL
                              "OUTPUT inserted.ID_DETALLE_COMPRA VALUES (@id_compra, @id_producto, @cantidad," +
                              "@pu, @total)";
 
-        private const string get_Pendiente_Envio_Prov = "SELECT c.id_Compra ,NRO, FECHA, Detalle, TOTAL, c.id_Proveedor FROM COMPRA C " +                                                       
-                                                        "WHERE C.ESTADO = 'Pendiente Envio Proveedor'";
-        private const string envio_proveedor = "update compra set Estado = 'Enviado Proveedor' OUTPUT inserted.ID_COMPRA where nro = @nro";
+        private const string get_Pendientes = "SELECT c.id_Compra ,NRO, FECHA, Detalle, TOTAL, c.id_Proveedor FROM COMPRA C " +
+                                                        "WHERE C.ESTADO = @pendiente";
+        private const string envio_proveedor = "update compra set Estado = @estado OUTPUT inserted.ID_COMPRA where nro = @nro";
+        private const string get_Compra = "Select * from Compra where nro = @nro";
         #endregion
 
         #region ABM
@@ -72,13 +73,14 @@ namespace DAL
                 throw new Exception("Error en la base de datos.");
             }
         }
-        public int EnvioProveedor(int nro)
+        public int CambioEstado(int nro, string estado)
         {
             try
             {
                 xCommandText = envio_proveedor;
                 xParameters.Parameters.Clear();
                 xParameters.Parameters.AddWithValue("@nro", nro);
+                xParameters.Parameters.AddWithValue("@estado", estado);
 
                 return ExecuteNonEscalar();
             }
@@ -119,7 +121,7 @@ namespace DAL
             }
         }
 
-        public List<BE.Compra> GetPendienteEnvioProveedor()
+        public List<BE.Compra> GetPendientes(string pendiente)
         {
        
             try
@@ -127,8 +129,9 @@ namespace DAL
                 DataTable dt = new DataTable();
                 List<BE.Compra> lista = new List<BE.Compra>();
                 
-                xCommandText = get_Pendiente_Envio_Prov;
+                xCommandText = get_Pendientes;
                 xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@pendiente", pendiente);
                 dt = ExecuteReader();
 
 
@@ -155,6 +158,46 @@ namespace DAL
                 }
 
                 return lista;
+
+
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        public BE.Compra GetCompra(int nro)
+        {
+
+            try
+            {
+                DataTable dt = new DataTable();
+                BE.Producto Producto = new BE.Producto();
+
+                xCommandText = get_Compra;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@nro", nro);
+                dt = ExecuteReader();
+
+                BE.Compra compra = new BE.Compra();
+
+                if (dt.Rows.Count > 0)
+                {
+                    DAL.Proveedor provDAL = new DAL.Proveedor();
+                    
+
+                    compra.id = int.Parse(dt.Rows[0]["id_Compra"].ToString());
+                    compra.Nro = int.Parse(dt.Rows[0]["Nro"].ToString());
+                    compra.Fecha = DateTime.Parse(dt.Rows[0]["fecha"].ToString());
+                    compra.Detalle = dt.Rows[0]["detalle"].ToString();
+                    compra.Total = float.Parse(dt.Rows[0]["total"].ToString());
+                    compra.Estado = dt.Rows[0]["estado"].ToString();
+                    int idProveedor = int.Parse(dt.Rows[0]["id_proveedor"].ToString());
+                    compra.Proveedor = provDAL.GetProveedor(idProveedor);
+                }
+
+                return compra;
 
 
             }
