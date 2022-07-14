@@ -39,6 +39,9 @@ namespace UI
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnAltaFamilia = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbFamiliasAgregar = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // treePatenteFamilia
@@ -169,12 +172,52 @@ namespace UI
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label4.Location = new System.Drawing.Point(39, 232);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 25);
+            this.label4.TabIndex = 47;
+            this.label4.Tag = "Familias";
+            this.label4.Text = "Familias";
+            // 
+            // cmbFamiliasAgregar
+            // 
+            this.cmbFamiliasAgregar.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.cmbFamiliasAgregar.ForeColor = System.Drawing.Color.Gainsboro;
+            this.cmbFamiliasAgregar.FormattingEnabled = true;
+            this.cmbFamiliasAgregar.Location = new System.Drawing.Point(134, 236);
+            this.cmbFamiliasAgregar.Name = "cmbFamiliasAgregar";
+            this.cmbFamiliasAgregar.Size = new System.Drawing.Size(159, 21);
+            this.cmbFamiliasAgregar.TabIndex = 46;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Green;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button1.Location = new System.Drawing.Point(309, 232);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 21);
+            this.button1.TabIndex = 48;
+            this.button1.Tag = "Agregar";
+            this.button1.Text = "Agregar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AsignacionFamiliaPatente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(791, 432);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cmbFamiliasAgregar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnAltaFamilia);
             this.Controls.Add(this.btnAgregar);
@@ -205,5 +248,8 @@ namespace UI
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnAltaFamilia;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbFamiliasAgregar;
+        private System.Windows.Forms.Button button1;
     }
 }

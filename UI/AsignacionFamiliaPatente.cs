@@ -30,6 +30,7 @@ namespace UI
             UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
             cmbPatentes.DataSource = permiso.GetPatentes();
             cmbFamilias.DataSource = permiso.GetFamilias();
+            cmbFamiliasAgregar.DataSource = permiso.GetFamilias();
         }
         public void UpdateLanguage(IIdioma idioma)
         {
@@ -139,6 +140,72 @@ namespace UI
             {
                 string Mensaje = "Error al guardar la Familia";
                 MessageBox.Show(Mensaje);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (familia_Actual != null)
+                {
+                    ValidacionFamilias();
+                    Familia familia = (Familia)cmbFamiliasAgregar.SelectedItem;
+                    var f = permiso.GetAll(familia.id);
+                    foreach (var item in f)
+                    {
+                        familia.AgregarHijo(item);
+                    }
+
+                    if (familia != null)
+                    {
+                        bool existeComponente = permiso.existeComponente(familia_Actual, familia.id);
+
+                        if (existeComponente)
+                            MessageBox.Show("Patente ya cargada");
+
+                        else
+                        {
+                            IList<Componente> _familia = permiso.GetAll(familia_Actual.id);
+                            familia_Actual.AgregarHijo(familia);
+                            CargarTreeFamilia(false);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void ValidacionFamilias()
+        {
+            try
+            {
+                var _familia = familia_Actual;
+                Familia f = (Familia)cmbFamiliasAgregar.SelectedItem;
+                var _familiaAComparar = permiso.GetAll(f.id);
+
+                foreach (var item in _familiaAComparar)
+                {
+                    if (item.Permiso == TipoPermiso.EsFamilia && _familia.Permiso == TipoPermiso.EsFamilia)
+                    {
+                        if (item.id == _familia.id) throw new Exception("No se puede agregar esta familia");
+                    }
+
+                    foreach (var item2 in _familia.Hijos)
+                    {
+                        if (item2.Permiso == TipoPermiso.EsFamilia && item.Permiso == TipoPermiso.EsFamilia)
+                        {
+                            if (item2.id == item.id) throw new Exception("No se puede agregar esta familia");
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                throw new Exception("No se puede agregar esta familia");
             }
         }
     }
