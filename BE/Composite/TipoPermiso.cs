@@ -23,6 +23,7 @@ namespace BE.Composite
         Gestion_Ventas,
         Alta_Idioma,
         Alta_Etiquetas,
-        Compra_Materiales
+        Compra_Materiales,
+        Pendiente_Envio_Prov
     }
 }

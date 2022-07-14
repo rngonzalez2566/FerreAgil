@@ -54,7 +54,8 @@ namespace UI
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Idioma") == false) altaIdiomaToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Etiquetas") == false) altaEtiquetasToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Compra_Materiales") == false) compraDeMaterialesToolStripMenuItem.Enabled = false;
-
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Pendiente_Envio_Prov") == false) pendientesEnvioProveedorToolStripMenuItem.Enabled = false;
+            
 
         }
 
@@ -253,6 +254,14 @@ namespace UI
         private void compraDeMaterialesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompraMateriales frm = new CompraMateriales();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void pendientesEnvioProveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComprasPendienteEnvioProv frm = new ComprasPendienteEnvioProv();
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();

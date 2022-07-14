@@ -47,13 +47,14 @@ namespace UI
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compraDeMaterialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.administracionIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaEtiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compraDeMaterialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pendientesEnvioProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -220,11 +221,20 @@ namespace UI
             // compraToolStripMenuItem
             // 
             this.compraToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.compraDeMaterialesToolStripMenuItem});
+            this.compraDeMaterialesToolStripMenuItem,
+            this.pendientesEnvioProveedorToolStripMenuItem});
             this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
             this.compraToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.compraToolStripMenuItem.Tag = "Compra";
             this.compraToolStripMenuItem.Text = "Compra";
+            // 
+            // compraDeMaterialesToolStripMenuItem
+            // 
+            this.compraDeMaterialesToolStripMenuItem.Name = "compraDeMaterialesToolStripMenuItem";
+            this.compraDeMaterialesToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.compraDeMaterialesToolStripMenuItem.Tag = "Compra_Materiales";
+            this.compraDeMaterialesToolStripMenuItem.Text = "Compra de Materiales";
+            this.compraDeMaterialesToolStripMenuItem.Click += new System.EventHandler(this.compraDeMaterialesToolStripMenuItem_Click);
             // 
             // ventaToolStripMenuItem
             // 
@@ -274,13 +284,13 @@ namespace UI
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
-            // compraDeMaterialesToolStripMenuItem
+            // pendientesEnvioProveedorToolStripMenuItem
             // 
-            this.compraDeMaterialesToolStripMenuItem.Name = "compraDeMaterialesToolStripMenuItem";
-            this.compraDeMaterialesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.compraDeMaterialesToolStripMenuItem.Tag = "Compra_Materiales";
-            this.compraDeMaterialesToolStripMenuItem.Text = "Compra de Materiales";
-            this.compraDeMaterialesToolStripMenuItem.Click += new System.EventHandler(this.compraDeMaterialesToolStripMenuItem_Click);
+            this.pendientesEnvioProveedorToolStripMenuItem.Name = "pendientesEnvioProveedorToolStripMenuItem";
+            this.pendientesEnvioProveedorToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.pendientesEnvioProveedorToolStripMenuItem.Tag = "Pendiente_Envio_Prov";
+            this.pendientesEnvioProveedorToolStripMenuItem.Text = "Pendientes Envio Proveedor";
+            this.pendientesEnvioProveedorToolStripMenuItem.Click += new System.EventHandler(this.pendientesEnvioProveedorToolStripMenuItem_Click);
             // 
             // Principal
             // 
@@ -331,5 +341,6 @@ namespace UI
         private System.Windows.Forms.ToolStripMenuItem altaIdiomaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaEtiquetasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compraDeMaterialesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pendientesEnvioProveedorToolStripMenuItem;
     }
 }

@@ -21,7 +21,9 @@ namespace DAL
                                                      " DIRECCION = @direccion, TELEFONO = @telefono," +
                                                      " ESTADO = @estado OUTPUT inserted.id_Proveedor  WHERE id_Proveedor = @id_Proveedor ";
 
-        private const string get_Proveedor = "SELECT * FROM Proveedor WHERE id_Proveedor = @id_Proveedor AND ESTADO <> 'BAJA'";
+        private const string get_Proveedor = "SELECT id_Proveedor, razonSocial, cuit, " +
+                                             "isnull(direccion, '') direccion ,isnull(telefono,0) telefono "+
+                                             ",isnull(estado,'') estado FROM Proveedor WHERE id_Proveedor = @id_Proveedor AND ESTADO is null ";
 
         private const string get_Proveedores = "SELECT id_Proveedor,razonSocial,cuit "+
                                                ",direccion,isnull(telefono,0),estado FROM Proveedor WHERE ESTADO is null ";
@@ -123,7 +125,10 @@ namespace DAL
 
 
                 }
-
+                else
+                {
+                    Proveedor = null;
+                }
                 return Proveedor;
 
 

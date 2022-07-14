@@ -22,6 +22,7 @@ namespace UI
         BLL.Producto productoBLL = new BLL.Producto();
         BLL.Proveedor proveedorBLL = new BLL.Proveedor();
         BLL.Stock stock = new BLL.Stock();
+        BLL.Compra compra = new BLL.Compra();
         List<BE.Detalle_Compra> listItem = new List<BE.Detalle_Compra>();
         bool xEntro = false;
         private void CompraMateriales_Load(object sender, EventArgs e)
@@ -31,6 +32,7 @@ namespace UI
             UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
             CargaProductos();
             CargaProveedores();
+            txtNro.Text = compra.GetUltimoComprobante().ToString();
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -111,8 +113,8 @@ namespace UI
                     }
                     
                 }
-
                 cargarItems(listItem);
+
             }
             catch (Exception ex)
             {
@@ -121,10 +123,23 @@ namespace UI
         }
         public void cargarItems(List<BE.Detalle_Compra> list)
         {
-            dtgItems.DataSource = list;
+            dtgItems.DataSource = null;
+            dtgItems.Rows.Clear();
             dtgItems.ClearSelection();
             dtgItems.TabStop = false;
             dtgItems.ReadOnly = true;
+
+            dtgItems.ColumnCount = 5;
+            dtgItems.Columns[0].Name = "Codigo";
+            dtgItems.Columns[1].Name = "Descripcion";
+            dtgItems.Columns[2].Name = "Cantidad";
+            dtgItems.Columns[3].Name = "Precio Unitario";
+            dtgItems.Columns[4].Name = "Total";
+
+            foreach (BE.Detalle_Compra lista in list)
+            {
+                dtgItems.Rows.Add(lista.Producto.codigo,lista.Producto.descripcion,lista.Cantidad,lista.PrecioUnitario,lista.Total);
+            }
 
             CalcularTotal();
         }
@@ -137,6 +152,38 @@ namespace UI
                 txtTotal.Text = total.ToString();
             }
            
+        }
+
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtNro.Text == "") throw new Exception("Nro de Comprobante Vacio");
+                if (cmbProveedor.Text == "") throw new Exception("Debe Completar un Proveedor");
+                if (listItem.Count == 0) throw new Exception("Debe tener al menos un producto a comprar");
+                int idProveedor = cmbProveedor.SelectedValue != null ? int.Parse(cmbProveedor.SelectedValue.ToString()) : 0;
+                BE.Proveedor prov = proveedorBLL.GetProvedoor(idProveedor);
+                if (prov == null) throw new Exception("Problema con el proveedor");
+                BE.Compra comprobante = new BE.Compra()
+                {
+                    Fecha = DateTime.Parse(dateTimePicker1.Value.ToString("dd/MM/yyyy")),
+                    Items = listItem,
+                    Detalle = txtDetalle.Text,
+                    Total = listItem.Sum(x => x.Total),
+                    Proveedor = prov,
+                    Estado = "Pendiente Envio Proveedor",
+                    Nro = int.Parse(txtNro.Text)
+                };
+               
+                compra.GenerarCompra(comprobante);
+                MessageBox.Show("Compra Generada Correctamente");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

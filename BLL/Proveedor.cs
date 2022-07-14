@@ -22,6 +22,19 @@ namespace BLL
                 throw new Exception("Error al obtener Los Proveedores");
             }
         }
+
+        public BE.Proveedor GetProvedoor(int idProveedor)
+        {
+            try
+            {
+                DAL.Proveedor proveedor = new DAL.Proveedor();
+                return proveedor.GetProveedor(idProveedor);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al obtener el Proveedor");
+            }
+        }
         #endregion
     }
 }
