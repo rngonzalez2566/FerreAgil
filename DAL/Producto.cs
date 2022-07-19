@@ -11,9 +11,9 @@ namespace DAL
     {
         #region Consultas
         private const string alta_Producto = "INSERT INTO Producto (codigo, descripcion, Id_unidadMedida, StockMinimo," +
-                                             " StockOptimo, LeadTimeCompra, ConsumoMensual, ConsumoTrimestral, ConsumoSemestral)" +
+                                             " StockOptimo, LeadTimeCompra, ConsumoMensual, ConsumoTrimestral, ConsumoSemestral,PrecioUnitario)" +
                                              " OUTPUT inserted.Id_producto VALUES (@codigo, @descripcion, @id_unidadMedida,"+
-                                             " @stockMinimo, @stockOptimo, @LeadTimeCompra, @ConsumoMensual, @ConsumoTrimestral, @ConsumoSemestral)";
+                                             " @stockMinimo, @stockOptimo, @LeadTimeCompra, @ConsumoMensual, @ConsumoTrimestral, @ConsumoSemestral,@pu)";
 
         private const string baja_Producto = "UPDATE PRODUCTO SET ESTADO = 'BAJA' OUTPUT inserted.ID_PRODUCTO WHERE ID_PRODUCTO = @id_Producto ";
 
@@ -45,6 +45,7 @@ namespace DAL
                 xParameters.Parameters.AddWithValue("@ConsumoMensual", producto.consumoMensual);
                 xParameters.Parameters.AddWithValue("@ConsumoTrimestral", producto.consumoTrimestral);
                 xParameters.Parameters.AddWithValue("@ConsumoSemestral", producto.consumoSemestral);
+                xParameters.Parameters.AddWithValue("@pu", producto.PrecioUnitario);
 
                 return ExecuteNonEscalar();
             }

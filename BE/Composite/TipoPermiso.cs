@@ -8,7 +8,7 @@ namespace BE.Composite
 {
     public enum TipoPermiso 
     {
-        EsFamilia,
+        primero,
         Administracion,
         Alta_Usuario,
         Baja_Usuario,

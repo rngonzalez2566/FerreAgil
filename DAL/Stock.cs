@@ -31,8 +31,8 @@ namespace DAL
                                                 "- s.cantidad else 0 end end> 0";
         private const string get_Analisis_Stock = "SELECT p.ID_Producto,isnull(s.cantidad,0) cantidad, " +                                               
                                                   "case when p.StockMinimo = 0 then 0 else case when p.StockMinimo > 0 and ISNULL(s.cantidad,0) <= p.StockOptimo " +
-                                                  "and  ISNULL(s.cantidad,0) > p.StockMinimo then 1 " +
-                                                  "else case when p.StockMinimo > 0 and ISNULL(s.cantidad,0) <= p.StockMinimo then 2 end end end estado " +
+                                                  "and  ISNULL(s.cantidad,0) >= p.StockMinimo then 1 " +
+                                                  "else case when p.StockMinimo > 0 and ISNULL(s.cantidad,0) < p.StockMinimo then 2 end end end estado " +
                                                   "FROM Producto P " +
                                                   "LEFT JOIN Stock S ON S.id_producto = P.ID_Producto " +
                                                   "where p.Estado is null";

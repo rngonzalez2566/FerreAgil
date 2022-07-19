@@ -189,14 +189,14 @@ namespace UI
 
                 foreach (var item in _familiaAComparar)
                 {
-                    if (item.Permiso == TipoPermiso.EsFamilia && _familia.Permiso == TipoPermiso.EsFamilia)
+                    if (item.Permiso == TipoPermiso.primero && _familia.Permiso == TipoPermiso.primero)
                     {
                         if (item.id == _familia.id) throw new Exception("No se puede agregar esta familia");
                     }
 
                     foreach (var item2 in _familia.Hijos)
                     {
-                        if (item2.Permiso == TipoPermiso.EsFamilia && item.Permiso == TipoPermiso.EsFamilia)
+                        if (item2.Permiso == TipoPermiso.primero && item.Permiso == TipoPermiso.primero)
                         {
                             if (item2.id == item.id) throw new Exception("No se puede agregar esta familia");
                         }

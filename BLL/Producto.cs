@@ -59,6 +59,19 @@ namespace BLL
                 throw new Exception("Error al obtener Productos");
             }
         }
+
+        public BE.Producto GetProducto(int idProducto)
+        {
+            try
+            {
+                DAL.Producto producto = new DAL.Producto();
+                return producto.GetProducto(idProducto);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al obtener Productos");
+            }
+        }
         #endregion
     }
 }

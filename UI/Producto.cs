@@ -198,5 +198,10 @@ namespace UI
                 e.Handled = true;
             }
         }
+
+        private void txtOptimo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

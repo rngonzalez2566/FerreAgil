@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,12 +42,14 @@
             this.cmbProducto = new System.Windows.Forms.ComboBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dtgItems = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAlta = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnMod = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,7 +154,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkCyan;
-            this.label6.Location = new System.Drawing.Point(38, 222);
+            this.label6.Location = new System.Drawing.Point(38, 202);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 25);
             this.label6.TabIndex = 48;
@@ -164,7 +166,7 @@
             this.cmbProducto.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.cmbProducto.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmbProducto.FormattingEnabled = true;
-            this.cmbProducto.Location = new System.Drawing.Point(156, 226);
+            this.cmbProducto.Location = new System.Drawing.Point(156, 206);
             this.cmbProducto.Name = "cmbProducto";
             this.cmbProducto.Size = new System.Drawing.Size(159, 21);
             this.cmbProducto.TabIndex = 49;
@@ -175,46 +177,33 @@
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAgregar.Location = new System.Drawing.Point(334, 226);
+            this.btnAgregar.Location = new System.Drawing.Point(330, 207);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(56, 21);
             this.btnAgregar.TabIndex = 50;
             this.btnAgregar.Tag = "Agregar";
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // dtgItems
             // 
             this.dtgItems.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.dtgItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgItems.GridColor = System.Drawing.Color.Black;
             this.dtgItems.Location = new System.Drawing.Point(29, 282);
             this.dtgItems.Name = "dtgItems";
             this.dtgItems.Size = new System.Drawing.Size(891, 215);
             this.dtgItems.TabIndex = 51;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Green;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button1.Location = new System.Drawing.Point(29, 514);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 21);
-            this.button1.TabIndex = 52;
-            this.button1.Tag = "Eliminar";
-            this.button1.Text = "Eliminar";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // btnCancel
             // 
@@ -282,18 +271,57 @@
             this.label7.Tag = "Total";
             this.label7.Text = "Total";
             // 
+            // txtCantidad
+            // 
+            this.txtCantidad.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtCantidad.ForeColor = System.Drawing.Color.Gainsboro;
+            this.txtCantidad.Location = new System.Drawing.Point(141, 238);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(48, 20);
+            this.txtCantidad.TabIndex = 62;
+            this.txtCantidad.Text = "0";
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label8.Location = new System.Drawing.Point(38, 238);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(97, 25);
+            this.label8.TabIndex = 61;
+            this.label8.Tag = "Cantidad";
+            this.label8.Text = "Cantidad:";
+            // 
+            // btnMod
+            // 
+            this.btnMod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnMod.FlatAppearance.BorderSize = 0;
+            this.btnMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMod.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnMod.Location = new System.Drawing.Point(195, 236);
+            this.btnMod.Name = "btnMod";
+            this.btnMod.Size = new System.Drawing.Size(79, 27);
+            this.btnMod.TabIndex = 60;
+            this.btnMod.Tag = "Modificar";
+            this.btnMod.Text = "Modificar";
+            this.btnMod.UseVisualStyleBackColor = false;
+            // 
             // CompraMateriales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(968, 575);
+            this.Controls.Add(this.txtCantidad);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnMod);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAlta);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.dtgItems);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.cmbProducto);
@@ -331,11 +359,13 @@
         private System.Windows.Forms.ComboBox cmbProducto;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridView dtgItems;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnMod;
     }
 }

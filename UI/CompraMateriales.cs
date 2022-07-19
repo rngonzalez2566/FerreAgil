@@ -185,5 +185,61 @@ namespace UI
             }
             
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                if (txtCantidad.Text == "") throw new Exception("Debe indicar la cantidad");
+                bool xEntro = false;
+                List<BE.Detalle_Compra> listItem1 = new List<BE.Detalle_Compra>(listItem);
+ 
+                foreach (BE.Detalle_Compra lista in listItem1)
+                {
+                   
+                    int idProducto = cmbProducto.SelectedValue != null ? int.Parse(cmbProducto.SelectedValue.ToString()) : 0;
+                    BE.Producto pr = new BE.Producto();
+                    pr = productoBLL.GetProducto(idProducto);
+                    
+                        if (lista.Producto.id_Producto == pr.id_Producto)
+                        {
+                            xEntro = true;
+                            throw new Exception("El producto ya existe en la lista de items");
+                        }
+
+                }
+                if (xEntro == false)
+                {
+                    int idProducto = cmbProducto.SelectedValue != null ? int.Parse(cmbProducto.SelectedValue.ToString()) : 0;
+                    BE.Producto pr = new BE.Producto();
+                    pr = productoBLL.GetProducto(idProducto);
+                    BE.Detalle_Compra itemCompra = new BE.Detalle_Compra()
+                    {
+                        Producto = pr,
+                        Cantidad = float.Parse(txtCantidad.Text),
+                        PrecioUnitario = pr.PrecioUnitario,
+                        Total = pr.PrecioUnitario * float.Parse(txtCantidad.Text)
+                    };
+                    listItem.Add(itemCompra);
+                    cargarItems(listItem);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
