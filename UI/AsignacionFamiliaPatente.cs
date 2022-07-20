@@ -179,28 +179,19 @@ namespace UI
             }
         }
 
+       
+
         public void ValidacionFamilias()
         {
             try
             {
                 var _familia = familia_Actual;
                 Familia f = (Familia)cmbFamiliasAgregar.SelectedItem;
-                var _familiaAComparar = permiso.GetAll(f.id);
+                var _familiaAComparar = permiso.GetFamiliasValidacion(_familia.id);
 
                 foreach (var item in _familiaAComparar)
                 {
-                    if (item.Permiso == TipoPermiso.primero && _familia.Permiso == TipoPermiso.primero)
-                    {
-                        if (item.id == _familia.id) throw new Exception("No se puede agregar esta familia");
-                    }
-
-                    foreach (var item2 in _familia.Hijos)
-                    {
-                        if (item2.Permiso == TipoPermiso.primero && item.Permiso == TipoPermiso.primero)
-                        {
-                            if (item2.id == item.id) throw new Exception("No se puede agregar esta familia");
-                        }
-                    }
+                    if(item.id == f.id) throw new Exception("No se puede agregar esta familia");
                 }
             }
             catch

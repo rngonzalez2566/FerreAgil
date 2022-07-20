@@ -42,6 +42,30 @@ namespace DAL
                                                         "FROM Permiso p INNER JOIN Usuario_Permiso up on up.idPermiso = p.idPermiso " +
                                                         "WHERE UP.idUsuario = @idusuario and p.Permiso = @permiso";
 
+        private const string get_ValidaFamilia = "WITH RECURSIVO AS (SELECT fp.idPermisoPadre, fp.idPermisoHijo FROM Familia_Patente fp "+
+                                                 "WHERE fp.idPermisoPadre in ( " +
+                                                 "Select fpp.idPermisoPadre " +
+                                                 "from Familia_Patente fpp " +
+                                                 "inner join Permiso pp2 on pp2.idPermiso = fpp.idPermisoPadre " +
+                                                 "where fpp.idPermisoHijo in ( " +
+                                                 "SELECT fp.idPermisoPadre " +
+                                                 "FROM Familia_Patente fp " +
+                                                 "inner join permiso p1 on p1.idPermiso = fp.idPermisoPadre " +
+                                                 "WHERE fp.idPermisoHijo = @idFamilia) " +
+                                                 "UNION ALL " +
+                                                 "SELECT fp.idPermisoPadre " +
+                                                 "FROM Familia_Patente fp " +
+                                                 "inner join permiso p1 on p1.idPermiso = fp.idPermisoPadre " +
+                                                 "WHERE fp.idPermisoHijo = @idFamilia " +
+                                                 ") " +
+                                                 "UNION ALL " +
+                                                 "SELECT fp2.idPermisoPadre, fp2.idPermisoHijo " +
+                                                 "FROM Familia_Patente fp2 INNER JOIN RECURSIVO r " +
+                                                 "on r.idPermisoHijo = fp2.idPermisoPadre) " +
+                                                 "SELECT p.idPermiso, p.Nombre " +
+                                                 "FROM RECURSIVO r " +
+                                                 "INNER JOIN Permiso p on r.idPermisoHijo = p.idPermiso " +
+                                                 "group by p.idPermiso, p.Nombre ";
 
 
 
@@ -172,6 +196,40 @@ namespace DAL
 
                 xCommandText = get_Familias;
                 xParameters.Parameters.Clear();    
+                dt = ExecuteReader();
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in dt.Rows)
+                    {
+                        Familia familia = new Familia();
+                        familia.id = int.Parse(fila[0].ToString());
+                        familia.nombre = fila[1].ToString();
+
+                        lista.Add(familia);
+                    }
+
+                }
+
+                return lista;
+            }
+            catch
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+
+        }
+
+        public IList<Familia> GetFamiliasValidacion(int id)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                IList<Familia> lista = new List<Familia>();
+
+                xCommandText = get_ValidaFamilia;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idFamilia", id);
                 dt = ExecuteReader();
 
                 if (dt.Rows.Count > 0)

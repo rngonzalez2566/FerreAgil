@@ -44,6 +44,11 @@ namespace BLL
             return permiso.GetFamilias();
         }
 
+        public IList<Familia> GetFamiliasValidacion(int id)
+        {
+            return permiso.GetFamiliasValidacion(id);
+        }
+
         public IList<Componente> GetAll(int familia)
         {
             return permiso.GetAll(familia);
