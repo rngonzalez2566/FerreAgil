@@ -149,9 +149,12 @@ namespace UI
             {
                 if (familia_Actual != null)
                 {
-                    ValidacionFamilias();
+
                     Familia familia = (Familia)cmbFamiliasAgregar.SelectedItem;
+                    if (familia.id == familia_Actual.id) throw new Exception("No se puede agregar esta familia");
+                    ValidacionFamilias();
                     var f = permiso.GetAll(familia.id);
+             
                     foreach (var item in f)
                     {
                         familia.AgregarHijo(item);

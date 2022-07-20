@@ -42,30 +42,43 @@ namespace DAL
                                                         "FROM Permiso p INNER JOIN Usuario_Permiso up on up.idPermiso = p.idPermiso " +
                                                         "WHERE UP.idUsuario = @idusuario and p.Permiso = @permiso";
 
-        private const string get_ValidaFamilia = "WITH RECURSIVO AS (SELECT fp.idPermisoPadre, fp.idPermisoHijo FROM Familia_Patente fp "+
-                                                 "WHERE fp.idPermisoPadre in ( " +
-                                                 "Select fpp.idPermisoPadre " +
-                                                 "from Familia_Patente fpp " +
-                                                 "inner join Permiso pp2 on pp2.idPermiso = fpp.idPermisoPadre " +
-                                                 "where fpp.idPermisoHijo in ( " +
-                                                 "SELECT fp.idPermisoPadre " +
-                                                 "FROM Familia_Patente fp " +
-                                                 "inner join permiso p1 on p1.idPermiso = fp.idPermisoPadre " +
-                                                 "WHERE fp.idPermisoHijo = @idFamilia) " +
-                                                 "UNION ALL " +
-                                                 "SELECT fp.idPermisoPadre " +
-                                                 "FROM Familia_Patente fp " +
-                                                 "inner join permiso p1 on p1.idPermiso = fp.idPermisoPadre " +
-                                                 "WHERE fp.idPermisoHijo = @idFamilia " +
-                                                 ") " +
-                                                 "UNION ALL " +
-                                                 "SELECT fp2.idPermisoPadre, fp2.idPermisoHijo " +
-                                                 "FROM Familia_Patente fp2 INNER JOIN RECURSIVO r " +
-                                                 "on r.idPermisoHijo = fp2.idPermisoPadre) " +
-                                                 "SELECT p.idPermiso, p.Nombre " +
-                                                 "FROM RECURSIVO r " +
-                                                 "INNER JOIN Permiso p on r.idPermisoHijo = p.idPermiso " +
-                                                 "group by p.idPermiso, p.Nombre ";
+        private const string get_ValidaFamilia = "WITH RECURSIVO AS(SELECT fp.idPermisoPadre, fp.idPermisoHijo, 0 as cont FROM Familia_Patente fp " +
+                                                    "WHERE fp.idPermisoPadre in ( " +
+                                                    "Select fpp.idPermisoPadre " +
+                                                    "from Familia_Patente fpp " +
+                                                    "inner join Permiso pp2 on pp2.idPermiso = fpp.idPermisoPadre " +
+                                                    "where fpp.idPermisoHijo in ( " +
+                                                    "SELECT fp.idPermisoPadre " +
+                                                    "FROM Familia_Patente fp " +
+                                                    "inner join permiso p1 on p1.idPermiso = fp.idPermisoPadre " +
+                                                    "WHERE fp.idPermisoHijo = @idFamilia) " +
+                                                    "UNION ALL " +
+                                                    "SELECT fp.idPermisoPadre " +
+                                                    "FROM Familia_Patente fp " +
+                                                    "inner join permiso p1 on p1.idPermiso = fp.idPermisoPadre " +
+                                                    "WHERE fp.idPermisoHijo = @idFamilia " +
+                                                    ") " +
+                                                    "UNION ALL " +
+                                                    "SELECT fp2.idPermisoPadre, fp2.idPermisoHijo, cont + 1 " +
+                                                    "FROM Familia_Patente fp2 INNER JOIN RECURSIVO r " +
+                                                    "on r.idPermisoHijo = fp2.idPermisoPadre) " +
+                                                    "select* from( " +
+                                                    "SELECT r.idPermisoPadre , p1.Nombre " +
+                                                    "FROM RECURSIVO r " +
+                                                    "INNER JOIN Permiso p on r.idPermisoHijo = p.idPermiso " +
+                                                    "INNER JOIN Permiso p1 on r.idPermisoPadre = p1.idPermiso " +
+                                                    "inner join Permiso p3 on p3.idPermiso = @idFamilia " +
+                                                    "where (cont = 0 or (p.idPermiso = @idFamilia)) " +
+                                                    "group by r.idPermisoPadre,p1.Nombre " +
+                                                    "UNION ALL " +
+                                                    "SELECT fm.idPermisoPadre, pm1.Nombre FROM Familia_Patente fm " +
+                                                    "inner join Permiso pm1 on pm1.idPermiso = fm.idPermisoPadre " +
+                                                    "where fm.idPermisoHijo in ( " +
+                                                    "select * from spResult  " +
+                                                    ") " +
+                                                    ") q " +
+                                                    "group by q.idPermisoPadre, q.nombre";
+
 
 
 
@@ -224,12 +237,15 @@ namespace DAL
         {
             try
             {
+                
+
                 DataTable dt = new DataTable();
                 IList<Familia> lista = new List<Familia>();
 
                 xCommandText = get_ValidaFamilia;
                 xParameters.Parameters.Clear();
                 xParameters.Parameters.AddWithValue("@idFamilia", id);
+                StoredProcedure("CrearTablaTemporal",id);
                 dt = ExecuteReader();
 
                 if (dt.Rows.Count > 0)

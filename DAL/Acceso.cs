@@ -172,5 +172,43 @@ namespace DAL
             return outputId;
         }
 
+        public void StoredProcedure(string st, int id)
+        {
+            Conectar();
+
+            SqlTransaction TR = con.BeginTransaction();
+            SqlCommand command = new SqlCommand(st, con, TR);
+
+            command.CommandType = CommandType.StoredProcedure;
+            SqlParameter[] Parametros = new SqlParameter[1];
+            Parametros[0] = new SqlParameter("@idFamilia", id);
+            command.Parameters.AddRange(Parametros);
+
+            try
+            {
+
+                command.ExecuteNonQuery();
+                TR.Commit();
+            }
+
+            catch (SqlException exc)
+            {
+
+                TR.Rollback();
+                throw new Exception("ocurrio un Error en BD:" + exc.Message);
+            }
+            //otros errores
+            catch (Exception exc2)
+            {
+
+                TR.Rollback();
+                throw new Exception("ocurrio un Error :" + exc2.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
     }
 }
