@@ -12,6 +12,7 @@ namespace DAL
     {
         #region Consultas
         private const string alta_Permiso = "INSERT INTO PERMISO (nombre, permiso) VALUES (@nombre, @permiso)";
+        private const string get_Permiso = "SELECT UPPER(NOMBRE) NOMBRE FROM PERMISO WHERE NOMBRE = @nombre";
         private const string get_Patentes = "SELECT idPermiso, Nombre FROM PERMISO WHERE PERMISO is not null";
         private const string get_Familias = "SELECT idPermiso, Nombre FROM PERMISO WHERE PERMISO is null";
         private const string get_All = "WITH RECURSIVO AS (SELECT fp.idPermisoPadre, fp.idPermisoHijo FROM Familia_Patente fp WHERE fp.idPermisoPadre = @idpermisopadre " +
@@ -74,7 +75,7 @@ namespace DAL
                                                     "SELECT fm.idPermisoPadre, pm1.Nombre FROM Familia_Patente fm " +
                                                     "inner join Permiso pm1 on pm1.idPermiso = fm.idPermisoPadre " +
                                                     "where fm.idPermisoHijo in ( " +
-                                                    "select * from spResult  " +
+                                                     "select * from spResult  " +
                                                     ") " +
                                                     ") q " +
                                                     "group by q.idPermisoPadre, q.nombre";
@@ -162,6 +163,32 @@ namespace DAL
         }
         #endregion
         #region Gets
+
+        public bool GetPermiso(string nombre)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                bool existe = false;
+
+                xCommandText = get_Permiso;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@nombre", nombre);
+                dt = ExecuteReader();
+
+
+                if (dt.Rows.Count > 0)
+                {
+                    existe = true;
+                }
+
+                return existe;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
         public Array GetTipoPermiso()
         {
             return Enum.GetValues(typeof(TipoPermiso));

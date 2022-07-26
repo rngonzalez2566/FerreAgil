@@ -80,6 +80,7 @@ namespace BLL
         {
             if (string.IsNullOrEmpty(cmp.nombre)) throw new Exception("El nombre es Requerido");
             if (esFamilia == false && string.IsNullOrEmpty(cmp.Permiso.ToString())) throw new Exception("El Permiso es obligatorio");
+            if (permiso.GetPermiso(cmp.nombre.ToUpper())) throw new Exception("El nombre del permiso ya existe");
         }
 
         #endregion
