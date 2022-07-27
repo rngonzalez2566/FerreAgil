@@ -196,7 +196,6 @@ namespace UI
                 Familia f = (Familia)cmbFamiliasAgregar.SelectedItem;
                 _familiaAComparar.AddRange(permiso.GetFamiliasValidacion(_familia.id));
                 List<Familia> copiaFamilia = new List<Familia>(_familiaAComparar);
-             
                 copiaFamilia.ForEach(x => LlenarFamilia(x.id));
                 unificarLista(_familiaAComparar);
                 foreach(var item in _familiaAComparar)
