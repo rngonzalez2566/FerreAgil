@@ -18,6 +18,8 @@ namespace UI
         BLL.Idioma idiomaBLL = new BLL.Idioma();
         BLL.Permiso permiso = new BLL.Permiso();
         Familia familia_Actual;
+        List<Familia> _familiaAComparar;
+        List<Familia> listaUnica;
 
         public AsignacionFamiliaPatente()
         {
@@ -154,7 +156,7 @@ namespace UI
                     if (familia.id == familia_Actual.id) throw new Exception("No se puede agregar esta familia");
                     ValidacionFamilias();
                     var f = permiso.GetAll(familia.id);
-             
+
                     foreach (var item in f)
                     {
                         familia.AgregarHijo(item);
@@ -182,24 +184,64 @@ namespace UI
             }
         }
 
-       
+
 
         public void ValidacionFamilias()
         {
             try
             {
+             
+                _familiaAComparar  = new List<Familia>();
                 var _familia = familia_Actual;
                 Familia f = (Familia)cmbFamiliasAgregar.SelectedItem;
-                var _familiaAComparar = permiso.GetFamiliasValidacion(_familia.id);
-
-                foreach (var item in _familiaAComparar)
+                _familiaAComparar.AddRange(permiso.GetFamiliasValidacion(_familia.id));
+                List<Familia> copiaFamilia = new List<Familia>(_familiaAComparar);
+             
+                copiaFamilia.ForEach(x => LlenarFamilia(x.id));
+                unificarLista(_familiaAComparar);
+                foreach(var item in _familiaAComparar)
                 {
                     if(item.id == f.id) throw new Exception("No se puede agregar esta familia");
                 }
+
+
             }
-            catch
+            catch(Exception e)
             {
                 throw new Exception("No se puede agregar esta familia");
+            }
+        }
+
+        private void LlenarFamilia(int familiaId)
+        {
+            try
+            {
+                List<Familia> familias = permiso.GetFamiliasValidacion(familiaId);
+
+                if (familias.Count > 0)
+                {
+                    _familiaAComparar.AddRange(familias);
+
+                    foreach (Familia familia in familias)
+                    {
+                        LlenarFamilia(familia.id);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                throw new Exception("No se puede agregar esta familia" + e.Message);
+            }
+        }
+        public void unificarLista(List<Familia> _familiaAComparar)
+        {
+            List<Familia> listaUnica = new List<Familia>();
+            foreach (var li in _familiaAComparar)
+            {
+                if (!listaUnica.Where(x => x.id == li.id).Any())
+                {
+                    listaUnica.Add(li);
+                }
             }
         }
     }

@@ -44,7 +44,7 @@ namespace BLL
             return permiso.GetFamilias();
         }
 
-        public IList<Familia> GetFamiliasValidacion(int id)
+        public List<Familia> GetFamiliasValidacion(int id)
         {
             return permiso.GetFamiliasValidacion(id);
         }
