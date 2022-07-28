@@ -19,7 +19,9 @@ namespace DAL
                                         "UNION ALL SELECT fp2.idPermisoPadre, fp2.idPermisoHijo FROM Familia_Patente fp2 INNER JOIN RECURSIVO r " +
                                         "on r.idPermisoHijo = fp2.idPermisoPadre) " +
                                         "SELECT r.idPermisoPadre, r.idPermisoHijo, p.idPermiso, p.Nombre, p.Permiso FROM RECURSIVO r " +
-                                        "INNER JOIN Permiso p on r.idPermisoHijo = p.idPermiso";
+                                        "INNER JOIN Permiso p on r.idPermisoHijo = p.idPermiso " +
+                                        "group by r.idPermisoPadre, r.idPermisoHijo, p.idPermiso, p.Nombre, p.Permiso  order by p.Permiso";
+
         private const string delete_Familia_Patente = "DELETE FROM Familia_Patente WHERE idPermisoPadre = @idpermisopadre";
         private const string crear_Familia_Patente = "INSERT INTO Familia_Patente(idPermisoPadre, idPermisoHijo) " +
                                                       "VALUES(@idpermisopadre, @idpermisohijo)";
