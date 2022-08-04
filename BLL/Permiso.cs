@@ -33,8 +33,17 @@ namespace BLL
         {
             return permiso.GetTipoPermiso();
         }
+        public Componente GetTraerHijos(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
+        {
+            return permiso.GetTraerHijos( familiaId,  componenteOriginal,  componenteAgregar);
+        }
 
-        public IList<Patente> GetPatentes()
+        public Componente GetPermisosUsuarios(int usuarioId, Componente componenteOriginal, Componente componenteAgregar)
+        {
+            return permiso.GetPermisosUsuarios( usuarioId,  componenteOriginal,  componenteAgregar);
+        }
+
+            public IList<Patente> GetPatentes()
         {
             return permiso.GetPatentes();
         }

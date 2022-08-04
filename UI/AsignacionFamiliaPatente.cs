@@ -52,42 +52,61 @@ namespace UI
 
         private void CargarTreeFamilia(bool familia)
         {
-            if (familia_Actual == null) return;
+            try
+            {
+                if (familia_Actual == null) return;
 
-            IList<Componente> _familia = null;
-            if (familia)
-            {
-                _familia = permiso.GetAll(familia_Actual.id);
-                foreach (var i in _familia) familia_Actual.AgregarHijo(i);
-            }
-            else
-            {
-                _familia = familia_Actual.Hijos;
-            }
-            treePatenteFamilia.Nodes.Clear();
-            TreeNode root = new TreeNode(familia_Actual.nombre);
-            root.Tag = familia_Actual;
-            treePatenteFamilia.Nodes.Add(root);
+                Componente _familia = new Familia();
+                Componente componente = new Familia();
 
-            foreach (var item in _familia)
-            {
-                MostrarEnTreePatenteFamilia(root, item);
+                if (familia)
+                {
+                    _familia = permiso.GetTraerHijos(familia_Actual.id, componente, null);
+
+                    foreach (var i in _familia.Hijos) familia_Actual.AgregarHijo(i);
+                }
+                else
+                {
+                    _familia = familia_Actual;
+                }
+
+                treePatenteFamilia.Nodes.Clear();
+                TreeNode root = new TreeNode(familia_Actual.nombre);
+                root.Tag = familia_Actual;
+                treePatenteFamilia.Nodes.Add(root);
+
+                foreach (var item in _familia.Hijos)
+                {
+                    MostrarEnTreePatenteFamilia(root, item);
+                }
+                treePatenteFamilia.ExpandAll();
             }
-            treePatenteFamilia.ExpandAll();
+            catch(Exception)
+            {
+                MessageBox.Show("Error al cargar arbol de permisos");
+            }
         }
 
         private void MostrarEnTreePatenteFamilia(TreeNode tn, Componente comp)
         {
-            TreeNode nodo = new TreeNode(comp.nombre);
-            tn.Tag = comp;
-            tn.Nodes.Add(nodo);
-            if (comp.Hijos != null)
+            try
             {
-                foreach (var item in comp.Hijos)
+                TreeNode nodo = new TreeNode(comp.nombre);
+                tn.Tag = comp;
+                tn.Nodes.Add(nodo);
+                if (comp.Hijos != null)
                 {
-                    MostrarEnTreePatenteFamilia(nodo, item);
+                    foreach (var item in comp.Hijos)
+                    {
+                        MostrarEnTreePatenteFamilia(nodo, item);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al cargar arbol de permisos");
+            }
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -155,9 +174,14 @@ namespace UI
                     Familia familia = (Familia)cmbFamiliasAgregar.SelectedItem;
                     if (familia.id == familia_Actual.id) throw new Exception("No se puede agregar esta familia");
                     ValidacionFamilias();
-                    var f = permiso.GetAll(familia.id);
+               
 
-                    foreach (var item in f)
+                    Componente _familia = new Familia();
+                    Componente componente = new Familia();
+
+                    _familia = permiso.GetTraerHijos(familia.id, componente, null);
+
+                    foreach (var item in _familia.Hijos)
                     {
                         familia.AgregarHijo(item);
                     }
@@ -171,7 +195,6 @@ namespace UI
 
                         else
                         {
-                            IList<Componente> _familia = permiso.GetAll(familia_Actual.id);
                             familia_Actual.AgregarHijo(familia);
                             CargarTreeFamilia(false);
                         }
