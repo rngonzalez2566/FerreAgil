@@ -45,12 +45,33 @@ namespace UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _usu = (BE.Usuario)cmbUsuario.SelectedItem;
-            _user = new BE.Usuario();
-            _user.id_usuario = _usu.id_usuario;
-            _user.usuario = _usu.usuario;
-            permiso.GetUsuarioPermiso(_user);
-            MostrarPermisosUsuario(_user);
+            try
+            {
+                _usu = (BE.Usuario)cmbUsuario.SelectedItem;
+                _user = new BE.Usuario();
+                _user.id_usuario = _usu.id_usuario;
+                _user.usuario = _usu.usuario;
+
+
+                Componente _familia = new Familia();
+                Componente componente = new Familia();
+
+                _familia = permiso.GetPermisosUsuarios(_usu.id_usuario, componente, null);
+                if (_familia.Hijos.Count > 0)
+                {
+                    foreach (Componente permiso in _familia.Hijos)
+                    {
+                        _user.Permisos.Add(permiso);
+                    }
+                }
+
+                MostrarPermisosUsuario(_user);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Error al obtener permisos del usuario");
+            }
+          
 
         }
 
@@ -98,8 +119,13 @@ namespace UI
                 }
                 else
                 {
-                    permiso.LlenarComponenteFamilia(familia);
-                    _user.Permisos.Add(familia);
+                    Componente _familia = new Familia();
+                    Componente componente = new Familia();
+                    componente = familia;
+
+                    _familia = permiso.GetTraerHijos(componente.id, componente, null);
+
+                    _user.Permisos.Add(_familia);
                     MostrarPermisosUsuario(_user);
                 }
             }

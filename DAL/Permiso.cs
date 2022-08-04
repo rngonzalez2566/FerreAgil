@@ -22,11 +22,21 @@ namespace DAL
                                         "INNER JOIN Permiso p on r.idPermisoHijo = p.idPermiso " +
                                         "group by r.idPermisoPadre, r.idPermisoHijo, p.idPermiso, p.Nombre, p.Permiso  order by p.Permiso";
 
+        private const string get_permisos_hijos = "SELECT p.idPermiso  as PermisoId, Nombre, Permiso, idPermisoPadre, idPermisoHijo " +
+                                                    "FROM Permiso p " +
+                                                    "INNER JOIN Familia_Patente fm on fm.idPermisoHijo = p.idPermiso " +
+                                                    "WHERE idPermisoPadre = @idPermiso ORDER BY Permiso DESC";
+
         private const string delete_Familia_Patente = "DELETE FROM Familia_Patente WHERE idPermisoPadre = @idpermisopadre";
         private const string crear_Familia_Patente = "INSERT INTO Familia_Patente(idPermisoPadre, idPermisoHijo) " +
                                                       "VALUES(@idpermisopadre, @idpermisohijo)";
         private const string get_Usuario_Permiso = "SELECT p.* FROM Usuario_Permiso up INNER JOIN Permiso p on p.idPermiso = up.idPermiso " +
                                                     "WHERE idUsuario = @idusuario";
+        private const string get_Permisos_Usuarios = "SELECT p.idPermiso as PermisoId, Nombre, Permiso FROM Permiso p INNER JOIN Usuario_Permiso up " +
+                                                    "on up.idPermiso = p.idPermiso "+
+                                                    "WHERE up.idUsuario = @idUsuario ORDER BY Permiso DESC";
+
+
         private const string delete_Permiso_Usuario = "DELETE FROM Usuario_Permiso WHERE idUsuario = @idusuario";
         private const string Crear_Permiso_Usuario = "INSERT INTO Usuario_Permiso(idUsuario, idPermiso) VALUES(@idusuario, @idpermiso)";
         private const string get_VerificarPermisos = "SELECT up.idUsuario, p.idPermiso, p.Nombre, p.Permiso, p1.Permiso as CodigoPermiso " +
@@ -194,7 +204,7 @@ namespace DAL
             {
                 throw new Exception("Error en la base de datos.");
             }
-            
+
         }
 
         public IList<Familia> GetFamilias()
@@ -205,7 +215,7 @@ namespace DAL
                 IList<Familia> lista = new List<Familia>();
 
                 xCommandText = get_Familias;
-                xParameters.Parameters.Clear();    
+                xParameters.Parameters.Clear();
                 dt = ExecuteReader();
 
                 if (dt.Rows.Count > 0)
@@ -220,7 +230,7 @@ namespace DAL
                     }
 
                 }
-                
+
 
                 return lista;
             }
@@ -235,7 +245,7 @@ namespace DAL
         {
             try
             {
-                
+
 
                 DataTable dt = new DataTable();
                 List<Familia> lista = new List<Familia>();
@@ -313,11 +323,71 @@ namespace DAL
                 }
                 return lista;
             }
-            catch 
+            catch
             {
 
                 throw new Exception("Error en la base de datos.");
             }
+        }
+
+        public Componente GetTraerHijos(int familiaId, Componente componenteOriginal, Componente componenteAgregar)
+        {
+            try
+            {
+                xCommandText = get_permisos_hijos;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idPermiso", familiaId);
+                DataTable dt = new DataTable();
+                dt = ExecuteReader();
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rows in dt.Rows)
+                    {
+                     
+
+                        int Id = int.Parse(rows["PermisoId"].ToString());
+                        string nombre = rows["Nombre"].ToString();
+                        string permiso = string.Empty;
+                        if (rows["Permiso"] != DBNull.Value) permiso = rows["Permiso"].ToString();
+
+                        Componente componente;
+                        if (string.IsNullOrEmpty(permiso)) componente = new Familia();
+                        else componente = new Patente();
+
+                        componente.id = Id;
+                        componente.nombre = nombre;
+                        if (!string.IsNullOrEmpty(permiso)) componente.Permiso = (BE.Composite.TipoPermiso)Enum.Parse(typeof(BE.Composite.TipoPermiso), permiso);
+
+                        if (componenteAgregar != null)
+                        {
+                            if (componente.GetType() == typeof(Patente)) componenteAgregar.AgregarHijo(componente);
+                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteAgregar);
+                        }
+                        else
+                        {
+                            if (componente.GetType() == typeof(Patente)) componenteOriginal.AgregarHijo(componente);
+                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteOriginal);
+                        }
+                    }
+                }
+
+                return componenteOriginal;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+
+        private void LlenarComponenteFamilia(Componente componente, Componente componenteOriginal, Componente componenteRaiz)
+        {
+            Componente familia = new Familia();
+            familia = componente;
+
+            componenteRaiz.AgregarHijo(familia);
+
+            GetTraerHijos(componente.id, componenteOriginal, familia);
         }
 
         private Componente ObtenerComponente(int id, IList<Componente> lista) // Método para obtener el Componente.
@@ -402,6 +472,53 @@ namespace DAL
                     }
 
                 }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+        }
+        public Componente GetPermisosUsuarios(int usuarioId, Componente componenteOriginal, Componente componenteAgregar)
+        {
+            try
+            {
+                xCommandText = get_Permisos_Usuarios;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idUsuario", usuarioId);
+                DataTable dt = new DataTable();
+                dt = ExecuteReader();
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rows in dt.Rows)
+                    {
+                        int Id = int.Parse(rows["PermisoId"].ToString());
+                        string nombre = rows["Nombre"].ToString();
+                        string permiso = string.Empty;
+                        if (rows["Permiso"] != DBNull.Value) permiso = rows["Permiso"].ToString();
+
+                        Componente componente;
+                        if (string.IsNullOrEmpty(permiso)) componente = new Familia();
+                        else componente = new Patente();
+
+                        componente.id = Id;
+                        componente.nombre = nombre;
+                        if (!string.IsNullOrEmpty(permiso)) componente.Permiso = (BE.Composite.TipoPermiso)Enum.Parse(typeof(BE.Composite.TipoPermiso), permiso);
+
+                        if (componenteAgregar != null)
+                        {
+                            if (componente.GetType() == typeof(Patente)) componenteAgregar.AgregarHijo(componente);
+                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteAgregar);
+                        }
+                        else
+                        {
+                            if (componente.GetType() == typeof(Patente)) componenteOriginal.AgregarHijo(componente);
+                            else if (componente.GetType() == typeof(Familia)) LlenarComponenteFamilia(componente, componenteOriginal, componenteOriginal);
+                        }
+                    }
+                }
+
+                return componenteOriginal;
             }
             catch (Exception)
             {
