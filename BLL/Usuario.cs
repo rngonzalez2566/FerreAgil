@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Transactions;
 
 namespace BLL
 {
@@ -11,6 +12,8 @@ namespace BLL
         DAL.Idioma idioma = new DAL.Idioma();
         Encriptar Encripta = new Encriptar();
         DAL.Usuario usuario = new DAL.Usuario();
+        DigitoVerificador dv = new DigitoVerificador();
+        DAL.DigitoVerificador dvDAL = new DAL.DigitoVerificador(); 
 
         #region ABM
         public BE.Usuario Login(string xUsuario, string password)
@@ -62,9 +65,18 @@ namespace BLL
 
             try
             {
-                Usu.contador = Usu.contador + 1;
-                usuario.BloquearUsuario(Usu);
-                return Usu.contador;
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    Usu.contador = Usu.contador + 1;
+                    Usu.DVH = dv.CalcularDV(Usu);
+                    
+                    usuario.BloquearUsuario(Usu);
+                    dvDAL.AltaDVV("Usuario");
+
+                    scope.Complete();
+
+                    return Usu.contador;
+                }
             }
             catch
             {
@@ -84,15 +96,26 @@ namespace BLL
 
             try
             {
-                ValidarUsuario(Usu);
-                string xPassword = GeneraClave();
-                Usu.usuario = Encripta.encriptar(true, Usu.usuario);
-                Usu.contrasena = Encripta.encriptar(false, xPassword);
-                if (usuario.GetUsuario(Usu.usuario) != null) throw new Exception("El Usuario ya se encuentra Registrado");
-                if (usuario.GetUsuarioPorEmail(Usu.email) != null) throw new Exception("El Mail ya se encuentra registrado");                
-                int idUsuario = usuario.AltaUsuario(Usu);
-                EnviaMailClave(Encripta.descencriptar(Usu.usuario), xPassword);
-                return idUsuario;
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    ValidarUsuario(Usu);
+                    string xPassword = GeneraClave();
+                    Usu.usuario = Encripta.encriptar(true, Usu.usuario);
+                    Usu.contrasena = Encripta.encriptar(false, xPassword);
+                    Usu.contador = 0;
+                    if (usuario.GetUsuario(Usu.usuario) != null) throw new Exception("El Usuario ya se encuentra Registrado");
+                    if (usuario.GetUsuarioPorEmail(Usu.email) != null) throw new Exception("El Mail ya se encuentra registrado");
+                    Usu.DVH = dv.CalcularDV(Usu);
+                    int idUsuario = usuario.AltaUsuario(Usu);
+                    EnviaMailClave(Encripta.descencriptar(Usu.usuario), xPassword);
+
+                    dvDAL.AltaDVV("Usuario");
+
+                    scope.Complete();
+
+                    return idUsuario;
+                }
+                
             }
             catch (Exception ex)
             {

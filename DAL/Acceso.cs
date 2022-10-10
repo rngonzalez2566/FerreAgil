@@ -20,6 +20,7 @@ namespace DAL
             set { xTextCommand = value; }
         }
 
+
         protected SqlCommand xParameters
         {
             get { return parameters; }

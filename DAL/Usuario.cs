@@ -7,15 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
 namespace DAL
 {
     public class Usuario : Acceso
     {
         #region Consultas
         private const string login = @"SELECT TOP 1 * FROM Usuario WHERE usuario = @user";
-        private const string bloqueo_User = @"update usuario set contador = @contador where id_usuario = @idUser";
-        private const string alta_User = "INSERT INTO USUARIO (usuario, email, contrasena, contador) " +
-                                         " OUTPUT inserted.Id_usuario VALUES (@usuario, @email, @contrasena, 0) ";
+        private const string bloqueo_User = @"update usuario set contador = @contador, DVH = @dv  where id_usuario = @idUser";
+        private const string alta_User = "INSERT INTO USUARIO (usuario, email, contrasena, contador, DVH) " +
+                                         " OUTPUT inserted.Id_usuario VALUES (@usuario, @email, @contrasena, 0, @dv) ";
         private const string get_User_User = "SELECT TOP 1 * FROM Usuario WHERE usuario = @user";
         private const string get_User_Email = "SELECT TOP 1 * FROM Usuario WHERE email = @email";
         private const string get_Users = "SELECT  id_usuario, usuario FROM Usuario";
@@ -40,7 +41,7 @@ namespace DAL
                     Usuario.id_usuario = int.Parse(dt.Rows[0]["id_usuario"].ToString());
                     Usuario.usuario = dt.Rows[0]["usuario"].ToString();
                     Usuario.contador = int.Parse(dt.Rows[0]["contador"].ToString());
-                    Usuario.estado = dt.Rows[0]["estado"].ToString();
+                    //Usuario.estado = dt.Rows[0]["estado"].ToString();
                     Usuario.email = dt.Rows[0]["email"].ToString();
                     Usuario.contrasena = dt.Rows[0]["contrasena"].ToString();
       
@@ -63,6 +64,7 @@ namespace DAL
                 xParameters.Parameters.Clear();
                 xParameters.Parameters.AddWithValue("@contador", usu.contador);
                 xParameters.Parameters.AddWithValue("@idUser", usu.id_usuario);
+                xParameters.Parameters.AddWithValue("@dv", usu.DVH);
                 executeNonQuery();
 
             }
@@ -84,6 +86,7 @@ namespace DAL
                 xParameters.Parameters.AddWithValue("@usuario", usu.usuario);
                 xParameters.Parameters.AddWithValue("@email", usu.email);
                 xParameters.Parameters.AddWithValue("@contrasena", usu.contrasena);
+                xParameters.Parameters.AddWithValue("@dv", usu.DVH);
 
 
                 return ExecuteNonEscalar();
@@ -114,7 +117,7 @@ namespace DAL
                     Usuario.id_usuario = int.Parse(dt.Rows[0]["id_usuario"].ToString());
                     Usuario.usuario = dt.Rows[0]["usuario"].ToString();
                     Usuario.contador = int.Parse(dt.Rows[0]["contador"].ToString());
-                    Usuario.estado = dt.Rows[0]["estado"].ToString();
+                    //Usuario.estado = dt.Rows[0]["estado"].ToString();
                     Usuario.email = dt.Rows[0]["email"].ToString();
                     Usuario.contrasena = dt.Rows[0]["contrasena"].ToString();
                 }
@@ -150,7 +153,7 @@ namespace DAL
                     Usuario.id_usuario = int.Parse(dt.Rows[0]["id_usuario"].ToString());
                     Usuario.usuario = dt.Rows[0]["usuario"].ToString();
                     Usuario.contador = int.Parse(dt.Rows[0]["contador"].ToString());
-                    Usuario.estado = dt.Rows[0]["estado"].ToString();
+                    //Usuario.estado = dt.Rows[0]["estado"].ToString();
                     Usuario.email = dt.Rows[0]["email"].ToString();
                     Usuario.contrasena = dt.Rows[0]["contrasena"].ToString();
                 }

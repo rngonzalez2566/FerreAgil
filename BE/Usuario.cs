@@ -20,8 +20,9 @@ namespace BE
         public string contrasena { get; set; }
         public int contador { get; set; }
         public string email { get; set; }
-        public string estado { get; set; }
-        public IIdioma Idioma { get; set; }
+        //public string estado { get; set; }
+        public virtual IIdioma Idioma { get; set; }
+        public int DVH { get; set; }
 
         public List<Componente> Permisos
         {

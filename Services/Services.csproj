@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DigitoVerificador.cs" />
     <Compile Include="Encriptar.cs" />
     <Compile Include="GestorPermisos.cs" />
     <Compile Include="Idioma\Etiqueta.cs" />
