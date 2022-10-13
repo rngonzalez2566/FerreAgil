@@ -59,5 +59,16 @@ namespace UI.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kisspng_computer_icons_magnifying_glass_button_icon_design_search_button_5b434bbc71c935_5226027715311369564662 {
+            get {
+                object obj = ResourceManager.GetObject("kisspng-computer-icons-magnifying-glass-button-icon-design-search-button-5b434bbc" +
+                        "71c935.5226027715311369564662", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

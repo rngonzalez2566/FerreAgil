@@ -89,6 +89,12 @@
     <Compile Include="AsignacionPermisoUsuario.Designer.cs">
       <DependentUpon>AsignacionPermisoUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bitacora.Designer.cs">
+      <DependentUpon>Bitacora.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompraMateriales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     <EmbeddedResource Include="AsignacionPermisoUsuario.resx">
       <DependentUpon>AsignacionPermisoUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bitacora.resx">
+      <DependentUpon>Bitacora.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CompraMateriales.resx">
       <DependentUpon>CompraMateriales.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +245,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ScriptDB\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kisspng-computer-icons-magnifying-glass-button-icon-design-search-button-5b434bbc71c935.5226027715311369564662.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

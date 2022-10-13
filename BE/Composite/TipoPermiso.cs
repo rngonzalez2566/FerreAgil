@@ -30,6 +30,7 @@ namespace BE.Composite
         Pendiente_Envio_Almacen,
         Recepcion_Almacen,
         Analisis_Stock,
-        Gestion_Backup
+        Gestion_Backup,
+        Bitacora
     }
 }

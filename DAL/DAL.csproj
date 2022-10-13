@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Acceso.cs" />
     <Compile Include="Backup.cs" />
+    <Compile Include="Bitacora.cs" />
     <Compile Include="Compra.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Detalle_Compra.cs" />

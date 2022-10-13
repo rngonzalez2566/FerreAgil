@@ -14,6 +14,7 @@ namespace BLL
         DAL.Usuario usuario = new DAL.Usuario();
         DigitoVerificador dv = new DigitoVerificador();
         DAL.DigitoVerificador dvDAL = new DAL.DigitoVerificador(); 
+        BLL.Bitacora bit = new BLL.Bitacora();
 
         #region ABM
         public BE.Usuario Login(string xUsuario, string password)
@@ -33,6 +34,7 @@ namespace BLL
             if (user.contador >= 3)
             {
                 throw new Exception("El Usuario se encuentra Bloqueado");
+                //bit.RegistrarBitacora()
             }
             else
             {

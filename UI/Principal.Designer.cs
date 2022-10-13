@@ -43,6 +43,11 @@ namespace UI
             this.bajaUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambioDePasswordToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.desbloquearUsuarioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDeBackupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDigitosVerificadorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlDeCambiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,11 +64,6 @@ namespace UI
             this.altaIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaEtiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionDeBackupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionDigitosVerificadorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.controlDeCambiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -203,6 +203,44 @@ namespace UI
             this.desbloquearUsuarioToolStripMenuItem1.Text = "Desbloquear Usuario";
             this.desbloquearUsuarioToolStripMenuItem1.Click += new System.EventHandler(this.desbloquearUsuarioToolStripMenuItem1_Click);
             // 
+            // seguridadToolStripMenuItem
+            // 
+            this.seguridadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gestionDeBackupsToolStripMenuItem,
+            this.bitacoraToolStripMenuItem,
+            this.gestionDigitosVerificadorsToolStripMenuItem,
+            this.controlDeCambiosToolStripMenuItem});
+            this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
+            this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.seguridadToolStripMenuItem.Text = "Seguridad";
+            // 
+            // gestionDeBackupsToolStripMenuItem
+            // 
+            this.gestionDeBackupsToolStripMenuItem.Name = "gestionDeBackupsToolStripMenuItem";
+            this.gestionDeBackupsToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.gestionDeBackupsToolStripMenuItem.Text = "Gestion de Backups";
+            this.gestionDeBackupsToolStripMenuItem.Click += new System.EventHandler(this.gestionDeBackupsToolStripMenuItem_Click);
+            // 
+            // bitacoraToolStripMenuItem
+            // 
+            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.bitacoraToolStripMenuItem.Text = "Bitacora";
+            this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
+            // 
+            // gestionDigitosVerificadorsToolStripMenuItem
+            // 
+            this.gestionDigitosVerificadorsToolStripMenuItem.Name = "gestionDigitosVerificadorsToolStripMenuItem";
+            this.gestionDigitosVerificadorsToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.gestionDigitosVerificadorsToolStripMenuItem.Text = "Gestion Digitos Verificadores";
+            this.gestionDigitosVerificadorsToolStripMenuItem.Click += new System.EventHandler(this.gestionDigitosVerificadorsToolStripMenuItem_Click);
+            // 
+            // controlDeCambiosToolStripMenuItem
+            // 
+            this.controlDeCambiosToolStripMenuItem.Name = "controlDeCambiosToolStripMenuItem";
+            this.controlDeCambiosToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.controlDeCambiosToolStripMenuItem.Text = "Control de Cambios";
+            // 
             // aBMToolStripMenuItem
             // 
             this.aBMToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -217,7 +255,7 @@ namespace UI
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.productosToolStripMenuItem.Tag = "Producto";
             this.productosToolStripMenuItem.Text = "Producto";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
@@ -225,7 +263,7 @@ namespace UI
             // proveedorToolStripMenuItem
             // 
             this.proveedorToolStripMenuItem.Name = "proveedorToolStripMenuItem";
-            this.proveedorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proveedorToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.proveedorToolStripMenuItem.Tag = "Proveedor";
             this.proveedorToolStripMenuItem.Text = "Proveedor";
             // 
@@ -318,7 +356,7 @@ namespace UI
             // altaIdiomaToolStripMenuItem
             // 
             this.altaIdiomaToolStripMenuItem.Name = "altaIdiomaToolStripMenuItem";
-            this.altaIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.altaIdiomaToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.altaIdiomaToolStripMenuItem.Tag = "Alta_Idioma";
             this.altaIdiomaToolStripMenuItem.Text = "Alta Idioma";
             this.altaIdiomaToolStripMenuItem.Click += new System.EventHandler(this.altaIdiomaToolStripMenuItem_Click);
@@ -326,7 +364,7 @@ namespace UI
             // altaEtiquetasToolStripMenuItem
             // 
             this.altaEtiquetasToolStripMenuItem.Name = "altaEtiquetasToolStripMenuItem";
-            this.altaEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.altaEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.altaEtiquetasToolStripMenuItem.Tag = "Alta_Etiqueta";
             this.altaEtiquetasToolStripMenuItem.Text = "Alta Etiquetas";
             this.altaEtiquetasToolStripMenuItem.Click += new System.EventHandler(this.altaEtiquetasToolStripMenuItem_Click);
@@ -338,43 +376,6 @@ namespace UI
             this.cerrarSesionToolStripMenuItem.Tag = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
-            // 
-            // seguridadToolStripMenuItem
-            // 
-            this.seguridadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gestionDeBackupsToolStripMenuItem,
-            this.bitacoraToolStripMenuItem,
-            this.gestionDigitosVerificadorsToolStripMenuItem,
-            this.controlDeCambiosToolStripMenuItem});
-            this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
-            this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.seguridadToolStripMenuItem.Text = "Seguridad";
-            // 
-            // gestionDeBackupsToolStripMenuItem
-            // 
-            this.gestionDeBackupsToolStripMenuItem.Name = "gestionDeBackupsToolStripMenuItem";
-            this.gestionDeBackupsToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.gestionDeBackupsToolStripMenuItem.Text = "Gestion de Backups";
-            this.gestionDeBackupsToolStripMenuItem.Click += new System.EventHandler(this.gestionDeBackupsToolStripMenuItem_Click);
-            // 
-            // bitacoraToolStripMenuItem
-            // 
-            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.bitacoraToolStripMenuItem.Text = "Bitacora";
-            // 
-            // gestionDigitosVerificadorsToolStripMenuItem
-            // 
-            this.gestionDigitosVerificadorsToolStripMenuItem.Name = "gestionDigitosVerificadorsToolStripMenuItem";
-            this.gestionDigitosVerificadorsToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.gestionDigitosVerificadorsToolStripMenuItem.Text = "Gestion Digitos Verificadores";
-            this.gestionDigitosVerificadorsToolStripMenuItem.Click += new System.EventHandler(this.gestionDigitosVerificadorsToolStripMenuItem_Click);
-            // 
-            // controlDeCambiosToolStripMenuItem
-            // 
-            this.controlDeCambiosToolStripMenuItem.Name = "controlDeCambiosToolStripMenuItem";
-            this.controlDeCambiosToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.controlDeCambiosToolStripMenuItem.Text = "Control de Cambios";
             // 
             // Principal
             // 

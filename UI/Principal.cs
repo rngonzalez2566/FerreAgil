@@ -60,6 +60,8 @@ namespace UI
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Recepcion_Almacen") == false) recepcionAlmacenToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Analisis_Stock") == false) analisisStockProductosToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Backup") == false) gestionDeBackupsToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Bitacora") == false) bitacoraToolStripMenuItem.Enabled = false;
+            
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -312,6 +314,14 @@ namespace UI
         private void gestionDeBackupsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionBackup frm = new GestionBackup();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitacora frm = new Bitacora();
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
