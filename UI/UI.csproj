@@ -119,6 +119,12 @@
     <Compile Include="GestionBackup.Designer.cs">
       <DependentUpon>GestionBackup.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionDigitosVerificadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionDigitosVerificadores.Designer.cs">
+      <DependentUpon>GestionDigitosVerificadores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionBackup.resx">
       <DependentUpon>GestionBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionDigitosVerificadores.resx">
+      <DependentUpon>GestionDigitosVerificadores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

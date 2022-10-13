@@ -33,8 +33,8 @@ namespace BLL
 
             if (user.contador >= 3)
             {
+                bit.RegistrarBitacora("EL USUARIO SE ENCUENTRA BLOQUEADO: " + Encripta.descencriptar(user.usuario), "ALTA");
                 throw new Exception("El Usuario se encuentra Bloqueado");
-                //bit.RegistrarBitacora()
             }
             else
             {
@@ -42,9 +42,15 @@ namespace BLL
                 {
                     if (BloquearUsuario(user) >= 3)
                     {
+                        bit.RegistrarBitacora("USUARIO BLOQUEADO: " + Encripta.descencriptar(user.usuario), "ALTA");
                         throw new Exception("Se alcanzo el maximo de intentos fallidos, se bloquea el usuario");
                     }
-                    else throw new Exception("Password invalida");
+                    else
+                    {
+                        bit.RegistrarBitacora("PASSWORD INVALIDA PARA USUARIO: " + Encripta.descencriptar(user.usuario), "ALTA");
+                        throw new Exception("Password invalida");
+                    }
+                        
 
                 }
 
@@ -52,6 +58,7 @@ namespace BLL
                 {
 
                     SingletonSesion.Login(user, idioma.ObtenerIdiomaDefault());
+                    bit.RegistrarBitacora("USUARIO LOGUEADO", "ALTA");
                     return user;
                 }
             }
@@ -89,6 +96,7 @@ namespace BLL
 
         public void Logout()
         {
+            bit.RegistrarBitacora("USUARIO DESLOGUEADO", "ALTA");
             SingletonSesion.Logout();
         }
 
@@ -112,6 +120,8 @@ namespace BLL
                     EnviaMailClave(Encripta.descencriptar(Usu.usuario), xPassword);
 
                     dvDAL.AltaDVV("Usuario");
+
+                    bit.RegistrarBitacora("SE DIO DE ALTA EL USUARIO: " + Encripta.descencriptar(Usu.usuario), "ALTA");
 
                     scope.Complete();
 

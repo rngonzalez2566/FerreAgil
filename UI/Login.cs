@@ -43,6 +43,12 @@ namespace UI
             try
             {
                 conex.conectar();
+                BLL.DigitoVerificadorBLL dv = new BLL.DigitoVerificadorBLL();
+                List<string> xMensaje = dv.VerificarDV();
+                if (xMensaje.Count > 0)
+                {
+                    MessageBox.Show("Error en la integridad de la base de datos");
+                }
             }
             catch (Exception)
             {

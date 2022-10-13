@@ -10,21 +10,25 @@ namespace BLL
     public class Permiso
     {
         DAL.Permiso permiso = new DAL.Permiso();
+        BLL.Bitacora bit = new BLL.Bitacora();
 
         #region ABM
         public void AltaPermiso(Componente cmp, bool esFamilia)
         {
             validarAlta(cmp, esFamilia);
             permiso.AltaPermiso(cmp, esFamilia);
+            bit.RegistrarBitacora("SE DIO DE ALTA UN PERMISO", "ALTA");
         }
         public void CrearFamiliaPatente(Familia familia)
         {
             permiso.CrearFamiliaPatente(familia);
+            bit.RegistrarBitacora("SE ASIGNO PERMISOS A FAMILIA", "ALTA");
         }
 
         public void GuardarPermisoUsuario(BE.Usuario user)
         {
             permiso.GuardarPermiso(user);
+            bit.RegistrarBitacora("SE ASIGNO PERMISOS A USUARIO", "ALTA");
         }
         #endregion
 

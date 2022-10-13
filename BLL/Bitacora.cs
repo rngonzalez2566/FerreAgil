@@ -1,22 +1,44 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace BLL
 {
     public class Bitacora
     {
         DAL.Bitacora bitacora = new DAL.Bitacora();
+        DigitoVerificador dv = new DigitoVerificador();
+        DAL.DigitoVerificador dvDAL = new DAL.DigitoVerificador();
         #region ABM
-        public int RegistrarBitacora(BE.Bitacora bit)
+        public int RegistrarBitacora(string Descripcion, string Criticidad)
         {
+
+
             try
             {
-                int idBitacora = bitacora.RegistrarBitacora(bit);
-                return idBitacora;
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    BE.Bitacora bit = new BE.Bitacora()
+                    {
+                        Usuario = SingletonSesion.GetUsuario(),
+                        Descripcion = Descripcion,
+                        Criticidad = Criticidad,
+                        Fecha = DateTime.Now
+
+                    };
+                    bit.DVH = dv.CalcularDV(bit);
+
+                    int idBitacora = bitacora.RegistrarBitacora(bit);
+                    dvDAL.AltaDVV("Bitacora");
+
+                    scope.Complete();
+                    return idBitacora;
+                }
             }
             catch (Exception ex)
             {
@@ -41,12 +63,12 @@ namespace BLL
             
             }
 
-            public DataTable ListarUsuarios()
+            public List<BE.Usuario> ListarUsuarios()
             {
                 try
                 {
 
-                    return bitacora.ListarCriticidad();
+                    return bitacora.ListarUsuarios();
                 }
                 catch (Exception)
                 {

@@ -31,6 +31,8 @@ namespace BE.Composite
         Recepcion_Almacen,
         Analisis_Stock,
         Gestion_Backup,
-        Bitacora
+        Bitacora,
+        Control_Cambios,
+        Recalcular_digitos
     }
 }

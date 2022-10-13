@@ -61,6 +61,7 @@ namespace UI
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Analisis_Stock") == false) analisisStockProductosToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Backup") == false) gestionDeBackupsToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Bitacora") == false) bitacoraToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Recalcular_digitos") == false) gestionDigitosVerificadorsToolStripMenuItem.Enabled = false;
             
         }
 
@@ -308,7 +309,10 @@ namespace UI
 
         private void gestionDigitosVerificadorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            GestionDigitosVerificadores frm = new GestionDigitosVerificadores();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
         }
 
         private void gestionDeBackupsToolStripMenuItem_Click(object sender, EventArgs e)

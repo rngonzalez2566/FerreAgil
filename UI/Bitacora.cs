@@ -62,11 +62,11 @@ namespace UI
             {
               
 
-                if (dpd.Value > dph.Value)
-                {
-                    MessageBox.Show("La fecha desde no puede ser mayor a la fecha Hasta");
-                    return;
-                }
+                //if (dpd.Value > dph.Value)
+                //{
+                //    MessageBox.Show("La fecha desde no puede ser mayor a la fecha Hasta");
+                //    return;
+                //}
 
             }
 
@@ -77,14 +77,16 @@ namespace UI
 
             if (ftUsuario.Checked == true)
             {
-                fltUsuario = "U.usuario = '" + cmbUsuario.Text + "' ";
+                fltUsuario = "U.usuario = '" + encriptar.encriptar(true,cmbUsuario.Text) + "' ";
             }
 
             if (ftfecha.Checked == true)
             {
-                fltFechaD = "and b.Fecha >= '" + dpd.Value + "'  ";
-                fltFechaH = "and b.Fecha <= '" + dph.Value + "'  ";
+                fltFechaD = "and b.Fecha >= '" + dpd.Value.ToString("yyyy/MM/dd") + "'  ";
+                fltFechaH = "and b.Fecha <= '" + dph.Value.ToString("yyyy/MM/dd 23:59:59") + "'  ";
             }
+
+
 
             dtgBitacora.DataSource = null;
             dtgBitacora.Rows.Clear();
@@ -102,7 +104,15 @@ namespace UI
             List<BE.Bitacora> bitacora = bit.Busqueda(fltUsuario, fltFechaD, fltFechaH, fltCriticidad);
             foreach (BE.Bitacora lista in bitacora)
             {
-                dtgBitacora.Rows.Add(lista.Fecha, encriptar.descencriptar(lista.Usuario.usuario), lista.Descripcion,lista.Criticidad);
+                if(lista.Usuario != null)
+                {
+                    dtgBitacora.Rows.Add(lista.Fecha, encriptar.descencriptar(lista.Usuario.usuario), lista.Descripcion, lista.Criticidad);
+                }
+                else
+                {
+                    dtgBitacora.Rows.Add(lista.Fecha, "", lista.Descripcion, lista.Criticidad);
+                }
+                
             }
             }
             catch (Exception ex)
@@ -115,6 +125,32 @@ namespace UI
         {
             SingletonSesion.SuscribirObservador(this);
             UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
+            try
+            {
+
+               
+                BLL.Bitacora bit = new BLL.Bitacora();
+                DataTable dt = new DataTable();
+               
+                cmbUsuario.DataSource = bit.ListarUsuarios();
+                cmbUsuario.DisplayMember = "Usuario";
+                cmbUsuario.ValueMember = "id_usuario";
+                cmbUsuario.SelectedItem = null;
+
+                DataTable dt1 = new DataTable();
+                dt1 = bit.ListarCriticidad();
+                cmbCriticidad.DataSource = dt1;
+                cmbCriticidad.DisplayMember = "CRITICIDAD";
+                cmbCriticidad.ValueMember = "CRITICIDAD";
+                cmbCriticidad.SelectedItem = null;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+
+ 
         }
     }
 }

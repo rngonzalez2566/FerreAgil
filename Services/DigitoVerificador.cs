@@ -29,14 +29,18 @@ namespace Services
                         {
                             if (prop.SetMethod.IsVirtual == false)
                             {
-                                string xAtributo = prop.GetValue(xObjeto).ToString();
-                                for (int i = 0; i < xAtributo.Length; i++)
+                                if(prop.GetValue(xObjeto) != null)
                                 {
-                                    byte[] bytes = Encoding.ASCII.GetBytes(xAtributo.Substring(i, 1));
-                                    int result = bytes[0];
-                                    DVH = DVH + (result * (i + 1));
+                                    string xAtributo = prop.GetValue(xObjeto).ToString();
+                                    for (int i = 0; i < xAtributo.Length; i++)
+                                    {
+                                        byte[] bytes = Encoding.ASCII.GetBytes(xAtributo.Substring(i, 1));
+                                        int result = bytes[0];
+                                        DVH = DVH + (result * (i + 1));
 
+                                    }
                                 }
+                               
 
                             }
                         }
