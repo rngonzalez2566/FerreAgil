@@ -59,6 +59,11 @@ namespace UI
             this.altaIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaEtiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDeBackupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDigitosVerificadorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlDeCambiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +76,7 @@ namespace UI
             this.toolStripSesion});
             this.statusStrip1.Location = new System.Drawing.Point(0, 424);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(931, 26);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -96,6 +101,7 @@ namespace UI
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.administracionToolStripMenuItem,
             this.administracionUsuariosToolStripMenuItem,
+            this.seguridadToolStripMenuItem,
             this.aBMToolStripMenuItem,
             this.compraToolStripMenuItem,
             this.ventaToolStripMenuItem,
@@ -104,9 +110,10 @@ namespace UI
             this.cerrarSesionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(931, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // administracionToolStripMenuItem
             // 
@@ -311,7 +318,7 @@ namespace UI
             // altaIdiomaToolStripMenuItem
             // 
             this.altaIdiomaToolStripMenuItem.Name = "altaIdiomaToolStripMenuItem";
-            this.altaIdiomaToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.altaIdiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.altaIdiomaToolStripMenuItem.Tag = "Alta_Idioma";
             this.altaIdiomaToolStripMenuItem.Text = "Alta Idioma";
             this.altaIdiomaToolStripMenuItem.Click += new System.EventHandler(this.altaIdiomaToolStripMenuItem_Click);
@@ -319,7 +326,7 @@ namespace UI
             // altaEtiquetasToolStripMenuItem
             // 
             this.altaEtiquetasToolStripMenuItem.Name = "altaEtiquetasToolStripMenuItem";
-            this.altaEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.altaEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.altaEtiquetasToolStripMenuItem.Tag = "Alta_Etiqueta";
             this.altaEtiquetasToolStripMenuItem.Text = "Alta Etiquetas";
             this.altaEtiquetasToolStripMenuItem.Click += new System.EventHandler(this.altaEtiquetasToolStripMenuItem_Click);
@@ -332,12 +339,49 @@ namespace UI
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
+            // seguridadToolStripMenuItem
+            // 
+            this.seguridadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gestionDeBackupsToolStripMenuItem,
+            this.bitacoraToolStripMenuItem,
+            this.gestionDigitosVerificadorsToolStripMenuItem,
+            this.controlDeCambiosToolStripMenuItem});
+            this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
+            this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.seguridadToolStripMenuItem.Text = "Seguridad";
+            // 
+            // gestionDeBackupsToolStripMenuItem
+            // 
+            this.gestionDeBackupsToolStripMenuItem.Name = "gestionDeBackupsToolStripMenuItem";
+            this.gestionDeBackupsToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.gestionDeBackupsToolStripMenuItem.Text = "Gestion de Backups";
+            this.gestionDeBackupsToolStripMenuItem.Click += new System.EventHandler(this.gestionDeBackupsToolStripMenuItem_Click);
+            // 
+            // bitacoraToolStripMenuItem
+            // 
+            this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.bitacoraToolStripMenuItem.Text = "Bitacora";
+            // 
+            // gestionDigitosVerificadorsToolStripMenuItem
+            // 
+            this.gestionDigitosVerificadorsToolStripMenuItem.Name = "gestionDigitosVerificadorsToolStripMenuItem";
+            this.gestionDigitosVerificadorsToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.gestionDigitosVerificadorsToolStripMenuItem.Text = "Gestion Digitos Verificadores";
+            this.gestionDigitosVerificadorsToolStripMenuItem.Click += new System.EventHandler(this.gestionDigitosVerificadorsToolStripMenuItem_Click);
+            // 
+            // controlDeCambiosToolStripMenuItem
+            // 
+            this.controlDeCambiosToolStripMenuItem.Name = "controlDeCambiosToolStripMenuItem";
+            this.controlDeCambiosToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.controlDeCambiosToolStripMenuItem.Text = "Control de Cambios";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(931, 450);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
             this.IsMdiContainer = true;
@@ -386,5 +430,10 @@ namespace UI
         private System.Windows.Forms.ToolStripMenuItem pendientesEnvioAlmacenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recepcionAlmacenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analisisStockProductosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem seguridadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionDeBackupsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionDigitosVerificadorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlDeCambiosToolStripMenuItem;
     }
 }

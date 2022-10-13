@@ -107,6 +107,12 @@
     <Compile Include="ComprasPendienteEnvioProv.Designer.cs">
       <DependentUpon>ComprasPendienteEnvioProv.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionBackup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionBackup.Designer.cs">
+      <DependentUpon>GestionBackup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasPendienteEnvioProv.resx">
       <DependentUpon>ComprasPendienteEnvioProv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionBackup.resx">
+      <DependentUpon>GestionBackup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

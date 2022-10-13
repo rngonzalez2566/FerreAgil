@@ -20,6 +20,7 @@ namespace DAL
         private const string get_User_User = "SELECT TOP 1 * FROM Usuario WHERE usuario = @user";
         private const string get_User_Email = "SELECT TOP 1 * FROM Usuario WHERE email = @email";
         private const string get_Users = "SELECT  id_usuario, usuario FROM Usuario";
+        private const string get_User_ID = "SELECT TOP 1 * FROM Usuario WHERE id_usuario = @user";
         #endregion
 
         #region ABM
@@ -120,6 +121,44 @@ namespace DAL
                     //Usuario.estado = dt.Rows[0]["estado"].ToString();
                     Usuario.email = dt.Rows[0]["email"].ToString();
                     Usuario.contrasena = dt.Rows[0]["contrasena"].ToString();
+                    //Usuario.DVH = int.Parse(dt.Rows[0]["DVH"].ToString());
+                }
+                else
+                {
+                    Usuario = null;
+                }
+
+                return Usuario;
+            }
+            catch
+            {
+                throw new Exception("Se produjo un error con la base de datos");
+            }
+
+        }
+
+        public BE.Usuario GetUsuarioByID(int xUsuario)
+        {
+            DataTable dt = new DataTable();
+            BE.Usuario Usuario = new BE.Usuario();
+
+            try
+            {
+                xCommandText = get_User_ID;
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@user", xUsuario);
+                dt = ExecuteReader();
+
+
+                if (dt.Rows.Count > 0)
+                {
+                    Usuario.id_usuario = int.Parse(dt.Rows[0]["id_usuario"].ToString());
+                    Usuario.usuario = dt.Rows[0]["usuario"].ToString();
+                    Usuario.contador = int.Parse(dt.Rows[0]["contador"].ToString());
+                    //Usuario.estado = dt.Rows[0]["estado"].ToString();
+                    Usuario.email = dt.Rows[0]["email"].ToString();
+                    Usuario.contrasena = dt.Rows[0]["contrasena"].ToString();
+                    //Usuario.DVH = int.Parse(dt.Rows[0]["DVH"].ToString());
                 }
                 else
                 {

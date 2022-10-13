@@ -59,7 +59,7 @@ namespace UI
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Pendiente_Envio_Almacen") == false) pendientesEnvioAlmacenToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Recepcion_Almacen") == false) recepcionAlmacenToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Analisis_Stock") == false) analisisStockProductosToolStripMenuItem.Enabled = false;
-            
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Backup") == false) gestionDeBackupsToolStripMenuItem.Enabled = false;
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -294,6 +294,24 @@ namespace UI
         private void analisisStockProductosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AnalisisCompra frm = new AnalisisCompra();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void gestionDigitosVerificadorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gestionDeBackupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestionBackup frm = new GestionBackup();
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();

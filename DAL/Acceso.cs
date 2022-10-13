@@ -211,5 +211,37 @@ namespace DAL
             }
         }
 
+        public virtual void ExecuteNonQueryNonTransaction()
+        {
+            Conectar();
+
+            SqlCommand command = new SqlCommand(xCommandText, con);
+
+            command.CommandType = CommandType.Text;
+            command.Parameters.Clear();
+
+            foreach (SqlParameter p in xParameters.Parameters)
+            {
+                command.Parameters.AddWithValue(p.ParameterName, p.SqlValue);
+            }
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException exc)
+            {
+                throw new Exception("Ocurrió un error en BD: " + exc.Message);
+            }
+            catch (Exception exc2)
+            {
+                throw new Exception("Ocurrió un Error: " + exc2.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
     }
 }

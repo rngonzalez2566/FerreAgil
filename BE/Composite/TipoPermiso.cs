@@ -29,6 +29,7 @@ namespace BE.Composite
         Recepcion_Materiales,
         Pendiente_Envio_Almacen,
         Recepcion_Almacen,
-        Analisis_Stock
+        Analisis_Stock,
+        Gestion_Backup
     }
 }
