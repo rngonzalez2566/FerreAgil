@@ -240,6 +240,7 @@ namespace UI
             this.controlDeCambiosToolStripMenuItem.Name = "controlDeCambiosToolStripMenuItem";
             this.controlDeCambiosToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.controlDeCambiosToolStripMenuItem.Text = "Control de Cambios";
+            this.controlDeCambiosToolStripMenuItem.Click += new System.EventHandler(this.controlDeCambiosToolStripMenuItem_Click);
             // 
             // aBMToolStripMenuItem
             // 

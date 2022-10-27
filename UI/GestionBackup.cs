@@ -90,7 +90,14 @@ namespace UI
                 {
                     backup.GenerarRestore(back);
                     MessageBox.Show("Se realizo un Restore Correctamente");
+                    Login.xError = false;
+                    SingletonSesion.Logout();
                     MdiParent.Close();
+                    this.Close();
+                    Login l = new Login();
+                    l.Show();
+                    
+                    
                 }
             }
             catch (Exception ex)

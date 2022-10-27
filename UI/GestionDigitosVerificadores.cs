@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,7 +29,14 @@ namespace UI
                 {
                     dv.RecalcularDigitos();
                     MessageBox.Show("Se recalcularon los digitos correctamente");
-                    
+                    Login.xError = false;
+                    SingletonSesion.Logout();
+                    MdiParent.Close();
+                    this.Close();
+                    Login l = new Login();
+                    l.Show();
+
+
                 }  
             }
             catch

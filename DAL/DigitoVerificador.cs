@@ -184,7 +184,7 @@ namespace DAL
             usuario.usuario = "Sistema";
             var lista = new List<String>();
 
-            string xMensaje = "";
+            
             string xConsulta = "SELECT D.nombre_tabla TABLA, D.valorDVV DV FROM DigitoVerificador D";
             xCommandText = xConsulta;
             DataTable tb = new DataTable();
@@ -206,7 +206,7 @@ namespace DAL
 
                 if (xValor != xDV)
                 {
-                    xMensaje = "Error en la integridad de la base de datos";
+                   
                     lista.Add("Error en la validacion de la suma de digitos horizontales con el Digito Vertical de la tabla: " + xTabla);
                 }
 

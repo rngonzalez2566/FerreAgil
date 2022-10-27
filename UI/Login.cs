@@ -12,6 +12,7 @@ namespace UI
 {
     public partial class Login : Form
     {
+        public static bool xError = false;
         public Login()
         {
             InitializeComponent();
@@ -48,6 +49,7 @@ namespace UI
                 if (xMensaje.Count > 0)
                 {
                     MessageBox.Show("Error en la integridad de la base de datos");
+                    xError = true;
                 }
             }
             catch (Exception)

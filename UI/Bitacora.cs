@@ -40,11 +40,11 @@ namespace UI
             string fltCriticidad = " AND 1 = 1 ";
 
 
-            if (ftUsuario.Checked == false && ftfecha.Checked == false && ftCriticidad.Checked == false)
-            {
-                    MessageBox.Show("No selecciono ningun filtro de busqueda");
-                    return;
-            }
+            //if (ftUsuario.Checked == false && ftfecha.Checked == false && ftCriticidad.Checked == false)
+            //{
+            //        MessageBox.Show("No selecciono ningun filtro de busqueda");
+            //        return;
+            //}
 
             if (ftUsuario.Checked == true && cmbUsuario.SelectedValue == null)
             {

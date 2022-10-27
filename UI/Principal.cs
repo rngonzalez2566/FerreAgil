@@ -17,14 +17,14 @@ namespace UI
     {
         BLL.Idioma idiomaBLL = new BLL.Idioma();
         BLL.Permiso permiso = new BLL.Permiso();
-       
+
         public Principal()
         {
             InitializeComponent();
-            
+
 
         }
-        
+
         private void Principal_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -37,7 +37,7 @@ namespace UI
 
         private void VerificarPermisosMenu()
         {
-          
+
 
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Alta_Usuario") == false) altaUsuarioToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Baja_Usuario") == false) bajaUsuarioToolStripMenuItem.Enabled = false;
@@ -62,14 +62,40 @@ namespace UI
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Gestion_Backup") == false) gestionDeBackupsToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Bitacora") == false) bitacoraToolStripMenuItem.Enabled = false;
             if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Recalcular_digitos") == false) gestionDigitosVerificadorsToolStripMenuItem.Enabled = false;
+            if (permiso.VerificarPermiso(SingletonSesion.GetUsuario(), "Control_Cambios") == false) controlDeCambiosToolStripMenuItem.Enabled = false;
             
+            if (Login.xError)
+            {
+                altaUsuarioToolStripMenuItem.Enabled = false;
+                bajaUsuarioToolStripMenuItem.Enabled = false;
+                desbloquearUsuarioToolStripMenuItem1.Enabled = false;
+                cambioDePasswordToolStripMenuItem1.Enabled = false;
+                altaPermisosStripMenuItem.Enabled = false;
+                asignacionFamiliaPatenteToolStripMenuItem1.Enabled = false;
+                asignacionPermisosUsuariosToolStripMenuItem.Enabled = false;
+                desasignarPermisosToolStripMenuItem1.Enabled = false;
+                productosToolStripMenuItem.Enabled = false;
+                proveedorToolStripMenuItem.Enabled = false;
+                compraToolStripMenuItem.Enabled = false;
+                ventaToolStripMenuItem.Enabled = false;
+                altaIdiomaToolStripMenuItem.Enabled = false;
+                altaEtiquetasToolStripMenuItem.Enabled = false;
+                compraDeMaterialesToolStripMenuItem.Enabled = false;
+                pendientesEnvioProveedorToolStripMenuItem.Enabled = false;
+                pendientesEnvioProveedorToolStripMenuItem.Enabled = false;
+                pendientesEnvioAlmacenToolStripMenuItem.Enabled = false;
+                recepcionAlmacenToolStripMenuItem.Enabled = false;
+                analisisStockProductosToolStripMenuItem.Enabled = false;
+                controlDeCambiosToolStripMenuItem.Enabled = false;
+
+            }
         }
 
         public void UpdateLanguage(IIdioma idioma)
         {
             Services.Idioma.Traductor.Traducir(idiomaBLL, idioma, this.Controls);
             Services.Idioma.Traductor.TraducirMenu(idiomaBLL, idioma, menuStrip1);
-           
+
         }
 
         private void obtenerIdiomas()
@@ -225,7 +251,7 @@ namespace UI
 
         private void altaIdiomaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-  
+
             AltaIdioma frm = new AltaIdioma();
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterScreen;
@@ -237,12 +263,12 @@ namespace UI
             Form formEvento = (Form)sender;
             if (formEvento.ActiveMdiChild == null)
             {
-               
+
                 UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
                 menuIdioma.DropDownItems.Clear();
                 obtenerIdiomas();
             }
-           
+
         }
 
         private void altaEtiquetasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -329,6 +355,11 @@ namespace UI
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
+        }
+
+        private void controlDeCambiosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
