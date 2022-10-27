@@ -34,8 +34,11 @@ namespace UI
             SingletonSesion.SuscribirObservador(this);
             UpdateLanguage(SingletonSesion.GetUsuario().Idioma);
             cargarDatos();
-
-        }
+                if (Login.xError)
+                { 
+                    button2.Enabled = false;
+                }
+            }
 
         public void cargarDatos()
         {

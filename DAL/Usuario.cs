@@ -19,7 +19,7 @@ namespace DAL
                                          " OUTPUT inserted.Id_usuario VALUES (@usuario, @email, @contrasena, 0, @dv) ";
         private const string get_User_User = "SELECT TOP 1 * FROM Usuario WHERE usuario = @user";
         private const string get_User_Email = "SELECT TOP 1 * FROM Usuario WHERE email = @email";
-        private const string get_Users = "SELECT  id_usuario, usuario FROM Usuario";
+        private const string get_Users = "SELECT  id_usuario, usuario,contrasena,contador,email,DVH FROM Usuario";
         private const string get_User_ID = "SELECT TOP 1 * FROM Usuario WHERE id_usuario = @user";
         #endregion
 
@@ -231,6 +231,48 @@ namespace DAL
 
                         usuario.id_usuario = int.Parse(fila[0].ToString());
                         usuario.usuario = encriptar.descencriptar(fila[1].ToString());
+
+
+                        lista.Add(usuario);
+                    }
+                }
+
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error en la base de datos.");
+            }
+
+
+        }
+
+        public List<BE.Usuario> GetUsuariosCompleto()
+        {
+            try
+            {
+                Services.Encriptar encriptar = new Services.Encriptar();
+                DataTable dt = new DataTable();
+                List<BE.Usuario> lista = new List<BE.Usuario>();
+
+                xCommandText = get_Users;
+                xParameters.Parameters.Clear();
+                dt = ExecuteReader();
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in dt.Rows)
+                    {
+
+                        BE.Usuario usuario = new BE.Usuario();
+
+                        usuario.id_usuario = int.Parse(fila[0].ToString());
+                        usuario.usuario = fila[1].ToString();
+                        usuario.contrasena = fila[2].ToString();
+                        usuario.contador = int.Parse(fila[3].ToString());
+                        usuario.email = fila[4].ToString();
+                        usuario.DVH = int.Parse(fila[5].ToString());
 
 
                         lista.Add(usuario);
